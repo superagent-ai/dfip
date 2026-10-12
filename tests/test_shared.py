@@ -23,7 +23,7 @@ def rows():
 
 def test_preserve_order_without_mixing_schemas_or_extreme_padding():
     native = Native(); data = rows()
-    scheduler = SharedBatcher(native, {'a': 8, 'b': 8}, BatchLimits(padded_token_budget=100))
+    scheduler = SharedBatcher(native, {'a': [2, 3, 8], 'b': [2, 8]}, BatchLimits(padded_token_budget=100))
     outputs, batches = scheduler.run(data)
     assert outputs == list(range(6))
     assert batches[0] == [0, 4, 3]
@@ -39,9 +39,9 @@ def test_unadmitted_contract_uses_native_single():
 
 def test_cap_and_token_budget_are_enforced():
     data = [dict(id=i, schema='a', length=30) for i in range(9)]
-    _, batches = SharedBatcher(Native(), {'a': 8}, BatchLimits(padded_token_budget=100)).run(data)
+    _, batches = SharedBatcher(Native(), {'a': [3, 8]}, BatchLimits(padded_token_budget=100)).run(data)
     assert [len(batch) for batch in batches] == [3, 3, 3]
-    _, batches = SharedBatcher(Native(), {'a': 2}).run(data)
+    _, batches = SharedBatcher(Native(), {'a': [2]}).run(data)
     assert [len(batch) for batch in batches] == [2, 2, 2, 2, 1]
 
 
@@ -52,7 +52,13 @@ def test_native_comparator_already_batches_compatible_requests():
 
 
 def test_no_answer_cache_on_changed_inputs():
-    data = rows(); scheduler = SharedBatcher(Native(), {'a': 8})
+    data = rows(); scheduler = SharedBatcher(Native(), {'a': [2, 4, 8]})
     scheduler.run(data)
     data[0]['id'] = 100
     assert scheduler.run(data)[0][0] == 100
+
+
+def test_partial_queue_cannot_use_a_rejected_batch_size():
+    data = [dict(id=i, schema='a', length=10) for i in range(6)]
+    _, batches = SharedBatcher(Native(), {'a': [4, 8]}).run(data)
+    assert [len(b) for b in batches] == [4, 1, 1]

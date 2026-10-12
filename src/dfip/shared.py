@@ -17,7 +17,7 @@ class BatchLimits:
 class SharedBatcher:
     def __init__(self, adapter, admitted, limits=BatchLimits()):
         self.adapter = adapter
-        self.admitted = dict(admitted)
+        self.admitted = {key: tuple(sizes) for key, sizes in admitted.items()}
         self.limits = limits
 
     def select(self, pending, lengths):
@@ -30,7 +30,8 @@ class SharedBatcher:
         if not pending:
             return []
         key = self.adapter.key(pending[0])
-        cap = min(self.limits.max_batch, self.admitted.get(key, 1))
+        sizes = [n for n in self.admitted.get(key, ()) if n <= self.limits.max_batch]
+        cap = max([1] + sizes)
         if cap <= 1:
             return [0]
         selected = [0]
@@ -47,7 +48,10 @@ class SharedBatcher:
             if new_high*(len(selected)+1) > self.limits.padded_token_budget:
                 continue
             selected.append(i); low, high = new_low, new_high
-        return selected
+        # Partial queues may produce a size that failed or was never tested.
+        # Only execute one of the sizes admitted for this ordered contract.
+        count = max([1] + [n for n in sizes if n <= len(selected)])
+        return selected[:count]
 
     def execute(self, rows):
         if len(rows) == 1:
@@ -56,7 +60,7 @@ class SharedBatcher:
 
     def length(self, row):
         # A rejected contract needs no length analysis to execute natively.
-        return self.adapter.length(row) if self.admitted.get(self.adapter.key(row), 1) > 1 else 0
+        return self.adapter.length(row) if self.admitted.get(self.adapter.key(row)) else 0
 
     def run(self, records, lengths=None):
         lengths = lengths or [self.length(r) for r in records]

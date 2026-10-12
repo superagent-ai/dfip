@@ -83,7 +83,7 @@ def calibrate(adapter):
             gain = statistics.median(serial)/statistics.median(batched)
             passes = all(c["passes"] for c in comparisons) and gain >= 1.10
             if passes:
-                admitted[key] = max(size, admitted.get(key, 1))
+                admitted.setdefault(key, []).append(size)
             evidence.append({"key": key, "size": size, "records": [r for chunk in chunks for r in chunk],
                              "comparisons": comparisons, "serial_ms": serial, "batch_ms": batched,
                              "median_gain": gain, "admitted": passes})
@@ -126,7 +126,7 @@ def serving(adapter, scheduler, rows, arrivals, mode, reference):
                 time.sleep(max(0, arrivals[cursor]-(time.perf_counter()-start)))
             continue
         head = pending[0][0]; key = adapter.key(rows[head])
-        cap = scheduler.admitted.get(key, 1) if mode == "shared" else (1 if mode == "serial" else 8)
+        cap = max((1, *scheduler.admitted.get(key, ()))) if mode == "shared" else (1 if mode == "serial" else 8)
         compatible = sum(adapter.key(rows[i]) == key for i, _ in pending)
         remaining_wait = scheduler.limits.wait_ms/1000 - (now-arrivals[head])
         if cap > 1 and compatible < cap and remaining_wait > 0:
