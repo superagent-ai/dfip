@@ -102,7 +102,7 @@ def optimize(adapter, mode, records):
                     ]
                     if head.ensure_tokens(current):
                         for graph in adapter.graphs:
-                            graph.cache.clear()
+                            graph.clear()
                             graph.failures.clear()
                     return adapter._native_predict(batch)
 

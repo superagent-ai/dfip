@@ -80,6 +80,12 @@ class GraphRunner:
         self.batch_limit = None
         self.include_padding_values = False
 
+    def clear(self):
+        """Release captured allocations only after their last GPU use finishes."""
+        if self.cache:
+            torch.cuda.synchronize()
+            self.cache.clear()
+
     def __call__(self, *args, **kwargs):
         if not self.enabled:
             return self.fn(*args, **kwargs)
@@ -141,6 +147,8 @@ class GraphRunner:
             self.cache[key] = (static_args, static_kwargs, graph, out)
             self.captures += 1
             if len(self.cache) > self.max_entries:
+                # Downstream native readout may still be using an evicted output.
+                torch.cuda.synchronize()
                 self.cache.popitem(last=False)
         static_args, static_kwargs, graph, out = self.cache[key]
         self.cache.move_to_end(key)

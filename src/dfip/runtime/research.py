@@ -26,7 +26,7 @@ from dfip.runtime.optimization import optimize
 
 BANKING_REVISION = "8eed2b348ec07d40ffbe91dcc4718e2f0f977714"
 BANKING_SHA256 = "535fc96c4c2b4c2dbdeb0d4b31f24a4859620cf663d6c19c1bd1f97450c410be"
-PROTOCOL = "dfip-paper-v1"
+PROTOCOL = "dfip-paper-v2-synchronized-retirement"
 
 
 def manifest():
@@ -231,7 +231,7 @@ class AblationEngine:
     def configure(self, mode):
         self.mode = mode
         for graph in self.adapter.graphs:
-            graph.cache.clear()
+            graph.clear()
             graph.failures.clear()
             graph.shape_hits.clear()
             graph.captures = 0
@@ -278,6 +278,7 @@ class AblationEngine:
 
 
 def measure(engine, workload, repetitions):
+    print(json.dumps({"benchmark_start": workload["name"], "mode": engine.mode}), flush=True)
     first = []
     for _ in range(4):
         started = time.perf_counter()
