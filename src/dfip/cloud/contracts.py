@@ -29,7 +29,9 @@ def run(alias, action, commit, round_id):
     folder = Path("/research/results/contracts"); folder.mkdir(parents=True, exist_ok=True)
     (folder / f"{alias}-{action}-{round_id}-{commit[:12]}.json").write_text(json.dumps(result, indent=2))
     volume.commit()
-    return result
+    # torch.__version__ is a string subclass whose pickle imports torch on the
+    # client. Transport only JSON primitives; the client needs no GPU packages.
+    return json.loads(json.dumps(result))
 
 
 @app.function(image=image, gpu="L40S", cpu=4, memory=49152, volumes={"/research": volume},
