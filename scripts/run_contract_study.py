@@ -46,6 +46,8 @@ def main():
                 paths = ["src", "scripts", "tests", "pyproject.toml", "benchmarks/generality-protocol.json"]
                 if (ROOT / "benchmarks/shared-batching-protocol.json").exists():
                     paths.append("benchmarks/shared-batching-protocol.json")
+                if (ROOT / "benchmarks/shared-compiled-followup-protocol.json").exists():
+                    paths.append("benchmarks/shared-compiled-followup-protocol.json")
                 subprocess.run(["git", "archive", "--format=zip", "--prefix=dfip-source/", "--output="+str(archive),
                                 source, *paths], cwd=ROOT, check=True)
             prefix = f"dfip-study5-{args.action}-{model}-{round_id}"
