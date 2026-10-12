@@ -125,7 +125,7 @@ The separate strengthened study installs optional native Qwen kernels and tests 
 
 The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. The separate bounded-admission pilot reduces recapture work but does not establish uniform serving gains or Clef confidence equivalence.
 
-GLiNER2.5-Decide is a research adapter, separate from the public client registry. Its shared scheduler is 1.57× faster than native batching on the diverse resident trace in one worker, while preserving the exposed labels and confidence in the held-out audit. Short varied-traffic p95 is tied with native batching. The released-compiler follow-up is reported separately in the [focused paper results](paper/generated/focused-summary.json); these phases are not pooled with the earlier replay study.
+GLiNER2.5-Decide is a research adapter, separate from the public client registry. Its shared scheduler is 1.57× faster than eager native batching and 1.40× faster than released compiled native batching on the diverse resident trace, with one worker per substrate and passing exposed-label/confidence audits. The short varied-traffic replay does not show an incremental tail-latency gain: compiled shared p95 is 72.1 ms versus 43.2 ms for compiled native batching. The compiler follow-up reuses fixtures after the initial result and is exploratory. See the [focused paper results](paper/generated/focused-summary.json); these phases are not pooled with the earlier replay study.
 
 Repeated resident short Boolean calls in the strengthened image:
 
