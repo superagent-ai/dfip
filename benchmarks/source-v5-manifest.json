@@ -1,0 +1,60 @@
+{
+  "archives": [
+    {
+      "source_commit": "01b6f8723a972cac2cdf5b2b0298fde594c427cb",
+      "archive": "benchmarks/source-v5-01b6f8723a97.zip",
+      "sha256": "8e721de943fc1ba067edd5ade4152b89c44f2e7e0b9b4087117eda60505f389a",
+      "files_verified_against_git": 69
+    },
+    {
+      "source_commit": "fde7117e17cf2932cbbe61a7bcd01749a43c7e0f",
+      "archive": "benchmarks/source-v5-fde7117e17cf.zip",
+      "sha256": "41edc6a09452efeca26fe771d4bbf5260db8d2f3e0dd0646fa4abcec4b6d6272",
+      "files_verified_against_git": 69
+    },
+    {
+      "source_commit": "ccb1050323863e53a4ead3d367c1131b82e3b09b",
+      "archive": "benchmarks/source-v5-ccb105032386.zip",
+      "sha256": "d0cffd7c5df37de2d13001fb34bc3cd85d617cc29c53ea7bb815922a6f017e3b",
+      "files_verified_against_git": 72
+    },
+    {
+      "source_commit": "7785cb90cb5e3aa725d46224ab5300227f5bf043",
+      "archive": "benchmarks/source-v5-7785cb90cb5e.zip",
+      "sha256": "872ae2c599099aefb037c8e491619e7af91390f20fedd556d527166cc32b00b7",
+      "files_verified_against_git": 74
+    },
+    {
+      "source_commit": "7356ac7f169ede4d3df767709bd1b4fecd814193",
+      "archive": "benchmarks/source-v5-7356ac7f169e.zip",
+      "sha256": "4309b3c4836af28ec15e7f449aa5a2b5174f96bb0761a3dbc454e8eacbe1fbb9",
+      "files_verified_against_git": 74
+    },
+    {
+      "source_commit": "1063988fbe96df03f6c4c356c05cdcfab1b6546e",
+      "archive": "benchmarks/source-v5-1063988fbe96.zip",
+      "sha256": "bc8a1f47b33436b263f67be4571a87598cccca27c33ec61bce1f4de2f62e61a8",
+      "files_verified_against_git": 74
+    },
+    {
+      "source_commit": "8ece2277417050e40be6082728208aeed50034e7",
+      "archive": "benchmarks/source-v5-8ece22774170.zip",
+      "sha256": "f6c898461ff2a1e2cc96cd3eaecf4df44feb04f111b061c57b49fa4662a4fa77",
+      "files_verified_against_git": 74
+    },
+    {
+      "source_commit": "4979c5f0a808a341148d53d65f17084c55b57410",
+      "archive": "benchmarks/source-v5-4979c5f0a808.zip",
+      "sha256": "50127e01a18d78988a83430ecca7e0362ec8feb2f2b41981a28efe94f4bc9927",
+      "files_verified_against_git": 74
+    },
+    {
+      "source_commit": "4adadc36c6cc2e0cd95dad0b6c67a07462649886",
+      "archive": "benchmarks/source-v5-4adadc36c6cc.zip",
+      "sha256": "ffed58a140bb285e1bb2023742f049580fceea519d07fb9a0823d18f5fbe7a07",
+      "files_verified_against_git": 75
+    }
+  ],
+  "shared_policy_sha256": "a87fceaaf31c2bc43ad9609414df5733ce1efea3731cacac71a3a9f6d47fcc83",
+  "verification": "Each archive file equals the recorded Git object; all shared-study policies match the frozen implementation"
+}

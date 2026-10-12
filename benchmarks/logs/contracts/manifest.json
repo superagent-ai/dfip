@@ -1,0 +1,173 @@
+{
+  "transform": "ANSI control sequences removed; deterministic gzip compression",
+  "logs": {
+    "contracts-compiled-queued-driver.log.gz": {
+      "source_log": "work/contracts-compiled-queued-driver.log",
+      "source_sha256": "bf509b25c98e79fa938ad35187ce4435f8bbddc739dc44b03108fe857bd889aa",
+      "decoded_sha256": "bf509b25c98e79fa938ad35187ce4435f8bbddc739dc44b03108fe857bd889aa",
+      "gzip_sha256": "0f9ccf0127c5da269c43a2eff7ee30651670aea87a10a75be90904d02b0afd70",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-cpu-prepare.log.gz": {
+      "source_log": "work/contracts-cpu-prepare.log",
+      "source_sha256": "1130b880d062c92beda55e2f8846d9f70b86487797e1de78e8dd7ff9362ec6c0",
+      "decoded_sha256": "a48ece989c14e4353f377946dcd06c34dd68b31190b73c64bf2d695ecf04ae4a",
+      "gzip_sha256": "4bf98154d9c248a9b179da5402f88827bcde4ae906474f54b1163cd9d831ce81",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-d3-reprepare.log.gz": {
+      "source_log": "work/contracts-d3-reprepare.log",
+      "source_sha256": "7c9eff7645cd2ebe480aaceb93ad2c134c2bf54ee7751a83c933e37a9a35651b",
+      "decoded_sha256": "c2d0432827d7cd3461b0e82c51fcfa1923811da5db956226ea71f94e6a0eb57a",
+      "gzip_sha256": "037769ee7cbfddb68790dde88a279057adeb1ca65da595d6ac777b5e439caf08",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-d3-0-01b6f8723a97.log.gz": {
+      "source_log": "work/contracts-native-d3-0-01b6f8723a97.log",
+      "source_sha256": "93d447268f0f1215e38332e1cebd001d98402b37dcc5d4cef8d58cad04cd9068",
+      "decoded_sha256": "93d447268f0f1215e38332e1cebd001d98402b37dcc5d4cef8d58cad04cd9068",
+      "gzip_sha256": "fc7b6a20de295ba0cde12423a38054cdcf9d899546577864aa560c25066d5948",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-d3-1-fde7117e17cf.log.gz": {
+      "source_log": "work/contracts-native-d3-1-fde7117e17cf.log",
+      "source_sha256": "77d1cbea3484b1d52ec8ef15ce5522e5442c17de352fa6706e08babb13512eb9",
+      "decoded_sha256": "f34f471670bb80135e9dd8f2fdee04285c7616788b7309cf5d2b5071e89a9f54",
+      "gzip_sha256": "4c86835c3b355bcc8b735bf8debdbc33a62bcd3ea105ba4151597665d89042fe",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-d3-2-7785cb90cb5e.log.gz": {
+      "source_log": "work/contracts-native-d3-2-7785cb90cb5e.log",
+      "source_sha256": "329a62c7b9b600c3be1f1b3df55f3f66f6061b9d57f9d1c737d2dcdbdd6f1e33",
+      "decoded_sha256": "9fbccf1d5d250c96f920fca0a0670f4a5d7469ae846260e6b270bac5196ee45d",
+      "gzip_sha256": "faa3804179b98003fa904012742e76f68b7d0732850cc293163a90cbec4ee5b3",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-d3-corrected-driver.log.gz": {
+      "source_log": "work/contracts-native-d3-corrected-driver.log",
+      "source_sha256": "dcf6cb1c5b9587f06d650e68ff0e6fca8c9bc6d494dfe6f2984f0c7bfc7bf9e2",
+      "decoded_sha256": "dcf6cb1c5b9587f06d650e68ff0e6fca8c9bc6d494dfe6f2984f0c7bfc7bf9e2",
+      "gzip_sha256": "8f095aa8aa87b9e6e71f6caf30213d5031668a359d48252f0ba147de36820d73",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-driver.log.gz": {
+      "source_log": "work/contracts-native-driver.log",
+      "source_sha256": "ad773a32cb854d9d8f24138ea4f59dc3cd9674a65c4638a8f911d1ae5f54df23",
+      "decoded_sha256": "ad773a32cb854d9d8f24138ea4f59dc3cd9674a65c4638a8f911d1ae5f54df23",
+      "gzip_sha256": "353a97ab13375ac9803dbabc08023fd5470f4ec6d39389c2f600864b7a992f8a",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-gliner-0-01b6f8723a97.log.gz": {
+      "source_log": "work/contracts-native-gliner-0-01b6f8723a97.log",
+      "source_sha256": "65b4f229fd1c0253768192bd7b7e56a69b9bb28a6accdd7511c7f8eed7fb5762",
+      "decoded_sha256": "65b4f229fd1c0253768192bd7b7e56a69b9bb28a6accdd7511c7f8eed7fb5762",
+      "gzip_sha256": "c829fd6d94b4d9bfa105e42c4c474299567c4e6af009206fcfb6b0a6cbbe63c8",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-jev27-0-01b6f8723a97.log.gz": {
+      "source_log": "work/contracts-native-jev27-0-01b6f8723a97.log",
+      "source_sha256": "5894a57ea903b0cab15141f9bd6429d1b0ae75c5570044f7a78a52bc6805db9d",
+      "decoded_sha256": "5894a57ea903b0cab15141f9bd6429d1b0ae75c5570044f7a78a52bc6805db9d",
+      "gzip_sha256": "b306786076ac2a1056f9c86b590d24d43cec0f38ac8c78afd76f2a792d9e6882",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-jev27-1-ccb105032386.log.gz": {
+      "source_log": "work/contracts-native-jev27-1-ccb105032386.log",
+      "source_sha256": "d13219d7963c2fb11ed10113e6b4825f463cbc0a78cb8054dfdcf1e4260bb3f2",
+      "decoded_sha256": "47093841c63fbc862a809774edc97dca33dd285cdee16d1e0fb48578f078c8b3",
+      "gzip_sha256": "ac8040828291476ac2bf9add3bc042d562fa5fa43df0b3c3b833207ca2f990ed",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-jev9-0-01b6f8723a97.log.gz": {
+      "source_log": "work/contracts-native-jev9-0-01b6f8723a97.log",
+      "source_sha256": "c5d9cc9636c91ff83a5fde657226892311ff785dd2f2313e6fab9cb6f252f046",
+      "decoded_sha256": "c5d9cc9636c91ff83a5fde657226892311ff785dd2f2313e6fab9cb6f252f046",
+      "gzip_sha256": "2e260c7990ee2d5fc62c84a176bcc052b45920b2153cc05aa0214fb5aa088c84",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-jev9-1-fde7117e17cf.log.gz": {
+      "source_log": "work/contracts-native-jev9-1-fde7117e17cf.log",
+      "source_sha256": "c844c121e813490aa00c0318ab85ebf2416f8fa1e05d83dbb10c1b43aad47c70",
+      "decoded_sha256": "3f24f7be4182d0ebbe6f17f08bad7aeedd1cdb3e70ef42b238c3281d7b2be676",
+      "gzip_sha256": "9be6b9283865f6ca7b8ffbc7997f3c9c354a98d2d427ac2275e526196e58a40a",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-omni-0-01b6f8723a97.log.gz": {
+      "source_log": "work/contracts-native-omni-0-01b6f8723a97.log",
+      "source_sha256": "a4cfa5a94ce690c993fdb8cc04922f641a95ff9f38410d68274d032d49562e50",
+      "decoded_sha256": "c100b5b37a2a9f0803fa85c857ff00bc3ba034f77f08f36e718df4ab233a89de",
+      "gzip_sha256": "1722c08de48b25061416a43b95426fc61e76a18ee6cc9063ba2de93d17f7e42f",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-native-retry-driver.log.gz": {
+      "source_log": "work/contracts-native-retry-driver.log",
+      "source_sha256": "a372ce875fba6eb842afe11944410263d5d516704b8709d44d1a14a40376109b",
+      "decoded_sha256": "a372ce875fba6eb842afe11944410263d5d516704b8709d44d1a14a40376109b",
+      "gzip_sha256": "41ae5d656c7ca44f12f0fac2d2c28eab632c7ad2fe8794eed058229693ce218b",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-prepare-image-failure.log.gz": {
+      "source_log": "work/contracts-prepare-image-failure.log",
+      "source_sha256": "c46cfb30e3fd044656551ef9bd3ddb93a61d6ee82dcb0eafcd87d18db75a74fe",
+      "decoded_sha256": "c46cfb30e3fd044656551ef9bd3ddb93a61d6ee82dcb0eafcd87d18db75a74fe",
+      "gzip_sha256": "d46ae6be3efac19df74f043f9d96ec5e06aa0b6ad19a9f051f420eef71b131f7",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-prepare.log.gz": {
+      "source_log": "work/contracts-prepare.log",
+      "source_sha256": "5098996c44affc89eb0b886d6c15fc01f98162b55c6157d315ca2aa927289aaf",
+      "decoded_sha256": "7cb64536b385de6f27c03c9dda43b137f2b65abd6d0e847e2d90460733d74136",
+      "gzip_sha256": "75d7b1fec2b2795175259523f1a8c5e32633881de69ad5d12e3e328cab1cb588",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-d3-0-1063988fbe96.log.gz": {
+      "source_log": "work/contracts-shared-d3-0-1063988fbe96.log",
+      "source_sha256": "6a978ba91cde1da4a6e466104aa0386838d2e4af718a00b588bfc9f327c80d3c",
+      "decoded_sha256": "2117f858cfb93cc8586d4ce29fd8f9159f6497223f8750a13b17ea308a029945",
+      "gzip_sha256": "71270260914ed855ded080d95b595233751418bccaac772d724a1c0928884db5",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-driver.log.gz": {
+      "source_log": "work/contracts-shared-driver.log",
+      "source_sha256": "1e798c9bd85fa42dd86a33827128c5a522dac5d6204191337519f619f60d0a0a",
+      "decoded_sha256": "1e798c9bd85fa42dd86a33827128c5a522dac5d6204191337519f619f60d0a0a",
+      "gzip_sha256": "ff4cac2c9757afe869849815567c4953cc1498a8ad10beec20cf5df175d209b8",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-gliner-0-7356ac7f169e.log.gz": {
+      "source_log": "work/contracts-shared-gliner-0-7356ac7f169e.log",
+      "source_sha256": "b4e8acdf07baeee7c562db340fc805fb51bcb7adc21a3abe2c1cbe0b937e1833",
+      "decoded_sha256": "b4e8acdf07baeee7c562db340fc805fb51bcb7adc21a3abe2c1cbe0b937e1833",
+      "gzip_sha256": "51f876618103bc4c71b32923831cb1432afc790c0ddfbe362b26966582322266",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-jev27-0-4979c5f0a808.log.gz": {
+      "source_log": "work/contracts-shared-jev27-0-4979c5f0a808.log",
+      "source_sha256": "206a61f64a5d4e366cf544aa89f2f09c29d87a56eed773b178b5b44b52edc277",
+      "decoded_sha256": "6dba45e13b1d077748518a98f2e7089faa48148ccc39a46e14c7a337dd05ddeb",
+      "gzip_sha256": "37797c73bfcbf43ba2e78739f2a39d0975517215a4e489591db95bbaf915c936",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-jev9-0-8ece22774170.log.gz": {
+      "source_log": "work/contracts-shared-jev9-0-8ece22774170.log",
+      "source_sha256": "aabf226b7f035345a02aa39681db3e03bd6df064c40fe1e571dd7c7619a4971e",
+      "decoded_sha256": "e0c64e8aeea473c883fa5fea379a106cdc25c78f3baeef92209fe330cf3aea79",
+      "gzip_sha256": "2b70c8ea4d0976314999706f56f94a0337ce1860f61066000c0d4a44a2625121",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared-omni-0-7356ac7f169e.log.gz": {
+      "source_log": "work/contracts-shared-omni-0-7356ac7f169e.log",
+      "source_sha256": "65f0e2ecb73de875ac9a55202521b76ac7589e8de59f50a621b1bd2dbffbe38d",
+      "decoded_sha256": "2d7aad42318ce5074195bcbc516ae5037bc35d30fa92397f211224bf116b8cc2",
+      "gzip_sha256": "e83b8c6480e3f9ec2f8c45d8b145e5519df847555e8b3f42b06307f172ac8421",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "contracts-shared_compiled-gliner-0-4adadc36c6cc.log.gz": {
+      "source_log": "work/contracts-shared_compiled-gliner-0-4adadc36c6cc.log",
+      "source_sha256": "f2b62139dea2281be8a8c0b6ecda894533a127b851ec504234cb9db2e0cf24be",
+      "decoded_sha256": "f2b62139dea2281be8a8c0b6ecda894533a127b851ec504234cb9db2e0cf24be",
+      "gzip_sha256": "44389ddc821cae56707d5af93cf8bcc5f528554ffca70ffbb79d56e69f1ac5c8",
+      "scope": "Captured local CLI output; final remote log delivery may be incomplete"
+    }
+  }
+}

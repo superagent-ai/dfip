@@ -1,0 +1,13 @@
+\begin{tabular}{lrrrrrr}
+\toprule
+Checkpoint & \multicolumn{3}{c}{Diverse p95 (ms)} & \multicolumn{3}{c}{Drops / offered} \\
+& Serial & Batch & Shared & Serial & Batch & Shared \\
+\midrule
+d1-omni-600M & 110.2 & 29.9 & 109.7 & 0/256 & 0/256 & 0/256 \\
+GLiNER2.5-Decide & 226.6 & 127.9 & 127.9 & 0/256 & 0/256 & 0/256 \\
+d3-flash & 2035.7 & 1707.7 & 2036.9 & 41/256 & 0/256 & 41/256 \\
+JEV-9B & 2078.1 & 680.7 & 2080.6 & 129/256 & 0/256 & 132/256 \\
+JEV-27B & 2047.0 & 351.1 & 2049.8 & 59/256 & 0/256 & 61/256 \\
+GLiNER2.5-Decide (compiled) & 69.5 & 43.2 & 72.1 & 0/256 & 0/256 & 0/256 \\
+\bottomrule
+\end{tabular}

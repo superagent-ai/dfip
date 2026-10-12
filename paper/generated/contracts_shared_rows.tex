@@ -1,0 +1,18 @@
+\begin{tabular}{llrrrr}
+\toprule
+Checkpoint & Trace & Gates & Serial/shared & Batch/shared & Shared audit \\
+\midrule
+d1-omni-600M & homogeneous & 0/3 & 1.02 & 0.16 & pass \\
+d1-omni-600M & diverse & 0/3 & 1.00 & 0.18 & pass \\
+GLiNER2.5-Decide & homogeneous & 18/18 & 2.92 & 1.08 & pass \\
+GLiNER2.5-Decide & diverse & 18/18 & 1.92 & 1.57 & pass \\
+d3-flash & homogeneous & 0/3 & 1.00 & 0.51 & pass \\
+d3-flash & diverse & 0/3 & 0.99 & 0.64 & pass \\
+JEV-9B & homogeneous & 0/3 & 0.97 & 0.33 & fail \\
+JEV-9B & diverse & 0/3 & 0.89 & 0.27 & fail \\
+JEV-27B & homogeneous & 0/3 & 0.96 & 0.34 & fail \\
+JEV-27B & diverse & 0/3 & 1.02 & 0.37 & fail \\
+GLiNER2.5-Decide (compiled) & homogeneous & 18/18 & 2.04 & 1.07 & pass \\
+GLiNER2.5-Decide (compiled) & diverse & 18/18 & 1.46 & 1.40 & pass \\
+\bottomrule
+\end{tabular}
