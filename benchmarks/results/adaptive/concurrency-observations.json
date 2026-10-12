@@ -1,0 +1,68 @@
+[
+  {
+    "time_unix": 1791821964.036319,
+    "study_apps": [
+      {
+        "app_id": "ap-VU4zQExlCH6li0aavMvZMT",
+        "description": "dfip-study4-clef-corrected-adaptive-pilot",
+        "state": "ephemeral",
+        "tasks": "1",
+        "created_at": "2026-10-12 18:11:56+02:00",
+        "stopped_at": null
+      },
+      {
+        "app_id": "ap-07z7NzkBdCUvCfnCq9jfhE",
+        "description": "dfip-study4-clef-adaptive-pilot",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-12 17:46:23+02:00",
+        "stopped_at": "2026-10-12 18:01:22+02:00"
+      },
+      {
+        "app_id": "ap-IZWSKsrujyrDLBotOGBHV8",
+        "description": "dfip-study4-decider-adaptive-pilot",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-12 17:29:19+02:00",
+        "stopped_at": "2026-10-12 17:46:15+02:00"
+      }
+    ],
+    "existing_app_tasks": {
+      "ap-2bOC3LlTkAlG8qqyTi6y7H": "1",
+      "ap-ENrgjPf2zqPDdkdfagXtoR": "1"
+    }
+  },
+  {
+    "time_unix": 1791822448.328104,
+    "study_apps": [
+      {
+        "app_id": "ap-VU4zQExlCH6li0aavMvZMT",
+        "description": "dfip-study4-clef-corrected-adaptive-pilot",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-12 18:11:56+02:00",
+        "stopped_at": "2026-10-12 18:25:56+02:00"
+      },
+      {
+        "app_id": "ap-07z7NzkBdCUvCfnCq9jfhE",
+        "description": "dfip-study4-clef-adaptive-pilot",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-12 17:46:23+02:00",
+        "stopped_at": "2026-10-12 18:01:22+02:00"
+      },
+      {
+        "app_id": "ap-IZWSKsrujyrDLBotOGBHV8",
+        "description": "dfip-study4-decider-adaptive-pilot",
+        "state": "stopped",
+        "tasks": "0",
+        "created_at": "2026-10-12 17:29:19+02:00",
+        "stopped_at": "2026-10-12 17:46:15+02:00"
+      }
+    ],
+    "existing_app_tasks": {
+      "ap-2bOC3LlTkAlG8qqyTi6y7H": "1",
+      "ap-ENrgjPf2zqPDdkdfagXtoR": "1"
+    }
+  }
+]

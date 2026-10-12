@@ -50,3 +50,7 @@ The review branch defaults all five models to native inference pending broader v
 ## Strengthened optimized-native and serving study
 
 See [strengthened-study.md](strengthened-study.md) and [strengthened-protocol.json](strengthened-protocol.json) for the separate repeated optional-kernel comparisons, released Liquid compiler baseline, and external open-loop sustained serving protocol. Results live in `results/strengthened/`; never pool them with v1 or the first exploratory follow-up.
+
+## Separate bounded admission pilot
+
+See [adaptive-study.md](adaptive-study.md) for the v4 post hoc mitigation, retained worker-replacement failure, corrected trial, and exact source revisions. It is exploratory and never pooled with the frozen v3 study.

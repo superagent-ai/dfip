@@ -116,7 +116,7 @@ accessible through the research entry points.
 
 The separate strengthened study installs optional native Qwen kernels and tests the released Liquid compiler setting. Decider retains a short Boolean speedup of 2.47× (five completed container rounds); Clef gives 1.45× conditional on four completed rounds, with a fifth failing in native preflight. Liquid is effectively tied with compiled native on that workload. These are resident measurements, not production readiness evidence. [Study protocol and results](benchmarks/strengthened-study.md) include direct answer checks and external serving measurements.
 
-The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. Security-One concurrent native dispatch handles 30 requests/s without drops in three minute-scale rounds (29.76 within-window completions/s; p95 0.65 s), while serialized dispatch loses 31.8% at that rate. Concurrent dispatch is currently a research configuration, and the study does not certify production readiness.
+The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. Security-One concurrent native dispatch handles 30 requests/s without drops in three minute-scale rounds (29.76 within-window completions/s; p95 0.65 s), while serialized dispatch loses 31.8% at that rate. The review source now enables concurrent native dispatch for Security-One; existing deployments are unchanged. The study does not certify production readiness.
 
 Repeated resident short Boolean calls in the strengthened image:
 
@@ -157,10 +157,15 @@ modal run -m dfip.cloud.sglang_benchmark --quality 400 --repetitions 100 --outpu
 `validate` covers the four in-process adapters. Benchmark and validation result
 JSON is returned locally; model weights and the dataset stay in the remote volume.
 
+## Experimental varied-traffic support
+
+Clef and Decider also have a separate opt-in adaptive app. It admits frequent shapes into at most four pinned graphs and uses native inference for the rest, bounding recapture work under changing traffic. The pilot has uneven gains, and Clef still changes confidence-threshold routing. It is exploratory and does not establish that the original CUDA failures are fixed. See [API usage](docs/adaptive-serving.md) and the separate [pilot protocol and outcomes](benchmarks/adaptive-study.md).
+
 ## Operational limits
 
-Graph caches store computation, never predictions. Calls within one engine are
-serialized because CUDA graph input buffers are mutable. A shape becomes eligible
+Graph caches store computation, never predictions. Replay calls within one engine are
+serialized because CUDA graph input buffers are mutable. Security-One dispatches
+concurrently to its native scheduler. A shape becomes eligible
 after three matching calls; the graph cache holds four shapes and falls back to
 native inference for unsupported captures. Liquid updates the answer-token union
 and invalidates graphs when new candidate tokens appear.

@@ -1,0 +1,26 @@
+{
+  "transform": "ANSI control sequences removed; deterministic gzip compression",
+  "logs": {
+    "adaptive-decider.log.gz": {
+      "source_log": "work/adaptive-decider.log",
+      "source_sha256": "489163d3bbbfc5c482a79426a5bd188755310f795371ed1de242807d50954539",
+      "decoded_sha256": "508344f33bec4bf51303daf59254e302f17b1b2741d320d4cd914e35c7e1764a",
+      "gzip_sha256": "377b1054304952fb6795574f551bc9ca05a62e14c3e5dc0de8ad1daae8cddcf1",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "adaptive-clef.log.gz": {
+      "source_log": "work/adaptive-clef.log",
+      "source_sha256": "a7db02086c3bb8b8ed2357ce4010356cb248e8862df86c60b84e4782e7dfce2f",
+      "decoded_sha256": "272076f37081df86ce2ff57bd580ab8b6409c4d344a2370af26de093c0a43a8b",
+      "gzip_sha256": "b871513e1e8ca180cfb1c5af1ae5c5fa43044808631cfe023313d4fd77fdba83",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "adaptive-clef-round-1.log.gz": {
+      "source_log": "work/adaptive-clef-round-1.log",
+      "source_sha256": "d7e2af78be5953de35d801e5e0ccd8cb5673195dec93eb18c47ddab743687c62",
+      "decoded_sha256": "c0884d897fe61785cb811240a38a72a3c511780a1f3858e12e488a6b76abdbf5",
+      "gzip_sha256": "93b3788a1b87b43ad5f0a5a67e513e13085a4ec89b9e819538234b14d75f00f9",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    }
+  }
+}

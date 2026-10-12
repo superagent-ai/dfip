@@ -10,7 +10,9 @@ The separate strengthened study adds five optimized-native Decider rounds, four 
 
 The nine sustained-serving attempts retain eight complete rounds and one Decider replay-path CUDA failure. Varied traffic reverses Decider/Clef resident replay gains; Clef also crosses literal confidence thresholds. Security-One concurrent native dispatch has no losses at 30 requests/s across all three rounds, with nearly 30 within-window completions/s and p95 0.65 seconds. All five review defaults use native inference. No existing deployment has been changed.
 
-Tables and figures are regenerated from JSON by `python scripts/analyze_paper.py` and `PYTHONPATH=src python scripts/analyze_strengthened.py`. Build from this directory with `latexmk -pdf main.tex`, or from the repository root with:
+A separate v4 post hoc pilot tests bounded graph admission with native fallback. Its [protocol and lifecycle correction](../benchmarks/adaptive-study.md) retain the excluded Clef worker-replacement attempt. Each validated worker uses four captures, with uneven performance gains. Clef still changes returned confidence and crosses 0.9 on fourteen matched pairs. The pilot is not pooled with v3, and one validated container per model cannot establish production reliability. The opt-in API and native Security-One concurrency are source changes for review; existing deployments are unchanged.
+
+Tables and figures are regenerated from JSON by `python scripts/analyze_paper.py` and `PYTHONPATH=src python scripts/analyze_strengthened.py`, and `PYTHONPATH=src python scripts/analyze_adaptive.py`. Build from this directory with `latexmk -pdf main.tex`, or from the repository root with:
 
 ```sh
 PYTHONPATH=src modal run -m dfip.cloud.paper

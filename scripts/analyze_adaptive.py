@@ -21,7 +21,8 @@ def validate_budget(report):
         return
     for graph in finish['diagnostics']['graphs']:
         admission = graph['admission']
-        if (not admission or graph['captures'] != graph['resident_entries']
+        if (not admission or admission['max_capture_attempts'] != 4
+                or graph['captures'] != graph['resident_entries']
                 or not 0 <= graph['captures'] <= admission['capture_attempts'] <= admission['max_capture_attempts']):
             raise ValueError('Adaptive capture budget or no-eviction invariant violated')
 
@@ -30,6 +31,9 @@ def validate_trial(record):
     if record['status'] != 'complete':
         raise ValueError('Incomplete trial: ' + record.get('failure', record['status']))
     analysis.serving_rows([record])
+    if set(record['modes']) != {'native', 'adaptive'}:
+        raise ValueError('Complete comparative trial requires both planned modes')
+    legacy = record.get('source_commit') == '8c9fc08a9b61fd6876ab14acf79e9421048050b0'
     containers = set()
     for mode, report in record['modes'].items():
         expected = report['setup']['environment']['container_id']
@@ -38,11 +42,15 @@ def validate_trial(record):
             for row in phase['samples']:
                 if row['status'] != 'ok':
                     continue
-                if row['container_id'] != expected or row.get('worker_mode', mode) != mode:
+                if row['container_id'] != expected or row.get('worker_mode', mode if legacy else None) != mode:
                     raise ValueError('Worker identity or configured mode changed during traffic')
         finish = report['finish']
         if finish['mode'] != mode or finish.get('container_id', expected) != expected:
             raise ValueError('Worker identity or mode changed before final audit')
+        coverage = [(p['profile'], p['summary']['offered_rps']) for p in report['phases']]
+        planned = [(profile, rate) for profile in ('diverse', 'mixed') for rate in (5, 15, 30)]
+        if sorted(coverage) != sorted(planned):
+            raise ValueError('Complete trial lacks the six planned traffic phases per mode')
     if len(containers) != 1:
         raise ValueError('Modes used different worker containers')
     validate_budget(record['modes']['adaptive'])
@@ -60,7 +68,12 @@ def main():
         except ValueError as exc:
             excluded.append({'file': str(path.relative_to(ROOT)), 'model': r['model'],
                              'round': r['round'], 'raw_status': r['status'],
-                             'validated_status': 'excluded', 'reason': str(exc)})
+                             'validated_status': 'excluded', 'reason': str(exc),
+                             'observed_workers': sorted({row['container_id']
+                                 for report in r['modes'].values() for phase in report['phases']
+                                 for row in phase['samples'] if row.get('container_id')}),
+                             'final_modes': {mode: report.get('finish', {}).get('mode')
+                                             for mode, report in r['modes'].items()}})
             continue
         for profile in ('diverse', 'mixed'):
             selected = profile_record(r, profile)
