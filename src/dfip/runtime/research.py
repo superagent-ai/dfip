@@ -14,6 +14,7 @@ import numpy as np
 import torch
 
 from dfip.models import get_model
+from dfip.study_protocol import compare_reported_answers
 from dfip.runtime.adapters import load_adapter
 from dfip.runtime.benchmark import (
     dataset,
@@ -203,6 +204,7 @@ def compare(reference, actual):
         "mean_probability_drift": float(np.mean(drift)) if drift else 0.0,
         "threshold_crossings": thresholds,
         "max_expected_score_drift": max(scores, default=0.0),
+        "reported_api": compare_reported_answers(reference,actual),
     }
 
 

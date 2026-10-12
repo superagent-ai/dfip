@@ -114,6 +114,58 @@ def liquid_compiler(round_id, commit):
     save();return result
 
 
+def literal_audit(model, commit):
+    import json
+    import traceback
+    from pathlib import Path
+    import torch
+    from dfip.models import get_model
+    from dfip.runtime.research import AblationEngine, manifest, new_records, compare
+    from dfip.runtime.benchmark import dataset, distributions, sync
+    from dfip.runtime.native_backend import qwen_backend
+    volume.reload();torch.set_num_threads(8 if model=='decider' else 4)
+    result={'protocol':'dfip-paper-v3-literal-readout-audit','model':model,'round':0,
+            'source_commit':commit,'status':'running','modes':{},
+            'environment':manifest(),'native_backend':qwen_backend(),
+            'scope':'Separate single-container fidelity audit; fixed native then DFIP order; no latency estimate'}
+    folder=Path('/research/results/strengthened-v3');folder.mkdir(parents=True,exist_ok=True)
+    dest=folder/f'{model}-readout-audit-round-0.json'
+    def save():
+        dest.write_text(json.dumps(result,indent=2));volume.commit()
+    save()
+    try:
+        engine=AblationEngine(get_model(model).model_id)
+        records=dataset()+new_records()
+        for mode in ('native','production'):
+            result['active_mode']=mode;save()
+            engine.configure(mode);predictions=[]
+            for i,record in enumerate(records):
+                predictions.extend(distributions([record],engine.predict([record])))
+                if (i+1)%200==0:
+                    print(json.dumps({'model':model,'mode':mode,'audit_records':i+1}),flush=True)
+            sync();result['modes'][mode]={'predictions':predictions};save()
+        result['comparison']=compare(result['modes']['native']['predictions'],
+                                     result['modes']['production']['predictions'])
+        result['status']='complete'
+    except Exception:
+        result['status']='failed';result['failure']=traceback.format_exc()
+    save();return result
+
+
+@app.function(image=fast_image, gpu='B200', cpu=8, memory=98304,
+              volumes={'/research':volume}, timeout=1800, max_containers=1,
+              single_use_containers=True)
+def audit_big(model, commit):
+    return literal_audit(model,commit)
+
+
+@app.function(image=fast_image, gpu='L40S', cpu=4, memory=32768,
+              volumes={'/research':volume}, timeout=1800, max_containers=1,
+              single_use_containers=True)
+def audit_small(model, commit):
+    return literal_audit(model,commit)
+
+
 @app.function(image=image, volumes={"/research": volume}, timeout=300, max_containers=1)
 def inventory():
     import json
@@ -160,12 +212,20 @@ def main(action: str = 'inventory', model: str = 'decider', rounds: int = 5,
         dest=Path('benchmarks/results/strengthened/native-backend-provenance.json')
         dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(result,indent=2))
         print(json.dumps(result,indent=2));return
-    if action not in ('baseline','compiler') or model not in ('clef', 'decider','liquid'):
+    if action not in ('baseline','compiler','audit') or model not in ('clef', 'decider','liquid'):
         raise ValueError((action,model))
     folder=Path('benchmarks/results/strengthened'); folder.mkdir(parents=True,exist_ok=True)
     function = baseline_big if model == 'decider' else baseline_small
     for round_id in range(rounds):
-        result = liquid_compiler.remote(round_id,commit) if action=='compiler' else function.remote(model, round_id, commit)
-        dest=folder/(f'liquid-compiler-round-{round_id}.json' if action=='compiler' else f'{model}-optimized-round-{round_id}.json')
+        if action=='audit':
+            result=(audit_big if model=='decider' else audit_small).remote(model,commit)
+            name=f'{model}-readout-audit-round-0.json'
+        elif action=='compiler':
+            result=liquid_compiler.remote(round_id,commit)
+            name=f'liquid-compiler-round-{round_id}.json'
+        else:
+            result=function.remote(model,round_id,commit)
+            name=f'{model}-optimized-round-{round_id}.json'
+        dest=folder/name
         dest.write_text(json.dumps(result,indent=2))
         print(json.dumps({'saved':str(dest),'status':result['status']}),flush=True)

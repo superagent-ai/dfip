@@ -10,7 +10,7 @@ import statistics
 ROOT=Path(__file__).resolve().parents[1]
 spec=importlib.util.spec_from_file_location('original_analysis',ROOT/'scripts/analyze_paper.py')
 original=importlib.util.module_from_spec(spec);spec.loader.exec_module(original)
-from dfip.study_protocol import summarize_phase
+from dfip.study_protocol import summarize_phase, compare_reported_answers
 
 
 def median(row):
@@ -107,7 +107,9 @@ def continuous_fidelity(record):
     return {'tested_mode':tested_mode,'matched_decisions':len(shared),'native_unmatched':len(reference)-len(shared),
             'tested_unmatched':len(tested)-len(shared),'argmax_flips':len(flips),
             'flip_ids':sorted(flips),'max_probability_drift':max(drift,default=0),
-            'threshold_crossings':crossings}
+            'threshold_crossings':crossings,
+            'reported_api':compare_reported_answers([reference[k] for k in sorted(shared)],
+                                                    [tested[k] for k in sorted(shared)])}
 
 
 def tabular(path,columns,header,body):
@@ -139,6 +141,9 @@ def main():
         compiler=paired(liquid,'native_compile','production')
     serving_summary=serving_rows(serving)
     summary={'optimized_native':optimized,'released_compiler':compiler,
+             'literal_readout_audits':[{'model':r['model'],'status':r['status'],
+                                        'comparison':r.get('comparison')}
+                                       for r in records if r['protocol']=='dfip-paper-v3-literal-readout-audit'],
              'serving':serving_summary,'failures':failures,
              'serving_fidelity':[{'model':r['model'],'round':r['round'],
                                   'comparison':continuous_fidelity(r)} for r in serving],

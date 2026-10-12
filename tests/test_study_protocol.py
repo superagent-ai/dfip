@@ -1,5 +1,6 @@
 import pytest
 from dfip.study_protocol import request_record, summarize_phase
+from dfip.study_protocol import compare_reported_answers
 
 
 def test_serving_payloads_change_content_and_candidate_width():
@@ -25,3 +26,18 @@ def test_overload_accounting_includes_drops_and_post_window_drain():
 def test_missing_offered_request_cannot_silently_lower_tail_latency():
     with pytest.raises(ValueError,match='accounting'):
         summarize_phase([],60,5)
+
+
+def test_direct_api_audit_catches_choice_change_hidden_by_rounded_tie():
+    reference=[{'id':'r:team','api_choice':'billing','api_score':1.2345}]
+    actual=[{'id':'r:team','api_choice':'technical','api_score':1.2}]
+    report=compare_reported_answers(reference,actual)
+    assert report['choice_changes']==1
+    assert report['choice_fields_compared']==1
+    assert report['max_score_drift']==pytest.approx(.0345)
+
+
+def test_missing_api_fields_do_not_establish_zero_reported_score_drift():
+    report=compare_reported_answers([{'id':'r'}],[{'id':'r'}])
+    assert report['score_fields_compared']==0
+    assert report['max_score_drift'] is None

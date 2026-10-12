@@ -49,3 +49,23 @@ def summarize_phase(rows, duration, rate):
 
 def records_for_fidelity(count=128):
     return [copy.deepcopy(request_record(i)) for i in range(count)]
+
+
+def compare_reported_answers(reference, actual):
+    if len(reference)!=len(actual) or [r['id'] for r in reference]!=[r['id'] for r in actual]:
+        raise ValueError('API answer audit requires matched decision IDs')
+    changes=[];scores=[];confidence=[];choices=0
+    for a,b in zip(reference,actual):
+        if 'api_choice' in a and 'api_choice' in b:
+            choices+=1
+            if a['api_choice']!=b['api_choice']:
+                changes.append(a['id'])
+        if 'api_score' in a and 'api_score' in b:
+            scores.append(abs(a['api_score']-b['api_score']))
+        if 'api_confidence' in a and 'api_confidence' in b:
+            confidence.append(abs(a['api_confidence']-b['api_confidence']))
+    return {'choice_fields_compared':choices,'choice_changes':len(changes),
+            'choice_change_ids':changes,'score_fields_compared':len(scores),
+            'max_score_drift':max(scores) if scores else None,
+            'confidence_fields_compared':len(confidence),
+            'max_confidence_drift':max(confidence) if confidence else None}

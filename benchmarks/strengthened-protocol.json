@@ -17,6 +17,14 @@
     "workloads": ["short_binary", "short_choice", "short_3_questions"],
     "fidelity": "128 changing-content/length/candidate-width requests; all probabilities compared; not a task-quality benchmark"
   },
+  "literal_readout_audit": {
+    "models": ["decider", "clef"],
+    "containers_per_model": 1,
+    "order": "native then experimental DFIP; no latency claim",
+    "cases": "400 typed records plus 512 derived BANKING77 records, 3024 decisions",
+    "purpose": "Compare literal returned choice, score and confidence fields in addition to argmax reconstructed from reported probabilities; Clef rounds probability slots after choosing its answer",
+    "source": "Separate frozen source revision with additive answer-field instrumentation; not pooled into repeated timing estimates"
+  },
   "serving": {
     "models": ["decider", "clef", "security"],
     "planned_independent_app_container_rounds": 3,
