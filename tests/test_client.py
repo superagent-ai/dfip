@@ -121,7 +121,7 @@ def test_unknown_model_error():
         get_model("untested-model")
 
 
-@pytest.mark.parametrize("alias", ["julia", "liquid", "clef"])
+@pytest.mark.parametrize("alias", ["julia", "liquid", "clef", "decider"])
 def test_native_deployment_bypasses_acceleration_and_preserves_adapter_output(alias):
     import importlib.util
 

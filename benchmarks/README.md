@@ -1,6 +1,6 @@
 # DFIP review-paper experiments
 
-The paper is a review draft. Main results characterize released native paths; they are not a production throughput benchmark or a comparison with every optimized serving backend.
+The paper is a review draft. Main results compare experimental paths with released native baselines and include minute-scale external traffic tests. They do not certify production reliability or compare every optimized serving backend.
 
 `protocol.json` specifies five planned single-use container rounds, four admission calls, and 50 warm samples per workload/mode. Complete raw JSON records are in `results/`; GPU failure excerpts and attrition are in `failures/`. Do not silently replace failed rounds or combine the separate optional-extension and lifetime-fix experiments with the original protocol.
 
@@ -45,4 +45,8 @@ The optional native convolution builder is CPU-only for `--action probe`. A subs
 
 The synthetic 60-call graph eviction/clear check passed. Julia still failed on the derived fidelity workload with synchronized retirement. A single Clef container with `causal-conv1d==1.7.0` completed: short Boolean native/graph medians were 60.31/37.10 ms, but two probability slots crossed sampled thresholds and maximum new-workload probability drift reached 0.0129. This n=1 result is not pooled with the v1 confidence intervals. `scripts/run_followup.py` reproduces these diagnostics serially.
 
-The review branch defaults Julia, Liquid, and Clef to native inference pending broader validation; PPLX-Decider keeps its bounded policy and Security-One uses native SGLang. Existing deployed apps were not changed.
+The review branch defaults all five models to native inference pending broader validation; Security-One uses native SGLang. Sustained changing-request tests expose replay losses and one Decider CUDA failure. Existing deployed apps were not changed.
+
+## Strengthened optimized-native and serving study
+
+See [strengthened-study.md](strengthened-study.md) and [strengthened-protocol.json](strengthened-protocol.json) for the separate repeated optional-kernel comparisons, released Liquid compiler baseline, and external open-loop sustained serving protocol. Results live in `results/strengthened/`; never pool them with v1 or the first exploratory follow-up.

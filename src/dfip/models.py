@@ -41,7 +41,6 @@ MODELS = (
         "6195aa55a72ae21e503c8a60198f7b390d42adb5",
         "Decider",
         "B200",
-        "production",
     ),
     Model(
         "security",

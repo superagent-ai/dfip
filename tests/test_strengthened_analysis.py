@@ -39,3 +39,24 @@ def test_stream_fidelity_catches_threshold_change_without_label_change():
     assert report['threshold_crossings']['0.25']==1
     assert report['matched_decisions']==1
     assert report['max_probability_drift']==pytest.approx(.02)
+
+
+def test_literal_confidence_crossing_is_distinct_from_probability_slots():
+    def mode(confidence):
+        return {'phases':[{'samples':[{'status':'ok','prediction':[
+            {'id':'test:team','prediction':'chosen','api_choice':'chosen',
+             'api_confidence':confidence,'probabilities':{'chosen':.95,'other':.05}}
+        ]}]}]}
+    report=analysis.continuous_fidelity({'modes':{'native':mode(.901),'production':mode(.899)}})
+    assert report['reported_api']['choice_changes']==0
+    assert report['threshold_crossings']['0.9']==0
+    assert report['reported_confidence_pairs']==1
+    assert report['reported_confidence_threshold_crossings']['0.9']==1
+
+
+def test_no_matched_requests_cannot_report_zero_probability_drift():
+    empty={'phases':[{'samples':[{'status':'dropped'}]}]}
+    report=analysis.continuous_fidelity({'modes':{'native':empty,'production':empty}})
+    assert report['matched_decisions']==0
+    assert report['max_probability_drift'] is None
+    assert report['reported_confidence_threshold_crossings'] is None

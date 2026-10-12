@@ -3,7 +3,7 @@
 **Decision-focused inference on Modal.** Run open decision models through a common
 Python client with conservative model-specific defaults. Python/PyTorch handles
 model execution. The research paths evaluate Triton candidate projection and
-CUDA graph replay; bounded replay remains enabled by default for PPLX-Decider.
+CUDA graph replay. Serving defaults use the released native paths.
 
 Model weights, datasets, and GPU dependencies stay on Modal. The local package
 contains only the client and deployment source. DFIP currently supports text
@@ -12,7 +12,7 @@ requests with `choice`, `noul` (yes/no), and `score` questions.
 ## Quick start
 
 Requires Python 3.10+, a Modal account with GPU access, and access to your chosen
-Hugging Face checkpoint. Start with Liquid or Julia; the 27B models use a B200.
+Hugging Face checkpoint. The quick start uses Liquid on an L40S; the 27B models use a B200.
 
 ```sh
 git clone https://github.com/superagent-ai/dfip.git
@@ -40,7 +40,7 @@ dfip predict --model security --input examples/request.json
 ```
 
 There is no public HTTP endpoint in this release. Containers scale to zero after
-60 seconds of inactivity. A first request includes model loading and graph setup;
+60 seconds of inactivity. A first request includes model loading and engine setup;
 Security-One also starts its SGLang server. Modal bills preparation, execution,
 and the idle window according to your account's rates.
 
@@ -82,7 +82,7 @@ ordered list of descriptions; `noul` criteria optionally describe `false` and
 | `julia` | [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1) | L40S | Native FastEngine; replay under investigation |
 | `liquid` | [LiquidAI/d1-3B](https://huggingface.co/LiquidAI/d1-3B) | L40S | Released native engine; acceleration experimental |
 | `clef` | [Cloudflare/clef-flash](https://huggingface.co/Cloudflare/clef-flash) | L40S | Released native API; replay experimental |
-| `decider` | [perplexity-ai/pplx-decider-v1.1-27b](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b) | B200 | Native API + short single-decision graphs |
+| `decider` | [perplexity-ai/pplx-decider-v1.1-27b](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b) | B200 | Released native API; replay experimental |
 | `security` | [superagent-ai/security-one-27b](https://huggingface.co/superagent-ai/security-one-27b) | B200 | Native SGLang 0.5.19 |
 
 `dfip models` lists immutable checkpoint revisions. `dfip prepare --model all`
@@ -108,40 +108,33 @@ deployment explicitly. Modal's own environment selection applies to deployment.
 
 ## Benchmarks and verification
 
-The review branch defaults to released native inference for Julia, Liquid, and
-Clef after the expanded study exposed GPU failures. PPLX-Decider retains its
-bounded graph policy; Security-One uses native SGLang. These source defaults
+The review branch defaults all five models to released native inference, with
+Security-One using native SGLang. GPU failures, probability drift, and sustained
+serving losses keep custom acceleration in the research paths. These source defaults
 have not been deployed to an existing application. Experimental paths remain
 accessible through the research entry points.
 
-The following table is from the original exploratory, single-container study.
-The [review paper](paper/README.md) reports the expanded repeated-run study,
-new probability-fidelity checks, and GPU failures. Use its actual run counts
-and limitations when making research claims.
+The separate strengthened study installs optional native Qwen kernels and tests the released Liquid compiler setting. Decider retains a short Boolean speedup of 2.47× (five completed container rounds); Clef gives 1.45× conditional on four completed rounds, with a fifth failing in native preflight. Liquid is effectively tied with compiled native on that workload. These are resident measurements, not production readiness evidence. [Study protocol and results](benchmarks/strengthened-study.md) include direct answer checks and external serving measurements.
 
-Measured resident short binary decision calls on one GPU:
+The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. Security-One concurrent native dispatch handles 30 requests/s without drops in three minute-scale rounds (29.76 within-window completions/s; p95 0.65 s), while serialized dispatch loses 31.8% at that rate. Concurrent dispatch is currently a research configuration, and the study does not certify production readiness.
 
-| Model | Native p50 | Exploratory accelerated path p50 | Paired speedup |
-| --- | ---: | ---: | ---: |
-| Julia, L40S | 14.85 ms | 2.25 ms | 6.60× |
-| Liquid, L40S | 20.98 ms | 10.97 ms | 1.91× |
-| Clef, L40S | 46.31 ms | 32.16 ms | 1.44× |
-| Decider, B200 | 115.08 ms | 35.02 ms | 3.29× |
-| Security-One, B200 | 47.91 ms | 47.91 ms | 1.00× |
+Repeated resident short Boolean calls in the strengthened image:
 
-These are paired warm compute measurements, including encoding and probability
-readout, with 100 samples per workload. Security includes local HTTP scheduling.
-They exclude client network latency, cold starts, capture setup, and idle billing.
-GPU cost estimates are not total application cost. Decider's native latency varied
-across runs. Clef/Decider use the upstream convolution fallback without
-`causal-conv1d`; these are not optimized serving ceilings.
+| Model | Completed/planned rounds | Native p50 | DFIP p50 | Paired speedup, 95% CI |
+| --- | ---: | ---: | ---: | ---: |
+| Clef, L40S | 4/5 | 51.69 ms | 35.68 ms | 1.45× [1.33, 1.71] |
+| Decider, B200 | 5/5 | 74.54 ms | 30.14 ms | 2.47× [1.88, 3.26] |
+| Liquid, L40S, compiled native | 3/3 | 10.74 ms | 10.66 ms | 1.01× [0.97, 1.09] |
 
-The selected paths preserved argmax across 2,000 public dataset questions; the
-four in-process adapters also passed 128 varied single-question checks each.
-Clef showed up to 0.001 probability drift in those extra checks. The corpus is
-not a security-specific quality benchmark; training overlap is unknown.
-[Detailed report](docs/dfip-report.html), [summary CSV](docs/dfip-benchmarks.csv),
-and [raw results](docs/dfip-benchmarks.json) contain scope and rejected experiments.
+Point estimates are geometric means of paired container medians, with 50 warm
+samples per workload and mode. Clef's interval is conditional on retained rounds.
+They exclude external network latency, cold starts, admission, and idle billing.
+The compiler and graph paths can change probabilities even when choices agree;
+Clef's direct audit also finds returned-score drift. The original exploratory
+[report](docs/dfip-report.html), [summary CSV](docs/dfip-benchmarks.csv), and
+[raw results](docs/dfip-benchmarks.json) are historical development evidence and
+are not pooled into these estimates. See the [paper](paper/README.md) for failures,
+workload scope, literal answer checks, and sustained serving results.
 
 ```sh
 # Quick GPU/kernel check, downloaded weights remain on Modal.

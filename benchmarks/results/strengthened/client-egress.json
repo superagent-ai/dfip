@@ -1,0 +1,7 @@
+{
+  "source": "https://www.cloudflare.com/cdn-cgi/trace",
+  "checked_at_utc": "2026-10-12T13:20:40.658336+00:00",
+  "egress_country": "SE",
+  "edge_location_code": "FRA",
+  "scope": "Egress country, not physical workstation location; IP address not retained"
+}
