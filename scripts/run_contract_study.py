@@ -37,7 +37,8 @@ def main():
             started = time.time()
             print(json.dumps({"model": model, "action": args.action, "round": round_id, "state": "started", "source": source}), flush=True)
             with log.open("w") as stream:
-                process = subprocess.run([executable, "run", "-m", "dfip.cloud.contracts", "--action", args.action,
+                module = "dfip.cloud.contracts_jev" if model in ("jev9", "jev27") else "dfip.cloud.contracts"
+                process = subprocess.run([executable, "run", "-m", module, "--action", args.action,
                                           "--model", model, "--round-id", str(round_id), "--commit", source],
                                          cwd=ROOT, env=dict(env, DFIP_APP=prefix), stdout=stream, stderr=subprocess.STDOUT)
             record = {"model": model, "action": args.action, "round": round_id, "source_commit": source,
