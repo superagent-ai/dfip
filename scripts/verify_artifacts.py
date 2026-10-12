@@ -185,6 +185,42 @@ def verify_logs(root, counts):
             counts["compressed_logs"] += 1
 
 
+def verify_research_sources(root, counts):
+    """Check pinned upstream sources used in the structural contract audit."""
+    folder = root / "benchmarks/research-audits"
+    manifest = read_json(folder / "model-contracts.json")
+    relative = str((folder / manifest["source_archive"]).relative_to(root))
+    members = verify_zip(root, relative, manifest["source_archive_sha256"])
+    model_ids = [model["model_id"] for model in manifest["models"]]
+    if not model_ids or len(model_ids) != len(set(model_ids)):
+        raise IntegrityError("Research source audit has empty or duplicate model entries")
+    verified = set()
+    for model in manifest["models"]:
+        prefix = model["model_id"].replace("/", "__") + "/"
+        filenames = [record["file"] for record in model["files"]]
+        if not filenames or len(filenames) != len(set(filenames)):
+            raise IntegrityError(f"Research source audit has empty or duplicate files: {model['model_id']}")
+        for record in model["files"]:
+            name = prefix + record["file"]
+            if name not in members:
+                raise IntegrityError(f"Missing research source member: {name}")
+            check_bytes(members[name], record["sha256"], relative + ":" + name)
+            if len(members[name]) != record["bytes"]:
+                raise IntegrityError(f"Research source byte count differs: {name}")
+            verified.add(name)
+        source_manifest = prefix + "source-manifest.json"
+        if source_manifest not in members:
+            raise IntegrityError(f"Missing embedded research source manifest: {source_manifest}")
+        embedded = json.loads(members[source_manifest])
+        if any(embedded[key] != model[key] for key in ("model_id", "revision", "files")):
+            raise IntegrityError(f"Embedded research source manifest differs: {source_manifest}")
+    if len(verified) != sum(len(model["files"]) for model in manifest["models"]):
+        raise IntegrityError("Research source member paths overlap between models")
+    counts["research_source_archives"] = 1
+    counts["research_source_archive_members"] = len(members)
+    counts["research_source_files_with_recorded_hashes"] = len(verified)
+
+
 def verify_focused(root, counts):
     summary = read_json(root / "paper/generated/focused-summary.json")
     evidence = summary["evidence"]
@@ -244,6 +280,7 @@ def verify(root, git_history=False, regenerate=False):
     verify_results(root, counts)
     verify_sources(root, counts, notices, git_history)
     verify_logs(root, counts)
+    verify_research_sources(root, counts)
     licenses = root / "licenses/manifest.json"
     if licenses.is_file():
         for record in read_json(licenses)["files"]:

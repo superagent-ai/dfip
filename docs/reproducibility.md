@@ -10,7 +10,7 @@ From a clone or unpacked repository archive, run:
 python scripts/verify_artifacts.py
 ```
 
-This uses the Python standard library and needs no Modal or Hugging Face credentials. It checks all recorded result SHA-256 manifests, source ZIP manifests, compressed and decoded log hashes, the paper PDF hash, and the selected evidence and analyzer hashes in `paper/generated/focused-summary.json`. Nested result paths and the historical manifest formats are handled explicitly. A missing or changed artifact exits with an error; the verifier does not replace its expected hash.
+This uses the Python standard library and needs no Modal or Hugging Face credentials. It checks all recorded result SHA-256 manifests, source ZIP manifests, compressed and decoded log hashes, the paper PDF hash, and the selected evidence and analyzer hashes in `paper/generated/focused-summary.json`. It also verifies the pinned upstream source audit ZIP against `benchmarks/research-audits/model-contracts.json`, checks its 58 listed source-file hashes and byte counts, and matches its embedded source manifests. The ZIP's 68 members include metadata covered by the whole-archive hash. Nested result paths and the historical manifest formats are handled explicitly. A missing or changed artifact exits with an error; the verifier does not replace its expected hash.
 
 A full Git clone can also check archived source contents against their recorded commits:
 

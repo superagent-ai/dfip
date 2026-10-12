@@ -78,6 +78,51 @@ def test_decoded_log_hash_is_verified_independently_of_compressed_bytes(tmp_path
         integrity.verify_logs(tmp_path, Counter())
 
 
+@pytest.mark.parametrize("update_outer_hash", [False, True])
+def test_research_source_audit_rejects_tampering_inside_zip(tmp_path, update_outer_hash):
+    folder = tmp_path / "benchmarks/research-audits"
+    folder.mkdir(parents=True)
+    model = {"model_id": "org/model", "revision": "a" * 40,
+             "files": [{"file": "code.py", "bytes": 8, "sha256": integrity.sha256(b"original")}]}
+    archive = folder / "sources.zip"
+
+    def write_source(content):
+        with zipfile.ZipFile(archive, "w") as output:
+            output.writestr("org__model/code.py", content)
+            output.writestr("org__model/source-manifest.json", json.dumps(model))
+
+    write_source(b"original")
+    manifest = {"source_archive": "sources.zip", "source_archive_sha256": integrity.sha256(archive.read_bytes()),
+                "models": [model]}
+    write_json(folder / "model-contracts.json", manifest)
+    counts = Counter()
+    integrity.verify_research_sources(tmp_path, counts)
+    assert counts["research_source_files_with_recorded_hashes"] == 1
+    write_source(b"tampered")
+    if update_outer_hash:
+        manifest["source_archive_sha256"] = integrity.sha256(archive.read_bytes())
+        write_json(folder / "model-contracts.json", manifest)
+    with pytest.raises(integrity.IntegrityError, match="SHA-256 mismatch"):
+        integrity.verify_research_sources(tmp_path, Counter())
+
+
+def test_research_source_audit_rejects_inconsistent_byte_count(tmp_path):
+    folder = tmp_path / "benchmarks/research-audits"
+    folder.mkdir(parents=True)
+    model = {"model_id": "org/model", "revision": "a" * 40,
+             "files": [{"file": "code.py", "bytes": 7, "sha256": integrity.sha256(b"original")}]}
+    archive = folder / "sources.zip"
+    with zipfile.ZipFile(archive, "w") as output:
+        output.writestr("org__model/code.py", b"original")
+        output.writestr("org__model/source-manifest.json", json.dumps(model))
+    write_json(folder / "model-contracts.json", {
+        "source_archive": "sources.zip", "source_archive_sha256": integrity.sha256(archive.read_bytes()),
+        "models": [model],
+    })
+    with pytest.raises(integrity.IntegrityError, match="byte count differs"):
+        integrity.verify_research_sources(tmp_path, Counter())
+
+
 def test_focused_summary_rejects_checkpoint_outside_declared_scope(tmp_path):
     write_json(tmp_path / "paper/generated/focused-summary.json", {
         "checkpoints": {"gliner": "GLiNER"},
