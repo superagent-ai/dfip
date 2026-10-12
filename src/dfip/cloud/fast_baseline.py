@@ -6,7 +6,7 @@ from dfip.cloud.research import run
 from dfip.config import settings
 
 app = modal.App(settings().app_name + "-paper-fast-conv")
-fast_image = (
+fast_base = (
     modal.Image.from_registry("nvidia/cuda:13.0.0-devel-ubuntu24.04", add_python="3.12")
     .apt_install("git", "build-essential", "ninja-build", "clang")
     .pip_install(
@@ -38,12 +38,12 @@ fast_image = (
         )
     )
     .pip_install("causal-conv1d==1.7.0", extra_options="--no-build-isolation")
-    .add_local_dir(
+)
+fast_image = fast_base.add_local_dir(
         str(PACKAGE),
         remote_path="/opt/dfip/dfip",
         ignore=["**/__pycache__/**", "**/*.pyc"],
     )
-)
 
 
 @app.function(

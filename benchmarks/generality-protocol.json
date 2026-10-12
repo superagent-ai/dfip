@@ -66,7 +66,7 @@
     "Released optimized or compiled path when supported",
     "Recommended native serving backend with batching and scheduling enabled where contract-compatible"
   ],
-  "holdout": "Source review allowed before freeze; no reserved-family timing or policy tuning before shared optimizer code, adapter specification, profiling budget and evaluation traces are frozen.",
+  "holdout": "The user explicitly requested native conformance and profiling on every candidate before constructing the shared optimizer. Structural/native timing information is therefore available for all families. Reserve optimized test traces and freeze shared rules before testing; do not claim wholly unseen model-family evaluation from this phase.",
   "native_conformance": {
     "required_fields": [
       "choice",
@@ -134,5 +134,9 @@
   ],
   "generality_claim": "Requires measured acceleration with acceptable fidelity on reserved contract families and predeclared serving traces, plus explicit overall accelerated coverage and regression outcomes. Native fallback everywhere cannot pass.",
   "novelty": "Distinguish decision-contract-specific analysis and transferable transformations from existing graph compilation, batching and cost-guided selection.",
-  "next_gate": "Native contract conformance and profiling; source audits contain no GPU performance results."
+  "next_gate": "Native contract conformance and profiling; source audits contain no GPU performance results.",
+  "current_phase": "Exploratory native admission and component profiling on all five new candidates; then construct and test a shared policy.",
+  "native_profiles_before_optimizer_freeze": true,
+  "phase_protocol": "dfip-contract-native-admission-v5-exploratory",
+  "phase_limits": "One native admission worker per new checkpoint, 29 changing conformance records, 20 warm samples per resident cell and native batch probes. These exploratory probes are not independent confirmatory speedup estimates."
 }
