@@ -1,0 +1,18 @@
+{
+  "compiled_source_commit": "8fe5a7880f552f830524b71e35633e9b0fe567ab",
+  "paper_sha256": "e59108beebbaf5d3b74e618345860f33082c0c78ccef3d529f318f16f0e3e257",
+  "pages": 10,
+  "models": [
+    "PPLX-Decider v1.1 27B",
+    "Liquid d1-3B",
+    "Clef-Flash",
+    "GLiNER2.5-Decide"
+  ],
+  "compiler": "CPU-only Modal latexmk",
+  "diagnostics": "no undefined references, warnings or overfull boxes",
+  "scientific_review": "selected numerical claims independently checked against raw records",
+  "visual_review": "all pages rendered; tables, figure, references and wrapped checkpoint revisions inspected",
+  "analysis_entrypoint": "scripts/analyze_focused.py",
+  "selected_result_files": 30,
+  "arxiv_submitted": false
+}
