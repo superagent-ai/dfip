@@ -306,7 +306,8 @@ def measure(engine, workload, repetitions):
 
 
 def round_run(
-    model_name, round_id, repetitions=50, fidelity=False, source_commit="unknown"
+    model_name, round_id, repetitions=50, fidelity=False, source_commit="unknown",
+    progress=None,
 ):
     model = get_model(model_name)
     torch.set_num_threads(8 if model.gpu == "B200" else 4)
@@ -338,6 +339,8 @@ def round_run(
         "timing_scope": "resident full API; synchronized GPU; excludes client network and model loading",
         "modes": {},
     }
+    if progress:
+        progress(result)
     engine.configure("native")
     references = {
         w["name"]: distributions(w["records"], engine.predict(w["records"]))
@@ -401,6 +404,8 @@ def round_run(
             )
             report["new_predictions"] = extra_actual
         result["modes"][mode] = report
+        if progress:
+            progress(result)
         print(
             json.dumps(
                 {
