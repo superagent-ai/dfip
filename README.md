@@ -5,6 +5,11 @@ Python client with conservative model-specific defaults. Python/PyTorch handles
 model execution. The research paths evaluate Triton candidate projection and
 CUDA graph replay. Serving defaults use the released native paths.
 
+The research objective is a general inference method across decision architectures.
+The current prototype does not establish that generality. The
+[next research phase](benchmarks/general-method-study.md) defines a shared decision
+contract, evaluation on reserved model families, and broader serving tests.
+
 Model weights, datasets, and GPU dependencies stay on Modal. The local package
 contains only the client and deployment source. DFIP currently supports text
 requests with `choice`, `noul` (yes/no), and `score` questions.

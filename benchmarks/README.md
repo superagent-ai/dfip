@@ -2,6 +2,12 @@
 
 The paper is a review draft. Main results compare experimental paths with released native baselines and include minute-scale external traffic tests. They do not certify production reliability or compare every optimized serving backend.
 
+The next phase targets a general method across decision contracts. See
+[the research design](general-method-study.md), `generality-protocol.json`, and
+`research-audits/model-contracts.json` for the source audit, reserved families,
+evaluation gates and coverage accounting. The source audit contains no new GPU
+measurements; the protocol remains a draft until implementation and freeze.
+
 `protocol.json` specifies five planned single-use container rounds, four admission calls, and 50 warm samples per workload/mode. Complete raw JSON records are in `results/`; GPU failure excerpts and attrition are in `failures/`. Do not silently replace failed rounds or combine the separate optional-extension and lifetime-fix experiments with the original protocol.
 
 The original implementation is preserved in `source-v1.zip`. It combines base commit `822f6c3` with the two Security-One research files that had not been committed when those jobs started. Its manifest records reconstructed source hashes; the source revision field in raw JSON is the base commit, not a claim that those two files existed in that commit. Cloud scheduler limits were reduced from two to one during execution. This changes worker scheduling, not the computation of an individual round.

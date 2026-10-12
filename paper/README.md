@@ -21,3 +21,5 @@ PYTHONPATH=src modal run -m dfip.cloud.paper
 The cloud build uses a CPU worker and does not allocate a GPU. Optional local plotting/rendering dependencies are `pip install -e '.[paper]'`.
 
 Review priorities are the strength of the native baseline, failure attrition, probability drift, and the scope of claims. A public frozen artifact and review by both authors must precede an arXiv submission. Reading notes list the research papers and sections that informed the design.
+
+The research objective is broader than the current characterization: a general method that transfers across decision contracts and changing traffic. The [general method study](../benchmarks/general-method-study.md) records the next phase and a source audit of five additional checkpoints. These are research candidates, not new performance results or client support. The manuscript's numerical claims remain unchanged until that method is implemented and evaluated.
