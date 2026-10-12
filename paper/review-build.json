@@ -1,6 +1,6 @@
 {
-  "compiled_source_commit": "8fe5a7880f552f830524b71e35633e9b0fe567ab",
-  "paper_sha256": "e59108beebbaf5d3b74e618345860f33082c0c78ccef3d529f318f16f0e3e257",
+  "compiled_source_commit": "c4cdcc4157679bcfd9437cb2009b49588d159af8",
+  "paper_sha256": "b60d560992c9e79a695c2d517d550da3e3820429426f6f1fa6c5fb7a6ed314f4",
   "pages": 10,
   "models": [
     "PPLX-Decider v1.1 27B",
@@ -14,5 +14,6 @@
   "visual_review": "all pages rendered; tables, figure, references and wrapped checkpoint revisions inspected",
   "analysis_entrypoint": "scripts/analyze_focused.py",
   "selected_result_files": 30,
-  "arxiv_submitted": false
+  "arxiv_submitted": false,
+  "terminology": "System One models (also known as decision models)"
 }
