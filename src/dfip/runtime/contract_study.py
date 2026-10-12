@@ -126,7 +126,7 @@ def study(alias, action, commit, round_id):
         result["capabilities"] = adapter.capabilities
         if hasattr(adapter, "runtime"):
             result["native_runtime"] = adapter.runtime.runtime_info()
-        result["stage"] = "native admission and profiling"
+        result["stage"] = "native admission and profiling" if action == "native" else "shared admission and evaluation"
         if action == "native":
             native(adapter, result, round_id)
         elif action == "shared_compiled":
