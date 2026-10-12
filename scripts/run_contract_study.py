@@ -43,8 +43,11 @@ def main():
             subprocess.run(["git", "diff", "--quiet", "HEAD", "--", "src", "scripts/run_contract_study.py"], cwd=ROOT, check=True)
             archive = ROOT / "benchmarks" / f"source-v5-{source[:12]}.zip"
             if not archive.exists():
+                paths = ["src", "scripts", "tests", "pyproject.toml", "benchmarks/generality-protocol.json"]
+                if (ROOT / "benchmarks/shared-batching-protocol.json").exists():
+                    paths.append("benchmarks/shared-batching-protocol.json")
                 subprocess.run(["git", "archive", "--format=zip", "--prefix=dfip-source/", "--output="+str(archive),
-                                source, "src", "scripts", "tests", "pyproject.toml", "benchmarks/generality-protocol.json"], cwd=ROOT, check=True)
+                                source, *paths], cwd=ROOT, check=True)
             prefix = f"dfip-study5-{args.action}-{model}-{round_id}"
             log = ROOT / "work" / f"contracts-{args.action}-{model}-{round_id}-{source[:12]}.log"
             started = time.time()
@@ -57,6 +60,8 @@ def main():
             record = {"model": model, "action": args.action, "round": round_id, "source_commit": source,
                       "source_archive": str(archive.relative_to(ROOT)), "log": str(log.relative_to(ROOT)),
                       "started_unix": started, "finished_unix": time.time(), "exit_code": process.returncode}
+            receipt = folder / f"{model}-{args.action}-{round_id}-{source[:12]}.json"
+            record["experiment_status"] = json.loads(receipt.read_text())["status"] if receipt.exists() else "no local result"
             with (folder / "job-journal.jsonl").open("a") as stream:
                 stream.write(json.dumps(record)+"\n")
             print(json.dumps(record), flush=True)

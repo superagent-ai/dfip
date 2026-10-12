@@ -1,0 +1,107 @@
+{
+  "protocol": "dfip-shared-contract-batching-v5-exploratory",
+  "status": "candidate_specification_before_test",
+  "candidate_runtime_commit": "a3ead94",
+  "models": [
+    "omni",
+    "gliner",
+    "d3",
+    "jev9",
+    "jev27"
+  ],
+  "scope": "Text-only native adapters; five additional checkpoints, four families; one independent worker per checkpoint in this pilot. Not confirmatory or production certification.",
+  "native_profiles_available_before_freeze": true,
+  "policy": {
+    "model_name_branches": false,
+    "max_batch": 8,
+    "padded_estimated_token_budget": 8192,
+    "max_length_ratio": 4,
+    "wait_ms": 2,
+    "admitted_sizes": [
+      2,
+      4,
+      8
+    ],
+    "native_singleton_fallback": true,
+    "always_include_oldest_request": true,
+    "restore_input_order": true,
+    "fatal_backend_errors_abort_worker": true
+  },
+  "admission": {
+    "fixtures": 96,
+    "states": "Eight calibration templates; typed questions and 2/4/8/16 choice candidates",
+    "key": "released ordered batch compatibility key",
+    "all_complete_chunks_compared": true,
+    "numeric_tolerance": 0.001,
+    "score_tolerance": 0.01,
+    "threshold_grid": [
+      0.1,
+      0.25,
+      0.5,
+      0.75,
+      0.9
+    ],
+    "literal_and_structure_changes_allowed": 0,
+    "threshold_crossings_allowed": 0,
+    "minimum_median_serial_to_batch_gain": 1.1,
+    "timing_repetitions": 3,
+    "scope_of_evidence": "Finite tested inputs and sizes; no per-future-request fidelity guarantee"
+  },
+  "resident": {
+    "test_fixtures": 96,
+    "traces": [
+      "homogeneous ordered choice schema with diverse lengths",
+      "diverse decision kinds, candidate widths, lengths and reordered schemas"
+    ],
+    "state_templates_disjoint_from_calibration": true,
+    "warm_samples_per_mode": 5,
+    "mode_order": "seeded randomized paired order",
+    "baselines": [
+      "released native serial",
+      "released native batching at size <=8, grouped by schema with FIFO order"
+    ],
+    "shared_includes_length_estimation": true,
+    "worker_analysis_unit": true,
+    "no_confidence_intervals_for_one_worker": true
+  },
+  "serving": {
+    "requests_per_trace": 256,
+    "homogeneous_rate_rps": 25,
+    "diverse_rates_rps": [
+      80,
+      20
+    ],
+    "burst_group_requests": 32,
+    "queue_capacity": 128,
+    "queue_deadline_s": 2,
+    "modes": [
+      "serial",
+      "native_batch",
+      "shared"
+    ],
+    "paired_arrivals": true,
+    "mode_order": "seeded randomized",
+    "native_and_shared_wait_ms": 2,
+    "latency_from_scheduled_arrival": true,
+    "length_estimation_included_for_shared": true,
+    "fixtures_warmed_by_reference_computation": true,
+    "vllm_prefix_caching": true,
+    "no_http_transport": true,
+    "accounting": [
+      "offered",
+      "within-window completions",
+      "after-drain completions",
+      "drops",
+      "errors",
+      "queue depth",
+      "p50/p95/p99",
+      "actual batch groups",
+      "all exposed native decision fields and per-request usage"
+    ],
+    "limitation": "6-11 second arrival windows, not the future three independent 30-minute trials"
+  },
+  "profiling": "Tensor model native operator profiles; JEV worker CUDA trace separately collected after shared timing with profiler disabled throughout measurement.",
+  "infrastructure": "CPU preparation completed before GPU allocation. One study GPU across apps; production apps untouched. Failed attempts and export failures retained.",
+  "hypothesis": "Released native batching plus contract-aware selection can handle changed traffic without custom per-shape recapture. Improvement over serial alone is batching evidence, not a novel DFIP gain; compare against native batching.",
+  "falsification": "Retain admission failures, native variation, output changes, fallbacks, drops and slowdowns. If shared policy cannot outperform native batching with acceptable finite-test fidelity, general acceleration remains unproven."
+}
