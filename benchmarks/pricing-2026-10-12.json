@@ -1,0 +1,12 @@
+{
+  "source": "https://modal.com/pricing",
+  "checked": "2026-10-12",
+  "currency": "USD",
+  "gpu_per_second": {
+    "L40S": 0.000542,
+    "B200": 0.001736
+  },
+  "physical_cpu_core_per_second": 1.31e-05,
+  "memory_gib_per_second": 2.22e-06,
+  "note": "Listed rates, not an invoice. Cost estimates in summary.csv cover GPU time only."
+}

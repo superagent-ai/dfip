@@ -1,0 +1,18 @@
+{
+  "protocol": "dfip-paper-v4-adaptive-pilot",
+  "scope": "Exploratory response to observed v3 recapture; one new container per model, no confidence interval or production reliability claim",
+  "models": ["decider", "clef"],
+  "planned_rounds_per_model": 1,
+  "gpu_concurrency": "one study GPU; wait for prior worker retirement; leave existing applications untouched",
+  "modes": ["native", "adaptive"],
+  "mode_order": "random.Random(20261013 + round_id).shuffle; retained in raw record",
+  "profiles": ["original v3 deterministic diverse trace", "60 percent recurring short shape with changing tickets; 40 percent original diverse trace"],
+  "arrivals": "5, 15, 30 requests/s for 60 seconds per mode and profile; fully drain phases",
+  "state_history": "diverse profile before mixed profile in each mode; admission state persists across rates and profiles; resets between modes",
+  "admission": "128-call recent window, at least 32 observations, 8 hits and 12.5 percent frequency; maximum four capture attempts per configuration; no eviction or automatic recapture",
+  "setup": "native model admission and fidelity before enabling adaptive; precheck inputs do not populate adaptive graph set",
+  "fidelity": "archived successful request distributions matched by ID between modes per profile; final 128 checks can replay resident graphs but cannot admit new ones",
+  "overload": "128 in flight; all excess arrivals counted as dropped; 64 RPC inputs; GPU serialized",
+  "failure_policy": "first request-error phase stops container and is retained; no retries until success",
+  "limits": "CUDA fault root cause remains unknown; cold shape fallback cannot certify graph reliability; synthetic popularity mix; one container per model"
+}

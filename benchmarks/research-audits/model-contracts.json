@@ -1,0 +1,547 @@
+{
+  "audit_date": "2026-10-12",
+  "purpose": "Structural research audit, not client support or runtime validation",
+  "source_archive": "pinned-sources-2026-10-12.zip",
+  "source_archive_sha256": "a226747d06d860e24b42b0d1b154ad48d336e969cde185e4ea4a442e87e02b38",
+  "snapshot_command": "python scripts/snapshot_decision_sources.py MODEL_ID REVISION NEW_OUTPUT",
+  "models": [
+    {
+      "model_id": "LiquidAI/d1-omni-600M",
+      "revision": "02b55d7076f15129e59ab3f94783f32c4b088674",
+      "license": "other",
+      "weights_downloaded": false,
+      "source_executed": false,
+      "files": [
+        {
+          "file": "LICENSE",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/LICENSE",
+          "bytes": 10572,
+          "sha256": "9953509cbd8c1c6ce7b06ddf74fcc204a892692316201dd8f7400a84790d4120"
+        },
+        {
+          "file": "README.md",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/README.md",
+          "bytes": 10384,
+          "sha256": "6577bee7b8cb23b595a90e99aa82007f57214d447f0ebcdfb2e812a7123d57bf"
+        },
+        {
+          "file": "audio.py",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/audio.py",
+          "bytes": 11829,
+          "sha256": "c5ff09d52d6a079e79d0505c89dbd0582ba2bc9abf2b26595d8d5b1d0c347bdf"
+        },
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/config.json",
+          "bytes": 1993,
+          "sha256": "dfccae241822f81752426629c88c8b8d7efdd03dd19418b6645c604fad43d619"
+        },
+        {
+          "file": "encoder.py",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/encoder.py",
+          "bytes": 7732,
+          "sha256": "5f2e20319ee42a7367febf06c7653d7b3f9b28ef99a64cb9ec7739563dcfcffe"
+        },
+        {
+          "file": "modeling_d1.py",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/modeling_d1.py",
+          "bytes": 8655,
+          "sha256": "2b71a5c909ec5d3aa6307378a41a0fd24af1e17d5c1c1f8d510582147051a686"
+        },
+        {
+          "file": "prompt.py",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/prompt.py",
+          "bytes": 6309,
+          "sha256": "a6b29a55ec8345f1fc1fdbfcc4b64d80d473dc4316f095a62c51cb6cce1194cf"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/tokenizer_config.json",
+          "bytes": 259,
+          "sha256": "03efc74b752b899b6292ff7e607738be59e6f206fec9aca32bbc05e9184090fc"
+        },
+        {
+          "file": "vision.py",
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/vision.py",
+          "bytes": 5233,
+          "sha256": "43ad71029f82e20fd26b97574627773d47639d7a3742c8b04fe5bf55f41c4c28"
+        }
+      ],
+      "review": {
+        "family": "liquid-marker-transformer-head",
+        "head_contract": "dedicated Transformer decision head, option-marker gather, scalar scorer, per-kind/width temperature and softmax",
+        "native_baseline": "Released D1OmniModel text-only system_one path, including its token-budget batching.",
+        "implication": "No full-vocabulary readout in audited decision forward. Reserve this head family for transfer evaluation."
+      },
+      "evidence": [
+        {
+          "file": "encoder.py",
+          "line": 154,
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/blob/02b55d7076f15129e59ab3f94783f32c4b088674/encoder.py#L154"
+        },
+        {
+          "file": "modeling_d1.py",
+          "line": 133,
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/blob/02b55d7076f15129e59ab3f94783f32c4b088674/modeling_d1.py#L133"
+        },
+        {
+          "file": "config.json",
+          "line": 1,
+          "url": "https://huggingface.co/LiquidAI/d1-omni-600M/blob/02b55d7076f15129e59ab3f94783f32c4b088674/config.json#L1"
+        }
+      ],
+      "status": "source_review_only_no_gpu_measurements"
+    },
+    {
+      "model_id": "autotrust/JEV-27B",
+      "revision": "14b425269ed24452e0a5ad5a8f3e51d139647a88",
+      "license": "apache-2.0",
+      "weights_downloaded": false,
+      "source_executed": false,
+      "files": [
+        {
+          "file": "README.md",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/README.md",
+          "bytes": 64236,
+          "sha256": "ddff9a781adf07fef7a5985390e3ee18e46b0cd75aefc1886bd102a8bdfe9985"
+        },
+        {
+          "file": "adapter/README.md",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/adapter/README.md",
+          "bytes": 5128,
+          "sha256": "11dd55d83a1ea0f16dba855f17ba84aac849c05212940fca84010cdf49d1cd42"
+        },
+        {
+          "file": "adapter/adapter_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/adapter/adapter_config.json",
+          "bytes": 1319,
+          "sha256": "eb550297441bde5ab9d78678e50aa8ed3f28a87912435c8da3d97cd3c82280c7"
+        },
+        {
+          "file": "adapter_vllm/adapter_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/adapter_vllm/adapter_config.json",
+          "bytes": 1335,
+          "sha256": "5ae16c5e11f37c5a67ec0e3b16d871fcc19c069090c1e42a6289f63c8067f6b6"
+        },
+        {
+          "file": "adapter_vllm/decision_head.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/adapter_vllm/decision_head.json",
+          "bytes": 1315,
+          "sha256": "79fc56c3a030204a2410e6347272fb27facfe299f2f8c0a714e78fc6f8062776"
+        },
+        {
+          "file": "calibration.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/calibration.json",
+          "bytes": 999,
+          "sha256": "902f4f26fdf1b92224c32b706ee6cea381f6465621c82975bf7e0023c02d9dd2"
+        },
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/config.json",
+          "bytes": 3052,
+          "sha256": "5a1c114fa93e7c2cdc262732ad831f786022fef86041f0c551576f9c3faff017"
+        },
+        {
+          "file": "judge_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/judge_config.json",
+          "bytes": 1431,
+          "sha256": "372748b6c876e008ad05ecfb3a361f481e85444eaa083b31234dbded5c2f7cb1"
+        },
+        {
+          "file": "reports/vllm_decisions_27b.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/reports/vllm_decisions_27b.json",
+          "bytes": 1164,
+          "sha256": "079f3510a214344096389c94b2e2dbd6ec131f67ced385486fa771fe52fc61bd"
+        },
+        {
+          "file": "reports/vllm_decisions_9b.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/reports/vllm_decisions_9b.json",
+          "bytes": 1331,
+          "sha256": "35555cc00637b04cc3a36f51b8b8be5efac3c26fd1cf423a501e5a0fba90accc"
+        },
+        {
+          "file": "serve_decide.py",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/serve_decide.py",
+          "bytes": 23030,
+          "sha256": "b4c95faf8619b32241394f68dd1b5b5a1702a94da96f59c5467d8de4367b5132"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-27B/resolve/14b425269ed24452e0a5ad5a8f3e51d139647a88/tokenizer_config.json",
+          "bytes": 1124,
+          "sha256": "66e427c470fe580fe8c7b5725d857af23d8417e37fae62667ec698306a19987b"
+        }
+      ],
+      "review": {
+        "family": "qwen-hybrid-decision-lora",
+        "head_contract": "answer-token log probabilities plus released head bias and per-kind temperature",
+        "native_baseline": "Released vLLM System 1 path; pin backend version and LoRA artifacts before GPU admission. Escalation and tournament policy are separate behavior to record.",
+        "implication": "Compare against the native LoRA decision path, not bare causal generation or a different prompt."
+      },
+      "evidence": [
+        {
+          "file": "serve_decide.py",
+          "line": 92,
+          "url": "https://huggingface.co/autotrust/JEV-27B/blob/14b425269ed24452e0a5ad5a8f3e51d139647a88/serve_decide.py#L92"
+        },
+        {
+          "file": "serve_decide.py",
+          "line": 242,
+          "url": "https://huggingface.co/autotrust/JEV-27B/blob/14b425269ed24452e0a5ad5a8f3e51d139647a88/serve_decide.py#L242"
+        },
+        {
+          "file": "adapter_vllm/decision_head.json",
+          "line": 1,
+          "url": "https://huggingface.co/autotrust/JEV-27B/blob/14b425269ed24452e0a5ad5a8f3e51d139647a88/adapter_vllm/decision_head.json#L1"
+        },
+        {
+          "file": "calibration.json",
+          "line": 1,
+          "url": "https://huggingface.co/autotrust/JEV-27B/blob/14b425269ed24452e0a5ad5a8f3e51d139647a88/calibration.json#L1"
+        }
+      ],
+      "status": "source_review_only_no_gpu_measurements"
+    },
+    {
+      "model_id": "autotrust/JEV-9B",
+      "revision": "7ac669b8fb476ba926491e3d1c39f9330d68dbed",
+      "license": "apache-2.0",
+      "weights_downloaded": false,
+      "source_executed": false,
+      "files": [
+        {
+          "file": "README.md",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/README.md",
+          "bytes": 54958,
+          "sha256": "58fb41fd973819d3318d695a33c789840c44bb7124310f3179c915a40aa1e9ae"
+        },
+        {
+          "file": "adapter/README.md",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/adapter/README.md",
+          "bytes": 5128,
+          "sha256": "11dd55d83a1ea0f16dba855f17ba84aac849c05212940fca84010cdf49d1cd42"
+        },
+        {
+          "file": "adapter/adapter_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/adapter/adapter_config.json",
+          "bytes": 1319,
+          "sha256": "9ec52bc006c17292f597c0ca331e978991ef7d2df3cd6f7cb89592869a36f476"
+        },
+        {
+          "file": "adapter_vllm/adapter_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/adapter_vllm/adapter_config.json",
+          "bytes": 1335,
+          "sha256": "5ae16c5e11f37c5a67ec0e3b16d871fcc19c069090c1e42a6289f63c8067f6b6"
+        },
+        {
+          "file": "adapter_vllm/decision_head.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/adapter_vllm/decision_head.json",
+          "bytes": 1312,
+          "sha256": "1ae78fc161dea47cb8e3d5b4f5de4ac61c48a33f8031b68052bf699be30ec7fc"
+        },
+        {
+          "file": "calibration.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/calibration.json",
+          "bytes": 1007,
+          "sha256": "9644305e85fac82944ec4353742af9c0fbc6434a277d3f0e54c2abb185aaf9b8"
+        },
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/config.json",
+          "bytes": 2292,
+          "sha256": "616e4e6b1ef1ca8b1832a1a8cb35d16a2281eb876c1bba5eb2cfb4960e496bbc"
+        },
+        {
+          "file": "judge_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/judge_config.json",
+          "bytes": 1435,
+          "sha256": "0ee2ce84743b646e1c493619a8b55f71b94660f3a599467a1b8942f0eb68d677"
+        },
+        {
+          "file": "reports/vllm_decisions_27b.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/reports/vllm_decisions_27b.json",
+          "bytes": 1164,
+          "sha256": "079f3510a214344096389c94b2e2dbd6ec131f67ced385486fa771fe52fc61bd"
+        },
+        {
+          "file": "reports/vllm_decisions_9b.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/reports/vllm_decisions_9b.json",
+          "bytes": 1331,
+          "sha256": "35555cc00637b04cc3a36f51b8b8be5efac3c26fd1cf423a501e5a0fba90accc"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/tokenizer_config.json",
+          "bytes": 1124,
+          "sha256": "66e427c470fe580fe8c7b5725d857af23d8417e37fae62667ec698306a19987b"
+        },
+        {
+          "file": "vl/adapter_vllm/adapter_config.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/adapter_vllm/adapter_config.json",
+          "bytes": 1335,
+          "sha256": "5ae16c5e11f37c5a67ec0e3b16d871fcc19c069090c1e42a6289f63c8067f6b6"
+        },
+        {
+          "file": "vl/adapter_vllm/decision_head.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/adapter_vllm/decision_head.json",
+          "bytes": 1312,
+          "sha256": "1ae78fc161dea47cb8e3d5b4f5de4ac61c48a33f8031b68052bf699be30ec7fc"
+        },
+        {
+          "file": "vl/calibration.json",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/calibration.json",
+          "bytes": 1007,
+          "sha256": "9644305e85fac82944ec4353742af9c0fbc6434a277d3f0e54c2abb185aaf9b8"
+        },
+        {
+          "file": "vl/demos/computer_use.py",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/demos/computer_use.py",
+          "bytes": 9924,
+          "sha256": "f3dcc8b5bb84a9b07440c8023c966454b7360d691a00fcbf3135ee58b6a33ba2"
+        },
+        {
+          "file": "vl/demos/robot_arm.py",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/demos/robot_arm.py",
+          "bytes": 19884,
+          "sha256": "be3caae0670008a2c0a31b476a702a7f4e47b29e8eca2719557dda0649adcd48"
+        },
+        {
+          "file": "vl/serve_decide.py",
+          "url": "https://huggingface.co/autotrust/JEV-9B/resolve/7ac669b8fb476ba926491e3d1c39f9330d68dbed/vl/serve_decide.py",
+          "bytes": 23884,
+          "sha256": "f7fc2e6be733541ab82d2b2ffba7ec7a07b1ab6952236a745a3ba65a6f9bfa8e"
+        }
+      ],
+      "review": {
+        "family": "qwen-hybrid-decision-lora",
+        "head_contract": "decision LoRA and answer-token slots with bias and calibration; exact text-only library path still to audit",
+        "native_baseline": "Model-card vLLM path with processed_logprobs and decision LoRA; do not infer runtime equivalence from model size alone.",
+        "implication": "A scaling comparison within the JEV family; not an independent architecture."
+      },
+      "evidence": [
+        {
+          "file": "README.md",
+          "line": 450,
+          "url": "https://huggingface.co/autotrust/JEV-9B/blob/7ac669b8fb476ba926491e3d1c39f9330d68dbed/README.md#L450"
+        },
+        {
+          "file": "adapter_vllm/decision_head.json",
+          "line": 1,
+          "url": "https://huggingface.co/autotrust/JEV-9B/blob/7ac669b8fb476ba926491e3d1c39f9330d68dbed/adapter_vllm/decision_head.json#L1"
+        },
+        {
+          "file": "calibration.json",
+          "line": 1,
+          "url": "https://huggingface.co/autotrust/JEV-9B/blob/7ac669b8fb476ba926491e3d1c39f9330d68dbed/calibration.json#L1"
+        }
+      ],
+      "status": "source_review_only_no_gpu_measurements"
+    },
+    {
+      "model_id": "fastino/GLiNER2.5-Decide",
+      "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "license": "apache-2.0",
+      "weights_downloaded": false,
+      "source_executed": false,
+      "files": [
+        {
+          "file": "README.md",
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/resolve/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/README.md",
+          "bytes": 20089,
+          "sha256": "09a9705ee8c30392bb5a82ac503c01b889ff7e957a4c96bf7249f05acde709a3"
+        },
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/resolve/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/config.json",
+          "bytes": 1612,
+          "sha256": "501c6579278518e72dbba5a1f248b421dd5bfb13600db45d86c94c224368670b"
+        },
+        {
+          "file": "encoder_config/config.json",
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/resolve/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/encoder_config/config.json",
+          "bytes": 920,
+          "sha256": "bd32f1484ba5a199f7a63df44df3814b839fffcf6e64478323c4689868ef6015"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/resolve/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/tokenizer_config.json",
+          "bytes": 3356,
+          "sha256": "323199a4e946039410899f3779f2aa3eaef1500213c512727ad0f623d4f21309"
+        }
+      ],
+      "review": {
+        "family": "deberta-schema-classifier",
+        "head_contract": "DeBERTa encoder and GLiNER schema head; actual library activation and returned-field behavior await pinned library review",
+        "native_baseline": "Released gliner2 AutoExtractor.classify_text with identical schemas; pin library, dependencies and optional native batching before GPU evaluation.",
+        "implication": "Reserve a different encoder family. Do not replace independent multi-label probabilities with a categorical distribution."
+      },
+      "evidence": [
+        {
+          "file": "config.json",
+          "line": 1,
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/blob/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/config.json#L1"
+        },
+        {
+          "file": "README.md",
+          "line": 514,
+          "url": "https://huggingface.co/fastino/GLiNER2.5-Decide/blob/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90/README.md#L514"
+        }
+      ],
+      "status": "source_review_only_no_gpu_measurements"
+    },
+    {
+      "model_id": "vllm-sr/d3-flash",
+      "revision": "f6075bff3c0f7d5704e353d0fb2ebf94888d1691",
+      "license": "apache-2.0",
+      "weights_downloaded": false,
+      "source_executed": false,
+      "files": [
+        {
+          "file": "LICENSE",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/LICENSE",
+          "bytes": 11357,
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+        },
+        {
+          "file": "README.md",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/README.md",
+          "bytes": 10474,
+          "sha256": "9b0865ff579fbd46abdabc5eba292cb3dcffeb46d5523709a1fbb9e217fa8aed"
+        },
+        {
+          "file": "config.json",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/config.json",
+          "bytes": 3093,
+          "sha256": "9c3e6eea217964096c7b032285bab6757720a847fbb9d0a04e551d2b1606c0eb"
+        },
+        {
+          "file": "d3_engine.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_engine.py",
+          "bytes": 4413,
+          "sha256": "086238942762df45047a32cd9a8e2bedd9b63167eb40be260c776de567979f53"
+        },
+        {
+          "file": "d3_fast.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_fast.py",
+          "bytes": 22331,
+          "sha256": "68a1fb9a2c3bde9ac2763bf504decae592ca12722698fbde1b39a31262955535"
+        },
+        {
+          "file": "d3_format.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_format.py",
+          "bytes": 7008,
+          "sha256": "3badfbc70561bb3f5b8ec16a11d2c455b96ddb32caace0a8a54ca102eae1f3fa"
+        },
+        {
+          "file": "d3_kernels.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_kernels.py",
+          "bytes": 16129,
+          "sha256": "8f7534ca1e1846ebf7c4c73058002f3be4dbf0d5d426f0815150ae0cbe7677bd"
+        },
+        {
+          "file": "d3_runtime.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_runtime.py",
+          "bytes": 93871,
+          "sha256": "0d6ab3da203ae4cf9b039718f305b7dcf46e10a060c01b735d68b0ef87fcbe7c"
+        },
+        {
+          "file": "d3_server.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_server.py",
+          "bytes": 17705,
+          "sha256": "766a20a69101e36ab0535a1ec683379db422380a83091f0eccd7e82edb6a02de"
+        },
+        {
+          "file": "decision_config.json",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/decision_config.json",
+          "bytes": 5502,
+          "sha256": "0269c72ac055d8149a7a778c477780af361f4c1cde3fd0e5ba9af791453ece18"
+        },
+        {
+          "file": "modeling_d3.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/modeling_d3.py",
+          "bytes": 12079,
+          "sha256": "f8f8db23ff58f1a990ffa24977d744a50e1b4446d02a64c22070967705b6dbef"
+        },
+        {
+          "file": "pipeline_d3.py",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/pipeline_d3.py",
+          "bytes": 2936,
+          "sha256": "4f9297c7c74e596e9b67df91a1e6823cfada48bf781336f141974ff6a2f1038e"
+        },
+        {
+          "file": "preprocessor_config.json",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/preprocessor_config.json",
+          "bytes": 390,
+          "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516"
+        },
+        {
+          "file": "requirements.txt",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/requirements.txt",
+          "bytes": 723,
+          "sha256": "de9defd71ae4e559a7f5bdcc935b23716f9788e8755f2ba6db1ab6862bcda12e"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/tokenizer_config.json",
+          "bytes": 16710,
+          "sha256": "316230d6a809701f4db5ea8f8fc862bc3a6f3229c937c174e674ff3ca0a64ac8"
+        },
+        {
+          "file": "video_preprocessor_config.json",
+          "url": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/video_preprocessor_config.json",
+          "bytes": 385,
+          "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13"
+        }
+      ],
+      "review": {
+        "family": "qwen-hybrid-small-code-head",
+        "head_contract": "last-token readout over released answer codes, mask and calibrated softmax",
+        "native_baseline": "Released D3 runtime and documented native server. Audit actual NVIDIA fast-path availability; model-card AMD measurements are not Modal NVIDIA baselines.",
+        "implication": "Small answer-code projection is already native; vocabulary pruning is not an additional general optimization."
+      },
+      "evidence": [
+        {
+          "file": "d3_runtime.py",
+          "line": 1641,
+          "url": "https://huggingface.co/vllm-sr/d3-flash/blob/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_runtime.py#L1641"
+        },
+        {
+          "file": "d3_runtime.py",
+          "line": 1671,
+          "url": "https://huggingface.co/vllm-sr/d3-flash/blob/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_runtime.py#L1671"
+        },
+        {
+          "file": "decision_config.json",
+          "line": 1,
+          "url": "https://huggingface.co/vllm-sr/d3-flash/blob/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/decision_config.json#L1"
+        }
+      ],
+      "status": "source_review_only_no_gpu_measurements"
+    }
+  ],
+  "literature": [
+    {
+      "url": "https://arxiv.org/html/2503.19779v3",
+      "sections": [
+        "2.3",
+        "4.3"
+      ],
+      "finding": "Cost-guided graph selection and capture transformations already exist; DFIP needs a distinct decision-contract contribution."
+    },
+    {
+      "url": "https://arxiv.org/html/2507.18546v1",
+      "sections": [
+        "Appendix A"
+      ],
+      "finding": "GLiNER2 describes label-marker classification and different single-label/multi-label activations; the current checkpoint library must be separately inspected."
+    },
+    {
+      "url": "https://docs.pytorch.org/docs/2.14/notes/cuda.html",
+      "sections": [
+        "CUDA graph constraints",
+        "Partial-network capture"
+      ],
+      "finding": "Static shapes and addresses constrain full capture; partial-network capture is an existing mechanism."
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "base_commit": "822f6c3",
+  "additional_files": [
+    "src/dfip/cloud/security_research.py",
+    "src/dfip/runtime/security_research.py"
+  ],
+  "description": "Reconstructed source snapshot for the original v1 jobs; original cap=2, lowered to 1 remotely during execution. Runtime source precedes the synchronized graph retirement follow-up.",
+  "sha256": {
+    "examples/client.py": "30ce10b228d6fee8c81d5cbfea2da7fbc05f877a9b20d4b1977d3474a5ab0312",
+    "src/dfip/__init__.py": "11746f87716f61015e13e9a3f5478a401f4232156263c0909c7c68bff9d9679a",
+    "src/dfip/__main__.py": "4adbaadbecdbbb0ef1d1b46b1750302b3553d7eba45784d87e946e71653457dd",
+    "src/dfip/cli.py": "e61fded2acb5a2bb1f06191c0e238b2e62a627e6f55c5ae3de420d76eed72afb",
+    "src/dfip/client.py": "54e7d646689614deac2c7a891f797969e2e2f68f15308741efeaf6e6c6e956f7",
+    "src/dfip/cloud/__init__.py": "6d61fbadeadd4d2d1244212d7e046fdeeba526e323af2cf4ae3e5b35d4f8569c",
+    "src/dfip/cloud/evaluate.py": "b171fd1acb11265aefa9cc4cab9deb72183651249a864f499410140e2fb872c0",
+    "src/dfip/cloud/images.py": "214e4028a044344d21123c9b88abb6d11f01e4354c254476bf009b8176b45ac7",
+    "src/dfip/cloud/prepare.py": "d056776b9f7ef0679383babda19efb821fe517255d6f720a035acdf184480ffa",
+    "src/dfip/cloud/research.py": "0312d4ca0a9e58fd6489ae3bcc15e4a703b10fc125c3c22f310533f79c3fef2b",
+    "src/dfip/cloud/serve.py": "5a06c7b41b4122dd6d7b184093c1fcaea5171fd7b6e63d296b39ce6fbf3c466e",
+    "src/dfip/cloud/sglang_benchmark.py": "3cb3eb146682449896522162db19264dc8ac89a92a30075d067917c320997b49",
+    "src/dfip/config.py": "3b11e3d45b23800f95f60ba535c80151f52fcfeb6db0bcb54e9b61f04a649680",
+    "src/dfip/models.py": "ba2bf9ca309e4f7495eaeebf10b99f277ae7a8b67d3680fdb2eb979e9540eaee",
+    "src/dfip/runtime/__init__.py": "db7340494465d1e72d616e354efe38b419640022774677437e41c02ee8b6495b",
+    "src/dfip/runtime/adapters.py": "0d2d116748e81be743d8836b264e86844848b0f5e230c940fbaf581008318fa2",
+    "src/dfip/runtime/benchmark.py": "836a2a1499d50e3e9079bfc755d8a34dee8ef0b4eb8f99242781f3a21b06e52b",
+    "src/dfip/runtime/engine.py": "9d9e93fdc3687c432c14683bdb9f1f9bbf2191246f65dd76544e772dcd77b0eb",
+    "src/dfip/runtime/kernels.py": "df3edcbef884b1f8ae093cb9971bba0663e3e729d6538118d8ccf16e82ea0487",
+    "src/dfip/runtime/optimization.py": "36bf502699aac2235c7fcdb7bf1cc51ed40e1a81b2bf2435cb87964fe123a12c",
+    "src/dfip/runtime/optimizations.py": "c02d7f190f8f31906c65ba806168535b202fc979620327576be54acd14eb70cc",
+    "src/dfip/runtime/research.py": "93979560a093bddda8d67255497e3aa585342f87ea325566ea38fad8fb38cce1",
+    "src/dfip/runtime/sglang_runtime.py": "982c19a23c3564fc249254cfd029560cad86c4c95ee56050ee7b91a3eca541a2",
+    "src/dfip/runtime/sitecustomize.py": "5f46f40852e622dc3ed600c4d6810855143684970139bdbb06c5a7144b8b47cb",
+    "src/dfip/runtime/validation.py": "3855db2948cda526722907c85678fc6b026272508dd3a869b0b647d0df7b98d6",
+    "src/dfip/schema.py": "b099f2720f2d05cb309a7a9e9745a3d0bf89e14082c41b6f13bb6da924248e91",
+    "tests/test_client.py": "fcc5e0aecbadb10239d570d4d01ccb65ccc6f8212b4a29a0745be633b9b0dd83",
+    "src/dfip/cloud/security_research.py": "c9ed222477b764e3255f4c648a38ed9ae548b467b54917c621d6f6f7327f7b58",
+    "src/dfip/runtime/security_research.py": "8e9eab7f59c298a62091c589f4193f5a5ce16bc04435a4d61751a4923bbae7ed"
+  }
+}

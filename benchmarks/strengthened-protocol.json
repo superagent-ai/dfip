@@ -1,0 +1,41 @@
+{
+  "date": "2026-10-12",
+  "gpu_concurrency": "One study GPU at a time; existing production services untouched. Prior application workers must retire before the next job.",
+  "optimized_native": {
+    "models": ["clef", "decider"],
+    "planned_single_use_container_rounds": 5,
+    "native_extensions": "causal-conv1d 1.7.0 built from source; fla-core 0.5.2; SDPA and original model attention semantics retained",
+    "comparison": "same-image, same-container native vs experimental DFIP; randomized order; nine v1 workloads; 50 warm calls after four admission calls",
+    "fidelity": "round zero: 2000 typed questions and 1024 derived BANKING77 decisions; changing-shape trace in every completed round",
+    "statistics": "paired bootstrap over container medians, never pooled with v1"
+  },
+  "released_compiler": {
+    "model": "liquid",
+    "planned_single_use_container_rounds": 3,
+    "modes": ["native", "native_compile", "production"],
+    "compiler": "released runner's torch.compile(mode=reduce-overhead)",
+    "workloads": ["short_binary", "short_choice", "short_3_questions"],
+    "fidelity": "128 changing-content/length/candidate-width requests; all probabilities compared; not a task-quality benchmark"
+  },
+  "literal_readout_audit": {
+    "models": ["decider", "clef"],
+    "containers_per_model": 1,
+    "order": "native then experimental DFIP; no latency claim",
+    "cases": "400 typed records plus 512 derived BANKING77 records, 3024 decisions",
+    "purpose": "Compare literal returned choice, score and confidence fields in addition to argmax reconstructed from reported probabilities; Clef rounds probability slots after choosing its answer",
+    "source": "Separate frozen source revision with additive answer-field instrumentation; not pooled into repeated timing estimates"
+  },
+  "serving": {
+    "models": ["decider", "clef", "security"],
+    "planned_independent_app_container_rounds": 3,
+    "modes": "native vs experimental production for Decider/Clef; native serialized vs concurrent dispatch to the native SGLang scheduler for Security-One",
+    "arrivals": "fixed open-loop 5, 15 and 30 requests/s, each for 60 seconds; completely drained between phases",
+    "client": "external author workstation in Sweden; authenticated Modal RPC",
+    "payloads": "deterministically changing state contents, recurring lengths, candidate widths 2/8/16; one choice question per request",
+    "server": "one GPU, max_containers=1, 64 concurrent RPC inputs; Transformer GPU execution serialized with a lock; separate Security-One concurrent-dispatch mode allows native SGLang scheduling/batching",
+    "overload": "128 client requests in flight; excess arrivals counted as dropped; errors retained, not removed from denominator",
+    "latency": "scheduled arrival to received result; includes client dispatch lag, external transport and queueing; excludes cold setup",
+    "fidelity": "128 matched requests before/after each mode plus archived returned distributions throughout traffic",
+    "limitations": "Minute-scale bounded soak, not hours-long reliability validation; single external client geography; not a throughput ceiling for dynamic-batching engines; no invoice reconciliation"
+  }
+}

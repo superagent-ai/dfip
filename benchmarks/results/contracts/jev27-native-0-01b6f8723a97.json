@@ -1,0 +1,31 @@
+{
+  "protocol": "dfip-contract-native-admission-v5-exploratory",
+  "action": "native",
+  "source_commit": "01b6f8723a972cac2cdf5b2b0298fde594c427cb",
+  "model_id": "autotrust/JEV-27B",
+  "revision": "14b425269ed24452e0a5ad5a8f3e51d139647a88",
+  "alias": "jev27",
+  "round": 0,
+  "status": "failed",
+  "environment": {
+    "packages": {
+      "torch": "2.13.0",
+      "transformers": "5.17.0",
+      "triton": "3.7.1",
+      "gliner2": null,
+      "peft": null,
+      "vllm": "0.31.0",
+      "fla-core": null
+    },
+    "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+    "cuda": "13.0",
+    "cpu_threads": 4,
+    "worker": "ta-01M4RHKVAY5TA9KDQPG1PZ9KJR",
+    "gpu": "NVIDIA B200, GPU-fe87339a-1b2c-49ca-35dd-c27ca01701e5, 610.57.04, 183359 MiB"
+  },
+  "stage": "load",
+  "started_unix": 1791825159.3202295,
+  "error": "[Errno 2] No such file or directory: '/research/prepared/contracts/jev27.json'",
+  "traceback": "Traceback (most recent call last):\n  File \"/opt/dfip/dfip/runtime/contract_study.py\", line 107, in study\n    started = time.monotonic(); adapter = load_contract(alias)\n                                          ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/dfip/dfip/runtime/contract_adapters.py\", line 192, in load_contract\n    return {\"omni\": OmniContract, \"gliner\": GlinerContract, \"d3\": D3Contract, \"jev\": JevContract}[spec.adapter](prepared_path(alias))\n                                                                                                                ^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/dfip/dfip/runtime/contract_adapters.py\", line 18, in prepared_path\n    metadata = json.loads((Path(\"/research/prepared/contracts\") / (alias + \".json\")).read_text())\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1027, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/research/prepared/contracts/jev27.json'\n",
+  "finished_unix": 1791825159.3227324
+}

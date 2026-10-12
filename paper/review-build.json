@@ -1,0 +1,19 @@
+{
+  "compiled_source_commit": "c4cdcc4157679bcfd9437cb2009b49588d159af8",
+  "paper_sha256": "b60d560992c9e79a695c2d517d550da3e3820429426f6f1fa6c5fb7a6ed314f4",
+  "pages": 10,
+  "models": [
+    "PPLX-Decider v1.1 27B",
+    "Liquid d1-3B",
+    "Clef-Flash",
+    "GLiNER2.5-Decide"
+  ],
+  "compiler": "CPU-only Modal latexmk",
+  "diagnostics": "no undefined references, warnings or overfull boxes",
+  "scientific_review": "selected numerical claims independently checked against raw records",
+  "visual_review": "all pages rendered; tables, figure, references and wrapped checkpoint revisions inspected",
+  "analysis_entrypoint": "scripts/analyze_focused.py",
+  "selected_result_files": 30,
+  "arxiv_submitted": false,
+  "terminology": "System One models (also known as decision models)"
+}

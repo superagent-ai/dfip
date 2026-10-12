@@ -1,0 +1,4133 @@
+{
+  "protocol": "dfip-contract-native-admission-v5-exploratory",
+  "action": "native",
+  "source_commit": "fde7117e17cf2932cbbe61a7bcd01749a43c7e0f",
+  "model_id": "autotrust/JEV-9B",
+  "revision": "7ac669b8fb476ba926491e3d1c39f9330d68dbed",
+  "alias": "jev9",
+  "round": 1,
+  "status": "complete",
+  "environment": {
+    "packages": {
+      "torch": "2.13.0",
+      "transformers": "5.17.0",
+      "triton": "3.7.1",
+      "gliner2": null,
+      "peft": null,
+      "vllm": "0.31.0",
+      "fla-core": null
+    },
+    "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+    "cuda": "13.0",
+    "cpu_threads": 4,
+    "worker": "ta-01M4RHX97Z58H1GFGA9RW42R9R",
+    "gpu": "NVIDIA L40S, GPU-971bf33f-150f-7363-3cf2-10d2a0b8d0fe, 580.95.05, 46068 MiB"
+  },
+  "stage": "native admission and profiling",
+  "started_unix": 1791825461.3561325,
+  "load_seconds": 204.87010294700002,
+  "capabilities": {
+    "batch": true,
+    "batch_key": "native vLLM per-request sampling parameters",
+    "readout": "decision LoRA answer-token slots with bias and calibration",
+    "distribution": "per-option probabilities; native System 1 only",
+    "dtype": "bfloat16"
+  },
+  "conformance_payload_sha256": "6b72a9624a6390fe69718a8c56fefc55ceaf08738914743c1c0dc1f69794ce34",
+  "conformance": [
+    {
+      "id": "contract-0",
+      "record": {
+        "id": "contract-0",
+        "state": "Ticket 0. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999217524539834,
+              7.82475460165249e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999217524539834,
+              7.82475460165249e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 2929.851439999993
+    },
+    {
+      "id": "contract-1",
+      "record": {
+        "id": "contract-1",
+        "state": "Ticket 1. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999654582752509,
+              3.454172474925187e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999646257127942,
+              3.537428720579694e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 8.325624566429823e-07,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 855.6511259999979
+    },
+    {
+      "id": "contract-2",
+      "record": {
+        "id": "contract-2",
+        "state": "Ticket 2. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9171839574064896,
+              0.00021985223063837546,
+              0.08211733770865738,
+              0.00047885265421462094
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9147619828343325,
+              0.00022101949717750517,
+              0.08454318618475197,
+              0.0004738114837380115
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0024258484760945886,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 78.60523599998714
+    },
+    {
+      "id": "contract-3",
+      "record": {
+        "id": "contract-3",
+        "state": "Ticket 3. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.932762446550569,
+              0.00013885602364581743,
+              0.06686596799544557,
+              0.0002327294303395675
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.930733088936523,
+              0.00015000267881454653,
+              0.0688733553509129,
+              0.00024355303374959167
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.00202935761404599,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 62.94451700000536
+    },
+    {
+      "id": "contract-4",
+      "record": {
+        "id": "contract-4",
+        "state": "Ticket 4. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.8875287897005468,
+              0.00038435614718247354,
+              0.09924421365219094,
+              0.0008077719978544683,
+              0.008079500257157516,
+              0.0020580558601835707,
+              0.0016717333213623975,
+              0.00022557906352173727
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.8906192754001112,
+              0.000367752403706156,
+              0.09647678114151992,
+              0.0007978156220790102,
+              0.007854204675703318,
+              0.002032688828935524,
+              0.001625117303207185,
+              0.00022636462473774486
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0030904856995643826,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 266.2417859999948
+    },
+    {
+      "id": "contract-5",
+      "record": {
+        "id": "contract-5",
+        "state": "Ticket 5. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9120226513942,
+              0.00023574150577318742,
+              0.07910281934479936,
+              0.0004210240964786576,
+              0.005854572814846141,
+              0.0012622913048339589,
+              0.0009321660274331398,
+              0.00016873351163549313
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9167247098185919,
+              0.00023979576262125383,
+              0.07461758378823116,
+              0.0004181847134361215,
+              0.005700807537454916,
+              0.001209775350366557,
+              0.0009222113548906173,
+              0.00016693167440750344
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.004702058424391864,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 62.85896599999319
+    },
+    {
+      "id": "contract-6",
+      "record": {
+        "id": "contract-6",
+        "state": "Ticket 6. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.8751866986373703,
+              0.0008450872582538874,
+              0.08088558732545374,
+              0.001292813808793617,
+              0.005618110613303536,
+              0.0025146172632586096,
+              0.0016225173378351066,
+              0.0003756522932981343,
+              8.571772121611686e-05,
+              0.0002429251567098001,
+              0.0001338460174701743,
+              0.011058801170320043,
+              0.019297186838009208,
+              0.0003367305841372033,
+              0.0001927184085229209,
+              0.00031098956604762876
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.8747218770475043,
+              0.000837958919870327,
+              0.08084263052031074,
+              0.001302426378381442,
+              0.00561512558056017,
+              0.002454127040012923,
+              0.0016088313515605305,
+              0.0003695380865350587,
+              8.299424182445388e-05,
+              0.00023897136443473815,
+              0.00013166757141259443,
+              0.01105292537223276,
+              0.019909270549473612,
+              0.00033124987644129127,
+              0.0001895817693818771,
+              0.00031082433006325745
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0006120837114644041,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 263.6822039999913
+    },
+    {
+      "id": "contract-7",
+      "record": {
+        "id": "contract-7",
+        "state": "Ticket 7. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9097308104432603,
+              0.000503909616551431,
+              0.06521491819782085,
+              0.0006843320413544047,
+              0.0039264642301240086,
+              0.0013849779271913965,
+              0.0009522355966369282,
+              0.00022046574005431816,
+              4.2244444114641503e-05,
+              0.00015682089505770317,
+              7.670376643538406e-05,
+              0.004954851716793697,
+              0.01169071912318214,
+              0.00016333727631618792,
+              9.961167970653894e-05,
+              0.0001975973054001655
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9077174899845248,
+              0.0005068021784802897,
+              0.06717022769392351,
+              0.0006801123814729609,
+              0.0039804803591159295,
+              0.001404030984084714,
+              0.0009653354436759054,
+              0.00022349867379702494,
+              4.282559835640995e-05,
+              0.00015897827054862888,
+              7.77589754731116e-05,
+              0.0049438863103223,
+              0.011664846807630467,
+              0.00016558429726674074,
+              0.00010098203151029415,
+              0.00019716000981692547
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.002013320458735479,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 64.54404200002273
+    },
+    {
+      "id": "contract-8",
+      "record": {
+        "id": "contract-8",
+        "state": "Ticket 8. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "noul",
+            "instructions": "Is the customer asking for a refund?",
+            "criteria": {
+              "false": "No",
+              "true": "Yes"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.009016705247524985,
+              0.990983294752475
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.008810125872536797,
+              0.9911898741274633
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0002065793749882472,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 36.90421500002117
+    },
+    {
+      "id": "contract-9",
+      "record": {
+        "id": "contract-9",
+        "state": "Ticket 9. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "noul",
+            "instructions": "Is the customer asking for a refund?",
+            "criteria": {
+              "false": "No",
+              "true": "Yes"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.0045259447198233455,
+              0.9954740552801766
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.0045259447198233455,
+              0.9954740552801766
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 62.42417900000419
+    },
+    {
+      "id": "contract-10",
+      "record": {
+        "id": "contract-10",
+        "state": "Ticket 10. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "score",
+            "instructions": "Rate the urgency from 0 (routine) to 5 (immediate action).",
+            "criteria": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.01806052981219385,
+              0.10838835796199289,
+              0.39071692960503523,
+              0.4101296935428006,
+              0.07107898024170661,
+              0.001625508836270812
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.017581679640298616,
+              0.10633215001274818,
+              0.3892677767136981,
+              0.41496512933571134,
+              0.07027085359813606,
+              0.0015824106994077416
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 7,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.004835435792910736,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 3,
+        "passes": false
+      },
+      "native_ms": 62.60490099998606
+    },
+    {
+      "id": "contract-11",
+      "record": {
+        "id": "contract-11",
+        "state": "Ticket 11. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "score",
+            "instructions": "Rate the urgency from 0 (routine) to 5 (immediate action).",
+            "criteria": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.013881129655802028,
+              0.09068800881712107,
+              0.3371614325009176,
+              0.3882592951862599,
+              0.16096338018493772,
+              0.009046753654961614
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.013702067791379885,
+              0.09021177953325403,
+              0.3406084258594371,
+              0.38622038647470164,
+              0.16011809549460343,
+              0.009139244846623798
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 7,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.003446993358519501,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 62.97405800000888
+    },
+    {
+      "id": "contract-12",
+      "record": {
+        "id": "contract-12",
+        "state": "Ticket 12. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999104466401528,
+              8.95533598471578e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.999911857254172,
+              8.81427458279466e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 1.4106140192111965e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 36.30154699999366
+    },
+    {
+      "id": "contract-13",
+      "record": {
+        "id": "contract-13",
+        "state": "Ticket 13. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9327643852732422,
+              0.0001292805892113221,
+              0.06686609482391606,
+              0.00024023931363033248
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9327644395674883,
+              0.0001282582427438133,
+              0.06686610732280943,
+              0.00024119486695846815
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 1.022346467508808e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 63.38243400000465
+    },
+    {
+      "id": "contract-14",
+      "record": {
+        "id": "contract-14",
+        "state": "Ticket 14. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9171500024876155,
+              0.00022965663641424589,
+              0.07465220593214328,
+              0.0003879836145850794,
+              0.005352462468219068,
+              0.0011725031987599407,
+              0.0009009232263845595,
+              0.00015426243587838783
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9192033094942967,
+              0.0002292587922947024,
+              0.07248060497530659,
+              0.00039664742180875635,
+              0.005450305863851863,
+              0.0011751282148510683,
+              0.0009101375117943248,
+              0.00015460772579596453
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.002171600956836689,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 62.42857800000934
+    },
+    {
+      "id": "contract-15",
+      "record": {
+        "id": "contract-15",
+        "state": "Ticket 15. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9121421175924775,
+              0.0004894521847275296,
+              0.06538777009282609,
+              0.000680720045526332,
+              0.003936872262637065,
+              0.0012327423894829986,
+              0.000917601307821012,
+              0.00020744677234199623,
+              3.912363013198971e-05,
+              0.00014992205498947175,
+              7.509695507153199e-05,
+              0.003977736096751636,
+              0.010323398476438367,
+              0.00015127071309115197,
+              9.372939957743541e-05,
+              0.00019500002610787882
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9154492182199419,
+              0.00045373453981416463,
+              0.06357352334771431,
+              0.000626054433572079,
+              0.00376734112319031,
+              0.0011427833366661887,
+              0.0008642544406892758,
+              0.000189279000911742,
+              3.6268611050956056e-05,
+              0.0001389815996631462,
+              6.90662846814369e-05,
+              0.003867369035356813,
+              0.00941929141970021,
+              0.00013802272803693837,
+              8.688956331110196e-05,
+              0.0001779223156994419
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.00330710062746431,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 65.12384999999199
+    },
+    {
+      "id": "contract-16",
+      "record": {
+        "id": "contract-16",
+        "state": "Ticket 16. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999090134641011,
+              9.09865358988795e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.999911154746445,
+              8.884525355496871e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 2.1412823439107893e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 36.27391800000623
+    },
+    {
+      "id": "contract-17",
+      "record": {
+        "id": "contract-17",
+        "state": "Ticket 17. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9366321946113113,
+              0.00011708637597911715,
+              0.06301139114036769,
+              0.00023932787234189748
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9327632183604228,
+              0.0001227780715657531,
+              0.06686601269150763,
+              0.0002479908765040016
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.003868976250888556,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 63.11086499999874
+    },
+    {
+      "id": "contract-18",
+      "record": {
+        "id": "contract-18",
+        "state": "Ticket 18. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9188061609802552,
+              0.0002441869846015001,
+              0.07244928590839564,
+              0.0004158197573806908,
+              0.005713751652847392,
+              0.0012417488089545578,
+              0.0009617352021444742,
+              0.0001673107054205652
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9143354063449306,
+              0.0002468881226072375,
+              0.07682452339269066,
+              0.0004170948165052817,
+              0.005776955806705301,
+              0.0012755793034672207,
+              0.0009570556055686612,
+              0.0001664966075249728
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0044707546353246475,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 63.140539000016815
+    },
+    {
+      "id": "contract-19",
+      "record": {
+        "id": "contract-19",
+        "state": "Ticket 19. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9128760672169428,
+              0.0004917943898624446,
+              0.06544038099266519,
+              0.0006652330104593883,
+              0.00394003986404012,
+              0.0012337342521247189,
+              0.0009110774607312782,
+              0.00021431286300454608,
+              3.978182236505917e-05,
+              0.00014885623003387877,
+              7.575648995080826e-05,
+              0.003980936577133141,
+              0.009543152189915175,
+              0.00015139249863723705,
+              9.23271247344199e-05,
+              0.00019515701739972159
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.91082824645249,
+              0.0004848823036705656,
+              0.06740041202729272,
+              0.0006743643488143473,
+              0.003994122924509014,
+              0.0012309669883969517,
+              0.0009018453565009688,
+              0.0002071479061959058,
+              3.906726517423882e-05,
+              0.00014852220183374131,
+              7.439575930984094e-05,
+              0.003909435173714349,
+              0.009674146518592297,
+              0.00014867320142795428,
+              9.21199458794139e-05,
+              0.00019165162619762087
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.002047820764452757,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 63.533497000008765
+    },
+    {
+      "id": "contract-20",
+      "record": {
+        "id": "contract-20",
+        "state": "Ticket 20. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999045747205618,
+              9.542527943806203e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999060778183698,
+              9.392218163021006e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 1.503097807997733e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 36.658130000006395
+    },
+    {
+      "id": "contract-21",
+      "record": {
+        "id": "contract-21",
+        "state": "Ticket 21. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9286718915668446,
+              0.00013499319707921994,
+              0.07093824526756308,
+              0.00025486996851296293
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.928672823358363,
+              0.00013499331208372074,
+              0.07093832288946175,
+              0.0002538604400915711
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 1.0095284213918246e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 62.48943100001725
+    },
+    {
+      "id": "contract-22",
+      "record": {
+        "id": "contract-22",
+        "state": "Ticket 22. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9121220846776068,
+              0.00024049360088370907,
+              0.07911144113489413,
+              0.0004244262084574095,
+              0.005672184991579319,
+              0.0012724913299744856,
+              0.0009934010299570645,
+              0.00016347702664712432
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9144255498396909,
+              0.00024110098331378137,
+              0.0768320991976794,
+              0.0004171359469783664,
+              0.005686510468395949,
+              0.0012456793024827337,
+              0.0009880343628128787,
+              0.0001638898986459678
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0023034651620841284,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 62.868976000004295
+    },
+    {
+      "id": "contract-23",
+      "record": {
+        "id": "contract-23",
+        "state": "Ticket 23. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9102467962269101,
+              0.00048265288247105627,
+              0.06735738731122635,
+              0.000652867614254257,
+              0.0039286919463945216,
+              0.001249870476452552,
+              0.0009084534182469621,
+              0.00020701582483883104,
+              3.84273097519111e-05,
+              0.0001484275013159604,
+              7.434832319025502e-05,
+              0.003969470870696522,
+              0.010301947776847094,
+              0.0001485784046300241,
+              9.353468721693419e-05,
+              0.00019152942555683862
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9119108657418646,
+              0.00048545847775077533,
+              0.06537120099961602,
+              0.000680547387923422,
+              0.003873870769301128,
+              0.0012721965548395178,
+              0.0009101140989387724,
+              0.0002073942561114789,
+              3.911372578131946e-05,
+              0.00014869883133753083,
+              7.331086272050482e-05,
+              0.004105044331663273,
+              0.010485968519746085,
+              0.00015365295718293794,
+              9.370567149191792e-05,
+              0.00018885681373073587
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.0019861863116103357,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 64.79423999999767
+    },
+    {
+      "id": "contract-24",
+      "record": {
+        "id": "contract-24",
+        "state": "Ticket 24. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999045747205618,
+              9.542527943806203e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical"
+            ],
+            "probabilities": [
+              0.9999030475582911,
+              9.695244170881373e-05
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 3,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 1.527162270753557e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 36.56871900000169
+    },
+    {
+      "id": "contract-25",
+      "record": {
+        "id": "contract-25",
+        "state": "Ticket 25. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9286743853410869,
+              0.00013129400628516302,
+              0.07093843629603387,
+              0.0002558843565938922
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9286718915668446,
+              0.00013499319707921994,
+              0.07093824526756308,
+              0.00025486996851296293
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 5,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 3.6991907940569244e-06,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "native_ms": 62.44990799999073
+    },
+    {
+      "id": "contract-26",
+      "record": {
+        "id": "contract-26",
+        "state": "Ticket 26. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.914670814539544,
+              0.0002450257095682956,
+              0.07685270107255578,
+              0.00041890742728367485,
+              0.005423432004798406,
+              0.0012263845159476163,
+              0.0009961769744819538,
+              0.00016655775582027248
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other"
+            ],
+            "probabilities": [
+              0.9124108566639029,
+              0.00024152658400824814,
+              0.07913649449863372,
+              0.0004178724938283891,
+              0.005410033122709757,
+              0.0012233546666732108,
+              0.0009937158653892794,
+              0.0001661461048544708
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 9,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.002283793426077943,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 63.0037249999873
+    },
+    {
+      "id": "contract-27",
+      "record": {
+        "id": "contract-27",
+        "state": "Ticket 27. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "decision": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales",
+              "fraud": "fraud",
+              "account": "account",
+              "shipping": "shipping",
+              "other": "other",
+              "legal": "legal",
+              "privacy": "privacy",
+              "marketing": "marketing",
+              "finance": "finance",
+              "support": "support",
+              "operations": "operations",
+              "product": "product",
+              "security": "security"
+            }
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9155406333809241,
+              0.00044663135202551997,
+              0.06357986013523287,
+              0.0006311077318431277,
+              0.003480151936336664,
+              0.001124893130103121,
+              0.0008575056660769476,
+              0.00019540599352847865,
+              3.513842268407877e-05,
+              0.00013680585081674398,
+              6.852696111342125e-05,
+              0.0036297348470962346,
+              0.009879835320067589,
+              0.0001358619902699857,
+              8.55293122591877e-05,
+              0.00017237796962208952
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "decision": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales",
+              "fraud: fraud",
+              "account: account",
+              "shipping: shipping",
+              "other: other",
+              "legal: legal",
+              "privacy: privacy",
+              "marketing: marketing",
+              "finance: finance",
+              "support: support",
+              "operations: operations",
+              "product: product",
+              "security: security"
+            ],
+            "probabilities": [
+              0.9073570884705464,
+              0.0005045939189027735,
+              0.06931008314914436,
+              0.0007215531506631252,
+              0.003978900063728383,
+              0.0012759336103225075,
+              0.0009347893262120561,
+              0.0002234100505743426,
+              4.081719121255901e-05,
+              0.00015641179422360113,
+              7.772814195234898e-05,
+              0.0040202001368107,
+              0.010942649250861325,
+              0.00015781883225741714,
+              9.77867036336786e-05,
+              0.00020023620895440864
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 17,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.00818354491037765,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 3,
+        "passes": false
+      },
+      "native_ms": 63.76860599999645
+    },
+    {
+      "id": "contract-28",
+      "record": {
+        "id": "contract-28",
+        "state": "Ticket 28. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+        "questions": {
+          "choice": {
+            "type": "choice",
+            "instructions": "Which team should handle this customer request?",
+            "criteria": {
+              "billing": "billing",
+              "technical": "technical",
+              "returns": "returns",
+              "sales": "sales"
+            }
+          },
+          "noul": {
+            "type": "noul",
+            "instructions": "Is the customer asking for a refund?",
+            "criteria": {
+              "false": "No",
+              "true": "Yes"
+            }
+          },
+          "score": {
+            "type": "score",
+            "instructions": "Rate the urgency from 0 (routine) to 5 (immediate action).",
+            "criteria": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ]
+          }
+        }
+      },
+      "reference": {
+        "answers": {
+          "choice": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9171824740299911,
+              0.00022337068583137465,
+              0.08211720054667376,
+              0.0004769547375037312
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          },
+          "noul": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.009335604540173969,
+              0.9906643954598261
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          },
+          "score": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.017963441413131484,
+              0.10533809150839658,
+              0.3977201862436906,
+              0.41108577943282626,
+              0.06646355784793048,
+              0.0014289435540245433
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "repeat": {
+        "answers": {
+          "choice": {
+            "kind": "choice",
+            "options": [
+              "billing: billing",
+              "technical: technical",
+              "returns: returns",
+              "sales: sales"
+            ],
+            "probabilities": [
+              0.9218722720359905,
+              0.00020737728171503928,
+              0.07745778198491002,
+              0.0004625686973844629
+            ],
+            "choice_index": 0,
+            "choice": "billing: billing"
+          },
+          "noul": {
+            "kind": "noul",
+            "options": [
+              "false",
+              "true"
+            ],
+            "probabilities": [
+              0.009086624480024692,
+              0.9909133755199753
+            ],
+            "choice_index": 1,
+            "choice": "true"
+          },
+          "score": {
+            "kind": "score",
+            "options": [
+              "0",
+              "1",
+              "2",
+              "3",
+              "4",
+              "5"
+            ],
+            "probabilities": [
+              0.01811835371390763,
+              0.10542959916234323,
+              0.39806564060117977,
+              0.41144284296321465,
+              0.06550229714755802,
+              0.0014412664117967387
+            ],
+            "choice_index": 3,
+            "choice": "3"
+          }
+        }
+      },
+      "comparison": {
+        "numeric_fields": 15,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.004689798005999446,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 2,
+        "passes": false
+      },
+      "native_ms": 122.53757400000609
+    }
+  ],
+  "cell_order": [
+    "four_requests",
+    "score_short",
+    "choice_long",
+    "choice_short",
+    "three_questions",
+    "eight_requests",
+    "boolean_short",
+    "choice_medium"
+  ],
+  "resident": {
+    "four_requests": {
+      "samples_ms": [
+        245.9632790000228,
+        246.33428299998172,
+        246.85878200000388,
+        246.90131199997722,
+        245.03230000001963,
+        247.77391000000648,
+        246.78095900000585,
+        247.0873739999888,
+        248.5186050000152,
+        246.7503219999969,
+        245.91007300000456,
+        249.1359629999863,
+        247.3110829999996,
+        247.1350029999826,
+        246.54284499999335,
+        245.71008099999858,
+        245.55680099999222,
+        246.4592719999814,
+        246.7125760000215,
+        245.55148700000018
+      ],
+      "median_ms": 246.7314490000092,
+      "records": [
+        {
+          "id": "contract-110",
+          "state": "Ticket 110. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-111",
+          "state": "Ticket 111. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-112",
+          "state": "Ticket 112. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-113",
+          "state": "Ticket 113. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        72,
+        72,
+        72,
+        72
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "score_short": {
+      "samples_ms": [
+        61.57760899998266,
+        61.66321700001731,
+        61.665186999988464,
+        61.761074999992616,
+        61.5981500000089,
+        61.595409999995354,
+        62.007528000009415,
+        62.083233999999266,
+        61.596557999990864,
+        61.9370809999964,
+        61.65201100000672,
+        61.90880099998708,
+        63.13736600000652,
+        64.15393300000005,
+        64.27173199998037,
+        63.514892999990025,
+        62.45395999999914,
+        62.402273999992985,
+        61.30169600001523,
+        61.52148900000043
+      ],
+      "median_ms": 61.83493799998985,
+      "records": [
+        {
+          "id": "contract-102",
+          "state": "Ticket 102. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "score",
+              "instructions": "Rate the urgency from 0 (routine) to 5 (immediate action).",
+              "criteria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        69
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "choice_long": {
+      "samples_ms": [
+        64.56649300000095,
+        64.25209700000778,
+        64.07125100000144,
+        65.02685799998176,
+        64.93492499998865,
+        65.33264199998712,
+        65.33971700000052,
+        64.84125800000129,
+        64.7349609999992,
+        64.76781799997866,
+        64.77013400001397,
+        64.34470600001418,
+        64.10179999997467,
+        64.75201899999661,
+        64.11070600000812,
+        63.925218999997924,
+        64.58748199997899,
+        64.61922100001516,
+        64.93093200000999,
+        64.87144700000158
+      ],
+      "median_ms": 64.7434899999979,
+      "records": [
+        {
+          "id": "contract-104",
+          "state": "Ticket 104. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        957
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "choice_short": {
+      "samples_ms": [
+        61.415457999999035,
+        61.69846599999573,
+        60.934605999989344,
+        61.97119899999848,
+        62.164800000005016,
+        61.176054999975804,
+        61.846392000006745,
+        61.485697000023265,
+        62.204280999992534,
+        60.95835300001795,
+        61.08628100000146,
+        61.87357900000734,
+        62.0379679999985,
+        62.0382430000177,
+        63.138325000011264,
+        62.095747000000756,
+        62.27709600000253,
+        62.41723700000534,
+        61.41730299998471,
+        61.49350300000833
+      ],
+      "median_ms": 61.85998550000704,
+      "records": [
+        {
+          "id": "contract-100",
+          "state": "Ticket 100. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        72
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "three_questions": {
+      "samples_ms": [
+        121.67629699999338,
+        63.81159699998307,
+        122.4550180000108,
+        122.54740500000594,
+        122.38747000000672,
+        121.80366999999137,
+        121.33544400001028,
+        122.36653100001149,
+        122.0895920000089,
+        121.00038700000937,
+        121.76900800000112,
+        121.91473599997948,
+        122.7666399999805,
+        121.55888300000584,
+        122.5517400000058,
+        121.19464599999219,
+        122.52076299998294,
+        121.58223299999804,
+        122.6206540000021,
+        122.14549200001557
+      ],
+      "median_ms": 122.0021639999942,
+      "records": [
+        {
+          "id": "contract-28",
+          "state": "Ticket 28. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "choice": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            },
+            "noul": {
+              "type": "noul",
+              "instructions": "Is the customer asking for a refund?",
+              "criteria": {
+                "false": "No",
+                "true": "Yes"
+              }
+            },
+            "score": {
+              "type": "score",
+              "instructions": "Rate the urgency from 0 (routine) to 5 (immediate action).",
+              "criteria": [
+                "0",
+                "1",
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        191
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "eight_requests": {
+      "samples_ms": [
+        495.1785599999994,
+        495.6482620000031,
+        494.6917350000035,
+        494.323817999998,
+        491.6707639999913,
+        494.39846999999304,
+        492.47707999998624,
+        494.36716700000716,
+        493.73392100000046,
+        494.00530200000503,
+        493.02346100000705,
+        500.11296099998503,
+        495.2930199999912,
+        492.6798520000091,
+        495.1673200000073,
+        495.1924639999845,
+        493.9271670000096,
+        494.5864199999903,
+        494.5930080000096,
+        495.5216009999788
+      ],
+      "median_ms": 494.4924449999917,
+      "records": [
+        {
+          "id": "contract-120",
+          "state": "Ticket 120. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-121",
+          "state": "Ticket 121. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-122",
+          "state": "Ticket 122. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-123",
+          "state": "Ticket 123. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-124",
+          "state": "Ticket 124. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-125",
+          "state": "Ticket 125. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-126",
+          "state": "Ticket 126. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-127",
+          "state": "Ticket 127. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72,
+        72
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "boolean_short": {
+      "samples_ms": [
+        35.405389999993986,
+        35.34615899999949,
+        35.282826000013756,
+        35.399033000004465,
+        35.424481000006836,
+        35.62434599999165,
+        35.43069299999502,
+        35.03546700000015,
+        35.455221999995956,
+        35.404368000001796,
+        35.286482000003616,
+        35.334909999988895,
+        35.076982999981965,
+        35.04273100000432,
+        35.450591999989456,
+        35.299283000000514,
+        35.58070900001553,
+        35.11351900002069,
+        35.27874700000666,
+        35.38386799999671
+      ],
+      "median_ms": 35.3650134999981,
+      "records": [
+        {
+          "id": "contract-101",
+          "state": "Ticket 101. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "noul",
+              "instructions": "Is the customer asking for a refund?",
+              "criteria": {
+                "false": "No",
+                "true": "Yes"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        53
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    },
+    "choice_medium": {
+      "samples_ms": [
+        62.400045000003956,
+        63.39622699999836,
+        62.95562799999743,
+        63.728108999981714,
+        62.33057000000031,
+        63.35491700002649,
+        62.59665100000689,
+        63.65841900000646,
+        62.77667699998801,
+        63.25541500001464,
+        63.15049500000214,
+        62.81921900000498,
+        62.612846000007494,
+        62.45814999999766,
+        63.05431399999861,
+        62.55798800000889,
+        62.46974599997657,
+        62.671284999993304,
+        62.71208100000081,
+        62.45796700000028
+      ],
+      "median_ms": 62.74437899999441,
+      "records": [
+        {
+          "id": "contract-103",
+          "state": "Ticket 103. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "estimated_lengths": [
+        282
+      ],
+      "mode": "released native single-request API; multi-record cells serial"
+    }
+  },
+  "profile": {
+    "kind": "native engine boundary",
+    "encode_and_parameter_prepare_ms": 0.38134799996214497,
+    "request_ms": 63.058222000023534,
+    "estimated_tokens": 162,
+    "limitation": "vLLM worker kernels run in another process; parent Torch profiler cannot measure them"
+  },
+  "batch_probes": [
+    {
+      "size": 2,
+      "records": [
+        {
+          "id": "contract-300",
+          "state": "Ticket 300. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-301",
+          "state": "Ticket 301. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "reference": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9123678218862337,
+                0.00019260879325935508,
+                0.08704273334238533,
+                0.000396835978121728
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327681800405585,
+                0.00012424962086185398,
+                0.06686637444962028,
+                0.00024119588895933945
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9123310800606353,
+                0.0002068667844037747,
+                0.08703921158218574,
+                0.0004228415727752604
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327749103826425,
+                0.00011988983416540235,
+                0.06686685742688173,
+                0.00023834235631041528
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "numeric_fields": 10,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 3.6741825598318734e-05,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 0,
+        "passes": true
+      },
+      "serial_ms": 125.53889099999083,
+      "batch_ms": 122.44822899998553,
+      "speedup": 1.025240561053812
+    },
+    {
+      "size": 4,
+      "records": [
+        {
+          "id": "contract-300",
+          "state": "Ticket 300. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-301",
+          "state": "Ticket 301. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-302",
+          "state": "Ticket 302. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-303",
+          "state": "Ticket 303. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "reference": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9097713063709362,
+                0.00020465511229609236,
+                0.08959563448074448,
+                0.0004284040360232726
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9366509961744792,
+                0.00011616284573496001,
+                0.06301265075655801,
+                0.0002201902232277893
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9366500308445364,
+                0.00012576118651562643,
+                0.06301258772295927,
+                0.0002116202459886405
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9347421803955924,
+                0.00013162839024095048,
+                0.06491331845365687,
+                0.0002128727605098223
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9148555400343031,
+                0.00019313400001076957,
+                0.0845518251492974,
+                0.00039950081638874123
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327672823212075,
+                0.0001242495069254883,
+                0.06686631313344367,
+                0.0002421550384233326
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9347482074898622,
+                0.00012853104571699297,
+                0.06491374093815125,
+                0.00020952052626956182
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9347316407638756,
+                0.00013162681438363998,
+                0.06491258849322172,
+                0.0002241439285190395
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "numeric_fields": 20,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.005084233663366966,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 6,
+        "passes": false
+      },
+      "serial_ms": 251.20583500000748,
+      "batch_ms": 125.46697900000936,
+      "speedup": 2.002166920748038
+    },
+    {
+      "size": 8,
+      "records": [
+        {
+          "id": "contract-300",
+          "state": "Ticket 300. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-301",
+          "state": "Ticket 301. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-302",
+          "state": "Ticket 302. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-303",
+          "state": "Ticket 303. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-304",
+          "state": "Ticket 304. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-305",
+          "state": "Ticket 305. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-306",
+          "state": "Ticket 306. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        },
+        {
+          "id": "contract-307",
+          "state": "Ticket 307. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. I was charged twice for a damaged order. Please refund the duplicate payment. ",
+          "questions": {
+            "decision": {
+              "type": "choice",
+              "instructions": "Which team should handle this customer request?",
+              "criteria": {
+                "billing": "billing",
+                "technical": "technical",
+                "returns": "returns",
+                "sales": "sales"
+              }
+            }
+          }
+        }
+      ],
+      "reference": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9123591613203684,
+                0.00019414222873904164,
+                0.08704190907453971,
+                0.00040478737635273303
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9366531739369289,
+                0.0001120862332621761,
+                0.06301279392452853,
+                0.00022194590528048572
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9366471985043784,
+                0.00012879221607424055,
+                0.06301238954529503,
+                0.00021161973425233517
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327814889955992,
+                0.00012928302144603573,
+                0.06686732041409778,
+                0.00022190756885707413
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9218983349000208,
+                0.00020411618469970874,
+                0.0774599741913403,
+                0.00043757472393916587
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9307499539984279,
+                0.00012202766297793156,
+                0.06887459813443447,
+                0.0002534202041597833
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9366420019534751,
+                0.00012576011326153157,
+                0.06301204996946248,
+                0.0002201879638008578
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327826634238985,
+                0.00012624023173248353,
+                0.06686741979279341,
+                0.0002236765515756937
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9123415397730569,
+                0.0002004028696152825,
+                0.08704021672047778,
+                0.00041784063685007403
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327722226004859,
+                0.0001227792242418872,
+                0.06686665665011238,
+                0.00023834152515995197
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327634722900996,
+                0.00013775807758118278,
+                0.06686604000772632,
+                0.00023272962459296295
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9307539408871305,
+                0.0001407746630401383,
+                0.06887489263886032,
+                0.00023039181096902708
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.921892112366971,
+                0.00020738173699198857,
+                0.07745944608170861,
+                0.00044105981432838575
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9286758352231759,
+                0.000129739918569672,
+                0.07093854006535276,
+                0.0002558847929018057
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327724478742683,
+                0.00013451697553947922,
+                0.06686668140590898,
+                0.00022635374428322107
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        },
+        {
+          "answers": {
+            "decision": {
+              "kind": "choice",
+              "options": [
+                "billing: billing",
+                "technical: technical",
+                "returns: returns",
+                "sales: sales"
+              ],
+              "probabilities": [
+                0.9327807889989936,
+                0.00012826054328660808,
+                0.06686727428449162,
+                0.000223676173228248
+              ],
+              "choice_index": 0,
+              "choice": "billing: billing"
+            }
+          }
+        }
+      ],
+      "comparison": {
+        "numeric_fields": 40,
+        "literal_changes": 0,
+        "structure_changes": 0,
+        "max_numeric_drift": 0.003883726214278793,
+        "max_score_drift": 0.0,
+        "threshold_crossings": 0,
+        "probability_threshold_crossings": 0,
+        "out_of_tolerance": 10,
+        "passes": false
+      },
+      "serial_ms": 500.95267500000773,
+      "batch_ms": 174.444904000012,
+      "speedup": 2.87169566730349
+    }
+  ],
+  "finished_unix": 1791825703.4081807
+}

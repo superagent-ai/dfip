@@ -70,6 +70,13 @@ def kernel_checks():
         if i < 2:
             assert admitted.captures == 0
     assert admitted.captures == 1 and admitted.replays == 10
+    churn = GraphRunner(lambda value: (value.square() + 3 * value).sum(-1))
+    for i in range(60):
+        churn_value = torch.randn(3, (63, 127, 257, 129, 65, 193)[i % 6], device="cuda")
+        torch.testing.assert_close(churn(churn_value), (churn_value.square() + 3 * churn_value).sum(-1))
+        assert len(churn.cache) <= 4
+        if i == 29:
+            churn.clear()
     original = torch.nn.Linear(
         127, 300, bias=False, device="cuda", dtype=torch.bfloat16
     )
@@ -87,6 +94,7 @@ def kernel_checks():
         "norm_experiments": norm,
         "graph_changed_values": {"captures": graph.captures, "replays": graph.replays},
         "dynamic_head_coverage": "passed",
+        "graph_eviction_and_clear": {"calls": 60, "cache_bound": 4, "status": "passed"},
         "delayed_graph_admission": {
             "captures": admitted.captures,
             "replays": admitted.replays,

@@ -119,3 +119,29 @@ def test_setup_deploys_after_successful_download():
 def test_unknown_model_error():
     with pytest.raises(ValueError, match="Unknown model"):
         get_model("untested-model")
+
+
+@pytest.mark.parametrize("alias", ["julia", "liquid", "clef", "decider"])
+def test_native_deployment_bypasses_acceleration_and_preserves_adapter_output(alias):
+    import importlib.util
+
+    expected = [{"answers": {"team": {"choice": "billing"}}}]
+    adapter = SimpleNamespace(predict=MagicMock(return_value=expected), model=SimpleNamespace(lm_head=None))
+    optimize = MagicMock(side_effect=AssertionError("Rejected acceleration must not run"))
+    fake_dependencies = {
+        "dfip.runtime.adapters": SimpleNamespace(load_adapter=MagicMock()),
+        "dfip.runtime.optimization": SimpleNamespace(optimize=optimize),
+    }
+    spec = importlib.util.spec_from_file_location(
+        "native_engine_test", Path(__file__).parents[1] / "src/dfip/runtime/engine.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    with patch.dict(sys.modules, fake_dependencies):
+        spec.loader.exec_module(module)
+    engine = module.DecisionEngine(get_model(alias).model_id, adapter=adapter)
+    records = REQUEST if isinstance(REQUEST, list) else [REQUEST]
+    assert engine.predict(records) == expected
+    adapter.predict.assert_called_once_with(records)
+    optimize.assert_not_called()
+    assert engine.diagnostics()["optimization"]["mode"] == "native"
+    assert engine.diagnostics()["graphs"] == []

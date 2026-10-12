@@ -1,0 +1,31 @@
+{
+  "protocol": "dfip-contract-native-admission-v5-exploratory",
+  "action": "native",
+  "source_commit": "01b6f8723a972cac2cdf5b2b0298fde594c427cb",
+  "model_id": "vllm-sr/d3-flash",
+  "revision": "f6075bff3c0f7d5704e353d0fb2ebf94888d1691",
+  "alias": "d3",
+  "round": 0,
+  "status": "failed",
+  "environment": {
+    "packages": {
+      "torch": "2.14.0",
+      "transformers": "5.17.0",
+      "triton": "3.8.0",
+      "gliner2": "2.1.0",
+      "peft": "0.21.2",
+      "vllm": null,
+      "fla-core": "0.5.2"
+    },
+    "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+    "cuda": "13.0",
+    "cpu_threads": 4,
+    "worker": "ta-01M4RHJ1SBMSD8M3WYWQGE601R",
+    "gpu": "NVIDIA L40S, GPU-24b09eb4-c7dc-9caf-8954-5d7de7573b8e, 610.57.04, 46068 MiB"
+  },
+  "stage": "load",
+  "started_unix": 1791825093.6029744,
+  "error": "package verification failed: missing README.md; missing assets/banner.png; missing assets/example-receipt.png; missing assets/example-video.mp4; missing assets/index-areas.png; missing assets/index-pareto.png",
+  "traceback": "Traceback (most recent call last):\n  File \"/root/dfip/runtime/contract_study.py\", line 107, in study\n    started = time.monotonic(); adapter = load_contract(alias)\n                                          ^^^^^^^^^^^^^^^^^^^^\n  File \"/root/dfip/runtime/contract_adapters.py\", line 192, in load_contract\n    return {\"omni\": OmniContract, \"gliner\": GlinerContract, \"d3\": D3Contract, \"jev\": JevContract}[spec.adapter](prepared_path(alias))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/root/dfip/runtime/contract_adapters.py\", line 89, in __init__\n    self.runtime = D3.from_pretrained(path, device=\"cuda:0\", batch_size=8, verify=\"fast\")\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/research/hf/hub/models--vllm-sr--d3-flash/snapshots/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_runtime.py\", line 1281, in from_pretrained\n    manifest = verify_package(root, verify)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/research/hf/hub/models--vllm-sr--d3-flash/snapshots/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/d3_runtime.py\", line 883, in verify_package\n    raise ValueError(\"package verification failed: \" + \"; \".join(problems[:8]))\nValueError: package verification failed: missing README.md; missing assets/banner.png; missing assets/example-receipt.png; missing assets/example-video.mp4; missing assets/index-areas.png; missing assets/index-pareto.png\n",
+  "finished_unix": 1791825094.0432665
+}

@@ -10,6 +10,7 @@ class Model:
     revision: str
     modal_class: str
     gpu: str
+    deployment_policy: str = "native"
 
 
 MODELS = (

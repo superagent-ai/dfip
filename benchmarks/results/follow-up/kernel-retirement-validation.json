@@ -1,0 +1,99 @@
+{
+  "environment": {
+    "packages": {
+      "torch": "2.14.0",
+      "transformers": "5.17.0",
+      "triton": "3.8.0",
+      "fla-core": "0.5.2",
+      "causal-conv1d": null,
+      "numpy": "2.5.4",
+      "sglang": null
+    },
+    "gpu": "NVIDIA L40S, GPU-3f445bba-79a9-24b2-a8a7-a447a94275c4, 610.57.04, 46068 MiB",
+    "cuda": "13.0",
+    "python": "3.12.10 (main, May 21 2025, 23:34:56) [GCC 12.2.0]",
+    "container_id": "ta-01M4QRQWGX9V8GBWKHC2A61BPR",
+    "cpu_threads": 4
+  },
+  "validation": {
+    "candidate_projection": [
+      {
+        "shape": [
+          1,
+          2,
+          127
+        ],
+        "triton_vs_fp32_reference_max_error": 0.0,
+        "native_bf16_vs_fp32_reference_max_error": 0.0,
+        "triton_vs_native_bf16_max_error": 0.0
+      },
+      {
+        "shape": [
+          1,
+          42,
+          2048
+        ],
+        "triton_vs_fp32_reference_max_error": 0.0,
+        "native_bf16_vs_fp32_reference_max_error": 0.0,
+        "triton_vs_native_bf16_max_error": 0.0
+      },
+      {
+        "shape": [
+          3,
+          65,
+          768
+        ],
+        "triton_vs_fp32_reference_max_error": 0.0,
+        "native_bf16_vs_fp32_reference_max_error": 0.25,
+        "triton_vs_native_bf16_max_error": 0.25
+      },
+      {
+        "shape": [
+          8,
+          255,
+          5120
+        ],
+        "triton_vs_fp32_reference_max_error": 0.0625,
+        "native_bf16_vs_fp32_reference_max_error": 1.0,
+        "triton_vs_native_bf16_max_error": 1.0
+      },
+      {
+        "shape": [
+          17,
+          31,
+          257
+        ],
+        "triton_vs_fp32_reference_max_error": 0.0,
+        "native_bf16_vs_fp32_reference_max_error": 0.0,
+        "triton_vs_native_bf16_max_error": 0.0
+      }
+    ],
+    "norm_experiments": [
+      {
+        "offset": 0.0,
+        "round_before_weight": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "offset": 1.0,
+        "round_before_weight": false,
+        "max_absolute_error": 0.0
+      }
+    ],
+    "graph_changed_values": {
+      "captures": 1,
+      "replays": 12
+    },
+    "dynamic_head_coverage": "passed",
+    "graph_eviction_and_clear": {
+      "calls": 60,
+      "cache_bound": 4,
+      "status": "passed"
+    },
+    "delayed_graph_admission": {
+      "captures": 1,
+      "replays": 10
+    }
+  },
+  "source_commit": "b8f028d57a499e29736585675b13b02a034351af"
+}

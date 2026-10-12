@@ -1,0 +1,124 @@
+{
+  "transform": "ANSI control sequences removed; deterministic gzip compression",
+  "logs": {
+    "strengthened-decider.log.gz": {
+      "source_log": "work/strengthened-decider.log",
+      "source_sha256": "8960170ad55dc91b0a0835a83ec579845ecca53d5dae06624205c9880274c059",
+      "decoded_sha256": "7b2e7efde47eebddb00dacd5745d35eb1c9f440595492cab912907da1475f5ce",
+      "gzip_sha256": "af55144ced676d80c811ed06319547594c38c3aa6c0afb236494d8f5b63e50e1",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-clef-optimized.log.gz": {
+      "source_log": "work/strengthened-clef-optimized.log",
+      "source_sha256": "e3ec01b56883de67b5814d10077d7ea558a6f4e96fc9612e4bece5dfc3efe953",
+      "decoded_sha256": "25cde28498f0ceed38747462fb60652aecbbb793e138ed6c3921c4e6c8aacae4",
+      "gzip_sha256": "55b24f5f52c88aa7829078cd8650239a969062e187c21dfb2f2a39732d95800d",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-decider-readout-audit.log.gz": {
+      "source_log": "work/strengthened-decider-readout-audit.log",
+      "source_sha256": "199e2afc3d8e03197e5da764b6ec7290297ed8f957560c0fd76e79c35da9b16b",
+      "decoded_sha256": "76a057817b67d5fc6da3c771e7ce8fd6e97610239d4ff3250103b4714d8fe923",
+      "gzip_sha256": "651dfd1ca81f36304a7b4f38c88435d1ff75edf1c54b16ebd4d70724e55b5a7c",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-clef-readout-audit.log.gz": {
+      "source_log": "work/strengthened-clef-readout-audit.log",
+      "source_sha256": "342aa45b5b15a26f21074b928ff3f19a49b9a18868ad312d06f7c08e9b87aff4",
+      "decoded_sha256": "ca274e2fc3ddc680705bfb5efbfa987f269de052fb1c17339e0c7b4d55548daa",
+      "gzip_sha256": "46c5f4b313962491a7367fbb7a004a5cf9b7524e886c746a73bd79b1561bde8f",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-liquid-compiler.log.gz": {
+      "source_log": "work/strengthened-liquid-compiler.log",
+      "source_sha256": "867eb5df2f236df054b774a2c755d6673ff65be09e014a08ee6839a2041a2406",
+      "decoded_sha256": "854044fa78e3c43cac1decfd9e1e95ecf95bf00dc184eee3bdbab567bc1a4f02",
+      "gzip_sha256": "d86b1f51dba7eda0f0a2706ead5cbc3a107197f057161b4fea6f4e2fd3362f5e",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-decider-serving-0.log.gz": {
+      "source_log": "work/strengthened-decider-serving-0.log",
+      "source_sha256": "bcafef242df3841ea0fd7d915c895b9d8eb0d2a47df7ca7d980804be9b944739",
+      "decoded_sha256": "89418ae394db4bb8c451bc115323d1d07080a4ecdf93b1b45071e30c3ebf2977",
+      "gzip_sha256": "fa32450a21054ce7c41191e57c645872906865871fe149cb4d03b0a842b3da7d",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-decider-serving-1.log.gz": {
+      "source_log": "work/strengthened-decider-serving-1.log",
+      "source_sha256": "8a319a858f60dd47a974382ea892a8d54cc74c349a1178777c8bdee5b2ec6b27",
+      "decoded_sha256": "203f59f36adc57b638ed2c9ee9db080bdeb5a4603b36193b0f76e0c48662a6d2",
+      "gzip_sha256": "2a342361b353283a38b22cf103e1d56fde8f31cbd6882703cae179f1c297aacb",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-decider-serving-2.log.gz": {
+      "source_log": "work/strengthened-decider-serving-2.log",
+      "source_sha256": "3a85ff8046395a993b8ddb3c5730c056499e31aace2b2eb4afb2ef2b7c21a122",
+      "decoded_sha256": "491800346d9c39d651b7bab8587f596cca8cf19b44c46b7b5602803b9f18b771",
+      "gzip_sha256": "1f02590b7221acc02decdb369d299766df55395ccbb1518d655938da98f06af7",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-clef-serving-0.log.gz": {
+      "source_log": "work/strengthened-clef-serving-0.log",
+      "source_sha256": "448fa71379d5e227c43f25f043c31b71076bc684b253371a4c5c7a73b9518c70",
+      "decoded_sha256": "51f2997c5abe0c53efae62a95c8b5a868ac8e4b27b6dbb81b962fb01abb608f9",
+      "gzip_sha256": "b847cc0871c35448fbeaf0af90ffde564538e1749590f93af1b11d8138ce00ae",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-clef-serving-1.log.gz": {
+      "source_log": "work/strengthened-clef-serving-1.log",
+      "source_sha256": "8a10fa58d036f2be262580d788f4bb9c343f5d92823d4cf13cea4ccceecfc3ce",
+      "decoded_sha256": "0e6bca64daadc8136077f9eb3e029f0c7551a07d178311d647d4007d338c5b38",
+      "gzip_sha256": "26d6b4bc6cc046e3d077cb19392d3bfc779085964667ab1ab2a857c86c26111d",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-clef-serving-2.log.gz": {
+      "source_log": "work/strengthened-clef-serving-2.log",
+      "source_sha256": "5a4783daf89e1ea3e425aa88c41ef0f530b4c2469a0a159db413e7d1d9645004",
+      "decoded_sha256": "def7d4424c48230d03924e6af6c9d96a690d00a2cf6597c2c79826fb9f9416dc",
+      "gzip_sha256": "901312ba7583a4d1bd57c906ef6b24f563d1ecaf42fc17d3b785f9c0aa2f7cfe",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-security-serving-0.log.gz": {
+      "source_log": "work/strengthened-security-serving-0.log",
+      "source_sha256": "1ca11ca360387e7a8bcca7047661b559da9886a981e2375368dbe03db3d88dcd",
+      "decoded_sha256": "1ca11ca360387e7a8bcca7047661b559da9886a981e2375368dbe03db3d88dcd",
+      "gzip_sha256": "675f0de3f6935fc5651a82846e3bc504155073e4cb5c2f6e0bc3a6a36a221cfc",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-security-serving-1.log.gz": {
+      "source_log": "work/strengthened-security-serving-1.log",
+      "source_sha256": "5c524ebe8464672759cf9dc0d087f9f41d193c12003b646af2a19532ab612ef2",
+      "decoded_sha256": "5c524ebe8464672759cf9dc0d087f9f41d193c12003b646af2a19532ab612ef2",
+      "gzip_sha256": "26879945668a1712994c8d812b0bd2a8ff6b3c484564f603c1ab2bafc52513e8",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-security-serving-2.log.gz": {
+      "source_log": "work/strengthened-security-serving-2.log",
+      "source_sha256": "fd765af88149f39ebdfaf34fadf245069afdc49634e9c3fbd2850ca42806d42c",
+      "decoded_sha256": "fd765af88149f39ebdfaf34fadf245069afdc49634e9c3fbd2850ca42806d42c",
+      "gzip_sha256": "d907a08d2cd30ff56203363e68b184b67d2dcd023f0173de36defe2093a36a40",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-driver-next.log.gz": {
+      "source_log": "work/strengthened-driver-next.log",
+      "source_sha256": "d08993647621ca9323e1dc9cf04a3198604614dea7dfb3ad5b62a30ac217668d",
+      "decoded_sha256": "d08993647621ca9323e1dc9cf04a3198604614dea7dfb3ad5b62a30ac217668d",
+      "gzip_sha256": "ae60496da2e74cc3fcb81c0dfd145cfb093643009667dd49539d3aa3dc635307",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-environment-inventory.log.gz": {
+      "source_log": "work/strengthened-environment-inventory.log",
+      "source_sha256": "27673c9116eb7435098ff9e5cf5dc0315a7269e305328973c36b5b0cdad734d9",
+      "decoded_sha256": "27673c9116eb7435098ff9e5cf5dc0315a7269e305328973c36b5b0cdad734d9",
+      "gzip_sha256": "2f2077b16c10c915149bb4887d1197517da72978970172e18b58ff8f0cbe66ed",
+      "scope": "captured local CLI output; final remote log delivery may be incomplete"
+    },
+    "strengthened-security-round-0-server-startup.log.gz": {
+      "source_log": "work/strengthened-security-round-0-server-startup.log",
+      "source_sha256": "d52cd8528655ceac5aa8aee08e259eceaa6466cc149dc01fabbc766a8154dc27",
+      "decoded_sha256": "d52cd8528655ceac5aa8aee08e259eceaa6466cc149dc01fabbc766a8154dc27",
+      "gzip_sha256": "b36c8ffbf1837425da10b5873573f2f533b9816ec4fc7b1100bc438dfad5ca57",
+      "scope": "partial backend log snapshot during round 0"
+    }
+  }
+}

@@ -102,6 +102,7 @@ class Decider:
     scaledown_window=60,
     max_containers=1,
 )
+@modal.concurrent(max_inputs=64, target_inputs=64)
 class Security:
     @modal.enter()
     def load(self):
@@ -110,7 +111,7 @@ class Security:
         sys.path.insert(0, "/opt/dfip")
         from dfip.runtime.sglang_runtime import SGLangDecisionEngine
 
-        self.engine = SGLangDecisionEngine(head_mode="native")
+        self.engine = SGLangDecisionEngine(head_mode="native", concurrent=True)
 
     @modal.method()
     def predict(self, records):

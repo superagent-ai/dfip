@@ -1,0 +1,24 @@
+\begin{tabular}{llrrrrr}
+\toprule
+Checkpoint & Mode & Offered/s & $n$ & Completed/s & p95 (ms) & Loss (\%) \\
+\midrule
+Clef-Flash & native & 5 & 3 & 5.0 & 335 & 0.0 \\
+Clef-Flash & native & 15 & 3 & 12.2 & 10078 & 4.5 \\
+Clef-Flash & native & 30 & 3 & 11.6 & 12398 & 54.3 \\
+Clef-Flash & graph & 5 & 3 & 2.7 & 39440 & 4.9 \\
+Clef-Flash & graph & 15 & 3 & 3.5 & 41558 & 62.6 \\
+Clef-Flash & graph & 30 & 3 & 2.9 & 44330 & 83.1 \\
+PPLX-Decider & native & 5 & 3 & 5.0 & 810 & 0.0 \\
+PPLX-Decider & native & 15 & 3 & 10.0 & 6998 & 23.4 \\
+PPLX-Decider & native & 30 & 3 & 10.4 & 13393 & 58.3 \\
+PPLX-Decider & graph & 5 & 3 & 2.0 & 49415 & 23.0 \\
+PPLX-Decider & graph & 15 & 2 & 3.4 & 47046 & 63.4 \\
+PPLX-Decider & graph & 30 & 2 & 2.9 & 46422 & 83.1 \\
+Security-One & native & 5 & 3 & 5.0 & 448 & 0.0 \\
+Security-One & native & 15 & 3 & 14.9 & 943 & 0.0 \\
+Security-One & native & 30 & 3 & 18.3 & 6950 & 31.8 \\
+Security-One & parallel & 5 & 3 & 5.0 & 472 & 0.0 \\
+Security-One & parallel & 15 & 3 & 14.8 & 1012 & 0.0 \\
+Security-One & parallel & 30 & 3 & 29.8 & 647 & 0.0 \\
+\bottomrule
+\end{tabular}

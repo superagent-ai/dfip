@@ -1,0 +1,24 @@
+{
+  "protocol": "dfip-shared-compiled-followup-v5-exploratory",
+  "status": "specified_before_followup",
+  "created_utc": "2026-10-12T17:44:58.937634+00:00",
+  "selection": "Post hoc follow-up to GLiNER shared resident gain; retains all original results, not an independent confirmatory experiment.",
+  "model": "gliner",
+  "source_result": "benchmarks/results/contracts/gliner-shared-0-7356ac7f169e.json",
+  "source_result_sha256": "ee96779ee9bb09c1b9ce1057e7aea00e738a281d5358fb488a20708b0ff1be02",
+  "compiler": "Released Extractor.compile(): dynamic=True encoder, span and count subgraphs; default FP32 retained",
+  "policy": "Identical SharedBatcher limits and admission to frozen primary pilot",
+  "modes": [
+    "compiled native serial",
+    "compiled native batching",
+    "shared scheduler on compiled native"
+  ],
+  "reference": "Eager outputs collected before compilation in the same worker; full resident and serving references archived",
+  "fixtures": "Same primary fixtures; reused during development, not a new untouched holdout",
+  "worker_rounds": 1,
+  "first_use_compilation": "Included in measured admission time; invocation time also recorded",
+  "precision_changes": false,
+  "execution": "After all currently scheduled v5 primary GPU jobs retire; one study GPU at a time",
+  "integration_amendment": "After primary Omni/GLiNER/D3 jobs, serialize all calibration outputs and serving references, previously only comparisons archived. Shared policy unchanged.",
+  "shared_policy_sha256": "a87fceaaf31c2bc43ad9609414df5733ce1efea3731cacac71a3a9f6d47fcc83"
+}

@@ -1,0 +1,23 @@
+{
+  "protocol": "dfip-paper-v1",
+  "planned_rounds": 5,
+  "source_commit": "822f6c3",
+  "failures": {
+    "julia": "App aborted on illegal GPU memory access; no complete round returned",
+    "liquid": "App aborted after three completed rounds; illegal GPU memory access",
+    "clef": "App aborted after three completed rounds; illegal GPU memory access"
+  },
+  "selection_note": "Completed rounds are retained, failed rounds are not imputed. Small-sample intervals do not account for nonrandom attrition.",
+  "optional_fast_conv_build": "Initial build failed because no compatible clang++ was present. Corrected build succeeded; the version probe and one GPU comparison are in follow-up results.",
+  "security_driver_warnings": {
+    "count": 2673,
+    "note": "Graphics-exception warnings occurred before the round-4 native_before measurement; the function continued and all five rounds completed. Root cause is unassigned."
+  },
+  "completed_v1_rounds": {
+    "julia": 0,
+    "liquid": 3,
+    "clef": 3,
+    "decider": 5,
+    "security": 5
+  }
+}

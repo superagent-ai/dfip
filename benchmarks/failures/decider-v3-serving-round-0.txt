@@ -1,0 +1,50 @@
+First returned remote error; all request errors remain in raw JSON. Local Torch is deliberately absent; the remote CUDA traceback is preserved by Modal.
+
+Could not deserialize remote exception due to local error:
+Deserialization failed because the 'torch' module is not available in the local environment.
+This can happen if your local environment does not have the remote exception definitions.
+Here is the remote traceback:
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 894, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 187, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 215, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/cloud/sustained.py", line 36, in predict
+    return self.worker.predict(record)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/serving_study.py", line 86, in predict
+    output=self.engine.predict([record])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/research.py", line 270, in predict
+    return self.predict_fn(records)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/adapters.py", line 148, in predict
+    probs = self.model.predict(rows)
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5/source/src/autojev/model.py", line 329, in predict
+    probabilities: list[list[float]] = (self(batch) / scale).softmax(-1).cpu().tolist()
+                                        ^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1783, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1794, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/hub/models--perplexity-ai--pplx-decider-v1.1-27b/snapshots/6195aa55a72ae21e503c8a60198f7b390d42adb5/source/src/autojev/model.py", line 311, in forward
+    >= torch.tensor(batch.counts, device=logits.device)[:, None]
+       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+The CUDA driver logged these messages, which may provide useful details:
+Returning 700 (CUDA_ERROR_ILLEGAL_ADDRESS) from cuStreamSynchronize
+
+

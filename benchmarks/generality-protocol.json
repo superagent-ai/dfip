@@ -1,0 +1,142 @@
+{
+  "protocol": "dfip-general-method-research-design-v5",
+  "status": "draft_not_frozen",
+  "created_date": "2026-10-12",
+  "objective": "A shared decision-contract optimizer that transfers across checkpoint families and changing traffic; adding model-name patches is not generality.",
+  "existing_models": [
+    "julia",
+    "liquid",
+    "clef",
+    "decider",
+    "security"
+  ],
+  "additional_candidates": [
+    {
+      "model_id": "LiquidAI/d1-omni-600M",
+      "revision": "02b55d7076f15129e59ab3f94783f32c4b088674",
+      "role": "reserved_evaluation",
+      "compatibility": "source_review_only_not_gpu_validated"
+    },
+    {
+      "model_id": "autotrust/JEV-27B",
+      "revision": "14b425269ed24452e0a5ad5a8f3e51d139647a88",
+      "role": "development",
+      "compatibility": "source_review_only_not_gpu_validated"
+    },
+    {
+      "model_id": "autotrust/JEV-9B",
+      "revision": "7ac669b8fb476ba926491e3d1c39f9330d68dbed",
+      "role": "development",
+      "compatibility": "source_review_only_not_gpu_validated"
+    },
+    {
+      "model_id": "fastino/GLiNER2.5-Decide",
+      "revision": "9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90",
+      "role": "reserved_evaluation",
+      "compatibility": "source_review_only_not_gpu_validated"
+    },
+    {
+      "model_id": "vllm-sr/d3-flash",
+      "revision": "f6075bff3c0f7d5704e353d0fb2ebf94888d1691",
+      "role": "development",
+      "compatibility": "source_review_only_not_gpu_validated"
+    }
+  ],
+  "selection_policy": "10 selected checkpoints including original five; JEV 9B and 27B count as one family. Record architecture and head-contract coverage separately. Preserve unsupported, failed and fallback-only cases in cohort accounting.",
+  "initial_scope": "Text decisions on single NVIDIA GPUs. Multimodal, quantized and cross-vendor acceleration remain separate research questions.",
+  "candidate_method": {
+    "adapter": "Released encoding, execution boundary, attention and padding semantics, head readout, calibration, literal answer conversion and backend capabilities. No model-specific optimization branches.",
+    "shared_policy": [
+      "token-budget batching",
+      "verified shape buckets",
+      "compiler-supported partial capture",
+      "contract-eligible head transformations",
+      "cost-guided execution and capture admission"
+    ],
+    "constraints": [
+      "Bound setup time and memory",
+      "Verify padding, recurrence metadata and option-marker semantics",
+      "Own buffers and tensor lifetimes explicitly",
+      "Treat fatal CUDA errors as worker failure",
+      "Fallback is reported compatibility, not successful acceleration"
+    ]
+  },
+  "baselines": [
+    "Released native implementation with documented optional kernels",
+    "Released optimized or compiled path when supported",
+    "Recommended native serving backend with batching and scheduling enabled where contract-compatible"
+  ],
+  "holdout": "The user explicitly requested native conformance and profiling on every candidate before constructing the shared optimizer. Structural/native timing information is therefore available for all families. Reserve optimized test traces and freeze shared rules before testing; do not claim wholly unseen model-family evaluation from this phase.",
+  "native_conformance": {
+    "required_fields": [
+      "choice",
+      "confidence",
+      "probabilities",
+      "score",
+      "ordering",
+      "usage and unsupported behavior when applicable"
+    ],
+    "quality": "Ground-truth task accuracy and calibration are separate from equivalence to the released path.",
+    "numeric_tolerances": "Contract-specific tolerances and threshold grid must be frozen before optimized evaluation; strict label and routing-policy agreement assessed separately."
+  },
+  "resident_design": {
+    "planned_independent_worker_rounds": 5,
+    "warm_samples_per_cell": 50,
+    "order": "Randomized paired mode and workload order; retain worker, source and hardware identities.",
+    "workload_axes": [
+      "input length",
+      "candidate count",
+      "decision kind",
+      "questions per request",
+      "records per batch"
+    ],
+    "analysis_unit": "Worker round, not individual calls; report conditional attrition and all failed attempts."
+  },
+  "serving_design": {
+    "pilot": "Estimate feasible offered loads with separately archived pilot traces; freeze rates before confirmatory runs.",
+    "confirmed_rounds_per_candidate_configuration": 3,
+    "duration_minutes_per_round": 30,
+    "profiles": [
+      "steady",
+      "bursts",
+      "diverse shapes",
+      "new shapes",
+      "popularity shifts"
+    ],
+    "comparison": "Paired trace and offered load; randomized mode order, fresh workers and explicit cache history.",
+    "required_accounting": [
+      "offered",
+      "completed within window",
+      "completed after drain",
+      "errors",
+      "drops",
+      "worker replacement",
+      "actual execution mode",
+      "p50/p95/p99 on successes",
+      "latency from scheduled arrival",
+      "queue",
+      "graph and compiler work",
+      "memory",
+      "setup time",
+      "literal fields",
+      "fallback fraction"
+    ]
+  },
+  "cost": "Include startup, admission, serving and idle resource time; reconcile available billed usage separately from resource-rate estimates. No estimate described as an observed invoice saving.",
+  "execution": "One study GPU across all applications; wait for prior worker retirement; leave existing deployed applications untouched.",
+  "gates": [
+    "Native contract conformance and component profiling for additional candidates",
+    "Implement shared optimizer on development families",
+    "Freeze shared method and confirmatory design",
+    "Evaluate reserved families without model-specific optimization edits",
+    "Longer serving tests for conforming candidates",
+    "Reconcile per-contract performance, fidelity, coverage and cost before revising manuscript claims"
+  ],
+  "generality_claim": "Requires measured acceleration with acceptable fidelity on reserved contract families and predeclared serving traces, plus explicit overall accelerated coverage and regression outcomes. Native fallback everywhere cannot pass.",
+  "novelty": "Distinguish decision-contract-specific analysis and transferable transformations from existing graph compilation, batching and cost-guided selection.",
+  "next_gate": "Frozen shared batching pilot; native records now archived separately. Longer confirmatory design remains proposed.",
+  "current_phase": "Native profiling complete on all five new candidates; shared batching pilot with finite fidelity admission frozen before optimized evaluation.",
+  "native_profiles_before_optimizer_freeze": true,
+  "phase_protocol": "dfip-contract-native-admission-v5-exploratory",
+  "phase_limits": "One native admission worker per new checkpoint, 29 changing conformance records, 20 warm samples per resident cell and native batch probes. These exploratory probes are not independent confirmatory speedup estimates."
+}

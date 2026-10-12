@@ -147,6 +147,10 @@ def distributions(records, outputs):
                     "gold": str(r["gold"][key]["label"]) if "gold" in r else None,
                 }
             )
+            for source_key, target_key in (('choice','api_choice'),('score','api_score'),
+                                           ('confidence','api_confidence')):
+                if source_key in a:
+                    result[-1][target_key]=str(a[source_key]) if source_key=='choice' else float(a[source_key])
     return result
 
 

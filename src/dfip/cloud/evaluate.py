@@ -71,7 +71,7 @@ def evaluate(model_name, action, quality, repetitions):
             "packaged-benchmark",
             quality,
             repetitions,
-            ("native", "production"),
+            ("native", "production") if model.deployment_policy == "production" else ("native",),
         )
     if action == "validate":
         return deployment_checks(model.model_id)

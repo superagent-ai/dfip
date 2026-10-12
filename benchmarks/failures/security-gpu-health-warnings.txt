@@ -1,0 +1,14 @@
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 0, SM 0): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x505730=0x1000b 0x505734=0x0 0x505728=0x1f81fb60 0x50572c=0x1174
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 0, SM 1): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x5057b0=0x1000b 0x5057b4=0x20 0x5057a8=0x1f81fb60 0x5057ac=0x1174
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 1, SM 0): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x506730=0x2000b 0x506734=0x20 0x506728=0x1f81fb60 0x50672c=0x1174
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 1, SM 1): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x5067b0=0x2000b 0x5067b4=0x20 0x5067a8=0x1f81fb60 0x5067ac=0x1174
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 2, SM 0): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x507730=0x1000b 0x507734=0x20 0x507728=0x1f81fb60 0x50772c=0x1174
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics SM Warp Exception on (GPC 0, TPC 2, SM 1): Illegal Instruction Parameter
+[gpu-health] [WARN] GPU-b9494169-39eb-68dd-45cb-61e42b1d51eb: XID: NVRM: Xid (PCI:0000:93:00): 13, Graphics Exception: ESR 0x5077b0=0x2000b 0x5077b4=0x20 0x5077a8=0x1f81fb60 0x5077ac=0x1174
+
+Additional repeated graphics exception warnings omitted; the function continued into native_before. Do not infer a kernel root cause from this driver health log.

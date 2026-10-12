@@ -102,7 +102,7 @@ def optimize(adapter, mode, records):
                     ]
                     if head.ensure_tokens(current):
                         for graph in adapter.graphs:
-                            graph.cache.clear()
+                            graph.clear()
                             graph.failures.clear()
                     return adapter._native_predict(batch)
 
@@ -189,6 +189,8 @@ def optimize(adapter, mode, records):
                 "replays": g.replays,
                 "fallback_shapes": len(g.failures),
                 "fallback_reasons": list(g.failures.values())[:4],
+                "resident_entries": len(g.cache),
+                "admission": g.admission.diagnostics() if g.admission is not None else None,
             }
             for g in adapter.graphs
         ]
