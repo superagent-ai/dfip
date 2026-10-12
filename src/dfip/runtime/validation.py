@@ -72,8 +72,8 @@ def kernel_checks():
     assert admitted.captures == 1 and admitted.replays == 10
     churn = GraphRunner(lambda value: (value.square() + 3 * value).sum(-1))
     for i in range(60):
-        value = torch.randn(3, (63, 127, 257, 129, 65, 193)[i % 6], device="cuda")
-        torch.testing.assert_close(churn(value), (value.square() + 3 * value).sum(-1))
+        churn_value = torch.randn(3, (63, 127, 257, 129, 65, 193)[i % 6], device="cuda")
+        torch.testing.assert_close(churn(churn_value), (churn_value.square() + 3 * churn_value).sum(-1))
         assert len(churn.cache) <= 4
         if i == 29:
             churn.clear()

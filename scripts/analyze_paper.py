@@ -48,6 +48,8 @@ def collect():
         if "-fast-" in path.name:
             continue
         result = json.loads(path.read_text())
+        if result["protocol"] != "dfip-paper-v1":
+            raise ValueError("Keep follow-up protocol records in their separate namespace")
         model = path.name.split("-round-")[0]
         groups.setdefault(model, []).append(result)
     return groups
