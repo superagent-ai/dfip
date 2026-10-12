@@ -129,6 +129,9 @@ def study(alias, action, commit, round_id):
         result["stage"] = "native admission and profiling"
         if action == "native":
             native(adapter, result, round_id)
+        elif action == "shared_compiled":
+            from dfip.runtime.shared_study import compiled_followup
+            compiled_followup(adapter, result, round_id)
         else:
             from dfip.runtime.shared_study import shared
             shared(adapter, result, round_id)

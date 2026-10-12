@@ -54,6 +54,10 @@ class GlinerContract:
         self.model = AutoExtractor.from_pretrained(path, map_location="cuda").eval()
         self.tokenizer = self.model.processor.tokenizer
 
+    def compile_native(self):
+        """Released GLiNER tensor-subgraph compiler, preserving default dtype."""
+        self.model.compile()
+
     def schema(self, record):
         tasks = {}
         for key, q in record["questions"].items():

@@ -61,7 +61,7 @@ def calibrate(adapter):
         for size in (2, 4, 8):
             if len(group) < size:
                 continue
-            comparisons = []
+            comparisons = []; audits = []
             chunks = [group[i:i+size] for i in range(0, len(group), size) if len(group[i:i+size]) == size]
             for chunk in chunks:
                 reference = [adapter.single(r) for r in chunk]
@@ -69,6 +69,7 @@ def calibrate(adapter):
                 for output in actual:
                     validate_output(output)
                 comparisons.append(compare(reference, actual))
+                audits.append({'reference': reference, 'outputs': actual})
             representative = chunks[len(chunks)//2]
             for _ in range(2):
                 adapter.batch(representative)
@@ -86,7 +87,7 @@ def calibrate(adapter):
                 admitted.setdefault(key, []).append(size)
             evidence.append({"key": key, "size": size, "records": [r for chunk in chunks for r in chunk],
                              "comparisons": comparisons, "serial_ms": serial, "batch_ms": batched,
-                             "median_gain": gain, "admitted": passes})
+                             "median_gain": gain, "admitted": passes, "audits": audits})
     return admitted, evidence
 
 
@@ -162,7 +163,7 @@ def serving(adapter, scheduler, rows, arrivals, mode, reference):
             "limitation": "Short resident replay with warmed reference fixtures; no HTTP transport or production reliability claim"}
 
 
-def shared(adapter, result, round_id):
+def shared(adapter, result, round_id, references=None):
     result['protocol'] = 'dfip-shared-contract-batching-v5-exploratory'
     start = time.perf_counter()
     admitted, evidence = calibrate(adapter)
@@ -177,7 +178,7 @@ def shared(adapter, result, round_id):
     for homogeneous in (True, False):
         name = 'homogeneous' if homogeneous else 'diverse'
         rows = fixtures(homogeneous=homogeneous)
-        reference = [adapter.single(r) for r in rows]
+        reference = references[name]['resident'] if references else [adapter.single(r) for r in rows]
         for output in reference:
             validate_output(output)
         calls = {'serial': lambda: ([adapter.single(r) for r in rows], [[i] for i in range(len(rows))]),
@@ -196,15 +197,33 @@ def shared(adapter, result, round_id):
         # 256 changing requests, paired steady or burst arrivals. Replay is
         # exploratory; intended 30-minute independent trials remain future work.
         trace = fixtures(homogeneous=homogeneous, count=256)
-        ref = [adapter.single(r) for r in trace]
+        ref = references[name]['serving'] if references else [adapter.single(r) for r in trace]
         arrivals = []; clock = 0.0
         for i in range(len(trace)):
             rate = 25 if homogeneous else (80 if (i//32) % 2 == 0 else 20)
             arrivals.append(clock); clock += 1/rate
         order = list(calls); rng.shuffle(order)
         result['serving_shared'][name] = {'records': trace, 'arrivals_s': arrivals, 'order': order,
+                                         'reference': ref,
                                          'payload_sha256': hashlib.sha256(json.dumps(trace, sort_keys=True).encode()).hexdigest(),
                                          'modes': {mode: serving(adapter, scheduler, trace, arrivals, mode, ref) for mode in order}}
     if adapter.model is None:
         from dfip.runtime.contract_study import profile
         result['profile'] = profile(adapter, fixtures(count=1)[0])
+
+
+def compiled_followup(adapter, result, round_id):
+    if not hasattr(adapter, 'compile_native'):
+        raise ValueError('Adapter has no released native compiler capability')
+    started = time.perf_counter(); references = {}
+    for homogeneous in (True, False):
+        name = 'homogeneous' if homogeneous else 'diverse'
+        references[name] = {kind: [adapter.single(r) for r in fixtures(homogeneous=homogeneous, count=count)]
+                            for kind, count in [('resident', 96), ('serving', 256)]}
+    result['eager_reference_seconds'] = time.perf_counter()-started
+    started = time.perf_counter(); adapter.compile_native()
+    result['compiler'] = {'capability': 'released compile_native', 'invocation_seconds': time.perf_counter()-started,
+                          'first_use_compilation_in_admission': True, 'dtype_changed': False,
+                          'reference': 'released eager before compiler installation in the same worker'}
+    shared(adapter, result, round_id, references=references)
+    result['protocol'] = 'dfip-shared-compiled-followup-v5-exploratory'

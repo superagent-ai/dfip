@@ -47,9 +47,9 @@ def main():
     attempts = []; native = []; shared = []
     for path in sorted(FOLDER.glob('*.json')):
         record = json.loads(path.read_text())
-        if record.get('action') not in ('native', 'shared'):
+        if record.get('action') not in ('native', 'shared', 'shared_compiled'):
             continue
-        identity = {'file': str(path.relative_to(ROOT)), 'alias': record['alias'], 'round': record['round'],
+        identity = {'file': str(path.relative_to(ROOT)), 'alias': record['alias'], 'round': record['round'], 'action': record['action'],
                     'source_commit': record['source_commit'], 'status': record['status'],
                     'sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'error': record.get('error')}
         attempts.append(identity)

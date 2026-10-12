@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--action", choices=("native", "shared"), required=True)
+    parser.add_argument("--action", choices=("native", "shared", "shared_compiled"), required=True)
     parser.add_argument("--models", default="omni,gliner,d3,jev9,jev27")
     parser.add_argument("--rounds", type=int, default=1)
     parser.add_argument("--start-round", type=int, default=0)
