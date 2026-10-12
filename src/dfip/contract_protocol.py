@@ -43,7 +43,7 @@ def compare(reference, actual, numeric_tolerance=0.001, score_tolerance=0.01):
                 report["structure_changes"] += 1
                 return
             for k in a:
-                if k not in ("usage", "elapsed_seconds", "num_model_requests", "model"):
+                if k not in ("elapsed_seconds", "num_model_requests", "model"):
                     walk(a[k], b[k], path + (k,))
         elif isinstance(a, (tuple, list)):
             if not isinstance(b, (tuple, list)) or len(a) != len(b):

@@ -27,6 +27,10 @@ def test_missing_numeric_fields_cannot_pass_as_exact_outputs():
     assert report["numeric_fields"] == 0 and not report["passes"]
 
 
+def test_batching_must_preserve_per_request_token_usage():
+    assert not compare({"usage": {"input_tokens": 125}}, {"usage": {"input_tokens": 0}})["passes"]
+
+
 def test_conformance_covers_typed_outputs_and_unique_ids():
     rows = conformance_records()
     assert len({r["id"] for r in rows}) == len(rows)
