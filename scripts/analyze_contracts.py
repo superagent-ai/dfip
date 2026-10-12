@@ -124,6 +124,45 @@ def main():
         rows.append(f"{label} & {latency} & {drops} \\\\")
     rows += ['\\bottomrule', '\\end{tabular}']
     (generated/'contracts_serving_rows.tex').write_text('\n'.join(rows)+'\n')
+    primary = {r['alias']: r for r in shared if r['action'] == 'shared'}
+    findings = []
+    if set(primary) == set(NAMES):
+        g = primary['gliner']; h = g['resident']['homogeneous']; d = g['resident']['diverse']
+        traffic = g['serving']['diverse']
+        findings.append(
+            f"GLiNER passes all {g['passed_size_gates']} schema/size gates and the exposed-label/confidence audits. "
+            f"Shared scheduling improves the resident median by {h['native_batch_to_shared']:.2f}$\\times$ on recurring schemas and "
+            f"{d['native_batch_to_shared']:.2f}$\\times$ on diverse schemas relative to native batching "
+            f"({h['serial_to_shared']:.2f}$\\times$ and {d['serial_to_shared']:.2f}$\\times$ relative to serial). "
+            "This is an incremental scheduling result in one worker, not evidence of a new GPU kernel. "
+            f"On diverse scheduled arrivals, p95 is {traffic['shared']['p95_ms']:.1f}\\,ms for shared scheduling and "
+            f"{traffic['native_batch']['p95_ms']:.1f}\\,ms for native batching; both complete all 256 requests without drops. "
+            "The resident gain therefore does not establish a tail-latency advantage over native batching in this replay.")
+        findings.append(
+            "Omni, D3 and both JEV sizes reject every tested shared batch size under the frozen gate and execute single-request native fallback. "
+            "Omni and D3 preserve the held-out shared answer fields but gain no meaningful speed over serial, and are slower than ungated native batching. "
+            "Both JEV native-serial and shared-fallback audits exceed numerical tolerances; JEV-27B also changes selected answers during serving. "
+            "These findings do not isolate an optimizer-induced numerical error, since shared batching was never admitted. "
+            "The strict gate is unsuitable as a universal equivalence certificate when the native reference itself varies.")
+        findings.append(
+            "Table~\\ref{tab:contracts-serving} reports completed-request latency together with all drops. "
+            "The conservative fallback still overloads on the diverse trace: D3 drops 41/256 requests, JEV-9B 132/256 and JEV-27B 61/256. "
+            "Ungated native batching completes all offered requests for these models, but fails the exposed-answer fidelity gate. "
+            "Choosing a slower path preserves neither a latency objective nor complete request delivery by itself. "
+            "A useful general optimizer must improve on the strongest native baseline under an application-specific answer contract, rather than count native fallback as an acceleration.")
+    compiled = [r for r in shared if r['action'] == 'shared_compiled']
+    for r in compiled:
+        d = r['resident']['diverse']; t = r['serving']['diverse']
+        verdict = 'passes' if all(c['fidelity']['shared']['passes'] for c in r['resident'].values()) else 'fails'
+        findings.append(
+            "A post hoc GLiNER follow-up calls the released FP32 \\texttt{Extractor.compile()} before repeating the same policy and fixtures. "
+            "All three modes then use that compiled substrate, with eager references collected before compilation in the worker. "
+            f"Shared scheduling admits {r['passed_size_gates']}/{r['attempted_size_gates']} gates and {verdict} the resident audit; "
+            f"its diverse resident ratio is {d['native_batch_to_shared']:.2f}$\\times$ relative to compiled native batching. "
+            f"Diverse p95 is {t['shared']['p95_ms']:.1f}\\,ms for shared and {t['native_batch']['p95_ms']:.1f}\\,ms for compiled native batching. "
+            "The fixtures were reused after inspecting the primary result, so this is a stronger-baseline diagnostic rather than independent confirmation. "
+            "Compiler invocation and first-use compilation in admission are retained outside the warm resident ratios.")
+    (generated/'contracts_findings.tex').write_text('\n\n'.join(findings)+'\n')
     print(json.dumps({'native_complete': len(native), 'shared_complete': len(shared), 'failed': sum(r['status']!='complete' for r in attempts)}))
 
 
