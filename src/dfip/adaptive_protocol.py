@@ -16,3 +16,8 @@ def mixed_record(index):
         record['id'] = f'serving-{index}'
         return record
     return request_record(index)
+
+
+def verify_worker(response, container_id, mode):
+    if response.get('container_id') != container_id or response.get('worker_mode') != mode:
+        raise ValueError('Worker identity or configured mode changed during the pilot')

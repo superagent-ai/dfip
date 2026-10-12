@@ -79,6 +79,7 @@ class StudyWorker:
             with self.lock:
                 self.calls+=1
             return {'request_id':record['id'],'container_id':self.environment['container_id'],
+                    'worker_mode':self.mode,
                     'queue_ms':0.0,'service_ms':(finished-received)*1000,
                     'prediction':distributions([record],output)}
         with self.lock:
@@ -88,6 +89,7 @@ class StudyWorker:
             finished=time.perf_counter()
             self.calls+=1
             return {'request_id':record['id'], 'container_id':self.environment['container_id'],
+                    'worker_mode':self.mode,
                     'queue_ms':(started-received)*1000,'service_ms':(finished-started)*1000,
                     'prediction':distributions([record],output)}
 
@@ -98,6 +100,7 @@ class StudyWorker:
                 predictions.extend(distributions([r],self.engine.predict([r])))
             sync()
             return {'mode':self.mode,'calls':self.calls,
+                    'container_id':self.environment['container_id'],
                     'final_fidelity':compare(self.references,predictions),
                     'diagnostics':self.engine.diagnostics(),
                     'allocated_bytes':torch.cuda.memory_allocated(),

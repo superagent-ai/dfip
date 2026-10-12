@@ -23,7 +23,7 @@ def load(model):
 
 
 @app.cls(image=fast_image, gpu='B200', cpu=8, memory=98304,
-         volumes={'/research': volume}, max_containers=1, scaledown_window=10,
+         volumes={'/research': volume}, max_containers=1, scaledown_window=300,
          timeout=180, startup_timeout=1200)
 @modal.concurrent(max_inputs=64, target_inputs=64)
 class Decider:
@@ -45,7 +45,7 @@ class Decider:
 
 
 @app.cls(image=fast_image, gpu='L40S', cpu=4, memory=32768,
-         volumes={'/research': volume}, max_containers=1, scaledown_window=10,
+         volumes={'/research': volume}, max_containers=1, scaledown_window=300,
          timeout=180, startup_timeout=1200)
 @modal.concurrent(max_inputs=64, target_inputs=64)
 class Clef:
@@ -91,7 +91,9 @@ async def pilot(model, round_id, commit, duration):
             for profile_id, (profile, factory) in enumerate((('diverse', request_record),
                                                            ('mixed', mixed_record))):
                 for phase_id, rate in enumerate((5, 15, 30)):
-                    data = await phase(worker, rate, duration, profile_id * 3 + phase_id, factory)
+                    data = await phase(worker, rate, duration, profile_id * 3 + phase_id, factory,
+                                       report['setup']['environment']['container_id'], mode)
+                    # Actual worker state, rather than only the client's label, is checked.
                     data['profile'] = profile
                     report['phases'].append(data); save()
                     print(json.dumps({'model': model, 'mode': mode, 'profile': profile,
@@ -99,6 +101,9 @@ async def pilot(model, round_id, commit, duration):
                     if data['summary']['failed']:
                         raise RuntimeError('Request error: stop and retain pilot failure')
             report['finish'] = await worker.finish.remote.aio(); save()
+            if (report['finish']['container_id'] != report['setup']['environment']['container_id']
+                    or report['finish']['mode'] != mode):
+                raise RuntimeError('Worker identity or mode changed before final audit')
         result['status'] = 'complete'
     except Exception as exc:
         result['status'] = 'failed'; result['failure'] = str(exc)

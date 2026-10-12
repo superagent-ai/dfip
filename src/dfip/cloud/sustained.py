@@ -78,7 +78,8 @@ class Security:
         self.worker.close()
 
 
-async def phase(worker,rate,duration,phase_id,request_factory=request_record):
+async def phase(worker,rate,duration,phase_id,request_factory=request_record,
+                expected_container=None,expected_mode=None):
     """Fixed open-loop arrivals; latency starts at scheduled arrival, not dispatch."""
     origin=time.perf_counter()+.5
     in_flight=0
@@ -97,6 +98,10 @@ async def phase(worker,rate,duration,phase_id,request_factory=request_record):
             record=request_factory(phase_id*10000+index)
             response=await asyncio.wait_for(worker.predict.remote.aio(record),timeout=120)
             finished=time.perf_counter()
+            row.update(response)
+            if expected_container is not None:
+                from dfip.adaptive_protocol import verify_worker
+                verify_worker(response,expected_container,expected_mode)
             row.update(response,status='ok',latency_ms=(finished-scheduled)*1000,
                        finished_seconds=finished-origin)
         except Exception as exc:

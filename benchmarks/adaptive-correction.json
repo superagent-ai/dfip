@@ -1,0 +1,14 @@
+{
+  "protocol": "dfip-paper-v4-adaptive-pilot",
+  "amendment": "Clef round 1, recorded before execution",
+  "reason": "Clef round 0 completed at the client but changed worker identity during traffic; the replacement finished in native mode. Exclude the whole comparative trial, retain raw data and logs.",
+  "unknown": "The cause of worker replacement is not established. No CUDA root cause claim follows.",
+  "changes": [
+    "Check every returned container ID and actual worker mode against setup; mismatches become request errors and stop after the phase is retained",
+    "Check final audit container ID and mode against setup",
+    "Increase worker scaledown window from 10 to 300 seconds as a precaution"
+  ],
+  "unchanged": "GPU, image, inference math, admission policy, requests, rates, phase durations, queue limits, native comparison and numerical audit",
+  "retained_attempts": "Decider round 0; excluded Clef round 0; separate corrected Clef round 1",
+  "scope": "One validated container per model if corrected Clef completes; post hoc exploratory mitigation, never pooled with the frozen v3 study"
+}
