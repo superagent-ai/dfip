@@ -47,8 +47,24 @@ class StudyWorker:
             predictions=[]
             for r in records_for_fidelity():
                 predictions.extend(distributions([r],self.engine.predict([r])))
+            backend={}
+            if self.model in ('clef','decider'):
+                import transformers.models.qwen3_5.modeling_qwen3_5 as q
+                backend['causal_conv1d_available']=q.causal_conv1d_fn is not None
+                backend['chunk_gated_delta_rule_available']=q.chunk_gated_delta_rule is not None
+            if mode=='native' and self.model!='security':
+                try:
+                    with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,
+                                                           torch.profiler.ProfilerActivity.CUDA]) as profile:
+                        self.engine.predict([records_for_fidelity(1)[0]])
+                        sync()
+                    backend['cuda_kernel_names']=sorted({e.name for e in profile.events()
+                                                        if str(e.device_type).endswith('CUDA')})
+                except Exception as exc:
+                    backend['profile_error']=str(exc)
             return {'mode':mode,'environment':self.environment,'load_seconds':self.load_seconds,
                     'admission_ms':admission,'initial_fidelity':compare(self.references,predictions),
+                    'native_backend':backend,
                     'diagnostics':self.engine.diagnostics()}
 
     def predict(self, record):
