@@ -13,13 +13,15 @@ def baseline_run(model, round_id, commit):
     import traceback
     from pathlib import Path
     from dfip.runtime.research import round_run
+    from dfip.runtime.native_backend import qwen_backend
 
     volume.reload()
     folder = Path('/research/results/strengthened-v3')
     folder.mkdir(parents=True, exist_ok=True)
     dest = folder / f'{model}-optimized-round-{round_id}.json'
     result = {'protocol':'dfip-paper-v3-optimized-native', 'model':model,
-              'round':round_id, 'source_commit':commit, 'status':'running'}
+              'round':round_id, 'source_commit':commit, 'status':'running',
+              'native_backend':qwen_backend()}
 
     def progress(value):
         result.update(value)
@@ -133,6 +135,16 @@ def inventory():
     return result
 
 
+@app.function(image=fast_image, cpu=4, timeout=300, max_containers=1)
+def backend_probe():
+    import importlib.metadata
+    from dfip.runtime.native_backend import qwen_backend
+    return {'implementations':qwen_backend(),
+            'packages':{name:importlib.metadata.version(name) for name in
+                        ('torch','transformers','causal-conv1d','fla-core')},
+            'scope':'CPU-only same-image function binding; CUDA invocation profile recorded separately in serving setup'}
+
+
 @app.local_entrypoint()
 def main(action: str = 'inventory', model: str = 'decider', rounds: int = 5,
          commit: str = 'unknown'):
@@ -143,6 +155,11 @@ def main(action: str = 'inventory', model: str = 'decider', rounds: int = 5,
         Path('work/native-inventory.json').write_text(json.dumps(result, indent=2))
         print(json.dumps(result, indent=2))
         return
+    if action == 'backend':
+        result=backend_probe.remote()
+        dest=Path('benchmarks/results/strengthened/native-backend-provenance.json')
+        dest.parent.mkdir(parents=True,exist_ok=True);dest.write_text(json.dumps(result,indent=2))
+        print(json.dumps(result,indent=2));return
     if action not in ('baseline','compiler') or model not in ('clef', 'decider','liquid'):
         raise ValueError((action,model))
     folder=Path('benchmarks/results/strengthened'); folder.mkdir(parents=True,exist_ok=True)

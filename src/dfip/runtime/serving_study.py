@@ -49,9 +49,8 @@ class StudyWorker:
                 predictions.extend(distributions([r],self.engine.predict([r])))
             backend={}
             if self.model in ('clef','decider'):
-                import transformers.models.qwen3_5.modeling_qwen3_5 as q
-                backend['causal_conv1d_available']=q.causal_conv1d_fn is not None
-                backend['chunk_gated_delta_rule_available']=q.chunk_gated_delta_rule is not None
+                from dfip.runtime.native_backend import qwen_backend
+                backend=qwen_backend()
             if mode=='native' and self.model!='security':
                 try:
                     with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU,
