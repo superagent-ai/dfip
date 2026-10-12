@@ -1,6 +1,6 @@
 # DFIP
 
-**Decision-focused inference on Modal.** Run open decision models through a common
+**Decision-focused inference on Modal.** Run System One models (also known as decision models) through a common
 Python client with conservative model-specific defaults. Python/PyTorch handles
 model execution. The research paths evaluate Triton candidate projection and
 CUDA graph replay. Serving defaults use the released native paths.
