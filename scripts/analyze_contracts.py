@@ -28,7 +28,7 @@ def combine(reports):
     return result
 
 
-def serving_summary(report):
+def serving_summary(report, reference=None):
     completed = report['completed']; dropped = report['drops']
     indices = [r['index'] for r in completed] + [r['index'] for r in dropped]
     if sorted(indices) != list(range(report['offered'])) or report['completed_after_drain'] != len(completed):
@@ -39,8 +39,15 @@ def serving_summary(report):
         raise ValueError('Batch accounting mismatch')
     keys = ['offered', 'arrival_horizon_s', 'completed_within_window', 'completed_after_drain', 'elapsed_s',
             'errors', 'max_queue_depth', 'p50_ms', 'p95_ms', 'p99_ms', 'batched_fraction']
+    comparisons = []
+    for r in completed:
+        comparison = compare(reference[r['index']], r['output']) if reference is not None else r['comparison']
+        if comparison != r['comparison']:
+            raise ValueError('Archived serving comparison inconsistent with reference')
+        comparisons.append(comparison)
     return {**{k: report[k] for k in keys}, 'drops': len(dropped),
-            'fidelity': combine(r['comparison'] for r in completed)}
+            'fidelity': combine(comparisons),
+            'reference_recomputed': reference is not None}
 
 
 def main():
@@ -78,8 +85,9 @@ def main():
                            'passed_size_gates': sum(e['admitted'] for e in record['admission']['evidence']),
                            'attempted_size_gates': len(record['admission']['evidence']),
                            'resident': resident,
-                           'serving': {name: {mode: serving_summary(report) for mode, report in trace['modes'].items()}
-                                       for name, trace in record['serving_shared'].items()}, 'profile': record.get('profile')})
+                           'serving': {name: {mode: serving_summary(report, trace.get('reference')) for mode, report in trace['modes'].items()}
+                                       for name, trace in record['serving_shared'].items()}, 'profile': record.get('profile'),
+                           'compiler': record.get('compiler')})
     summary = {'scope': 'v5 exploratory; one native and one shared worker per checkpoint except retained retries; no independent speedup interval or production claim',
                'attempts': attempts, 'native': native, 'shared': shared,
                'export_failure': 'D3 native round 1 completed on GPU and was recovered from committed Volume after local Torch pickle dependency failure; batch adapter used wrong input-token field, retained diagnostically and repeated in round 2.'}
@@ -97,12 +105,25 @@ def main():
     rows += ['\\bottomrule', '\\end{tabular}']
     (generated/'contracts_native_rows.tex').write_text('\n'.join(rows)+'\n')
     rows = ['\\begin{tabular}{llrrrr}', '\\toprule', 'Checkpoint & Trace & Gates & Serial/shared & Batch/shared & Shared audit \\\\', '\\midrule']
+    shared.sort(key=lambda r: (r['action'] != 'shared', list(NAMES).index(r['alias']), r['round']))
     for r in shared:
+        label = NAMES[r['alias']] + (' (compiled)' if r['action'] == 'shared_compiled' else '')
         for name, cell in r['resident'].items():
             verdict = 'pass' if cell['fidelity']['shared']['passes'] else 'fail'
-            rows.append(f"{NAMES[r['alias']]} & {name} & {r['passed_size_gates']}/{r['attempted_size_gates']} & {cell['serial_to_shared']:.2f} & {cell['native_batch_to_shared']:.2f} & {verdict} \\\\")
+            rows.append(f"{label} & {name} & {r['passed_size_gates']}/{r['attempted_size_gates']} & {cell['serial_to_shared']:.2f} & {cell['native_batch_to_shared']:.2f} & {verdict} \\\\")
     rows += ['\\bottomrule', '\\end{tabular}']
     (generated/'contracts_shared_rows.tex').write_text('\n'.join(rows)+'\n')
+    rows = ['\\begin{tabular}{lrrrrrr}', '\\toprule',
+            'Checkpoint & \\multicolumn{3}{c}{Diverse p95 (ms)} & \\multicolumn{3}{c}{Drops / offered} \\\\',
+            '& Serial & Batch & Shared & Serial & Batch & Shared \\\\', '\\midrule']
+    for r in shared:
+        label = NAMES[r['alias']] + (' (compiled)' if r['action'] == 'shared_compiled' else '')
+        modes = r['serving']['diverse']; order = ['serial', 'native_batch', 'shared']
+        latency = ' & '.join(f"{modes[m]['p95_ms']:.1f}" for m in order)
+        drops = ' & '.join(f"{modes[m]['drops']}/{modes[m]['offered']}" for m in order)
+        rows.append(f"{label} & {latency} & {drops} \\\\")
+    rows += ['\\bottomrule', '\\end{tabular}']
+    (generated/'contracts_serving_rows.tex').write_text('\n'.join(rows)+'\n')
     print(json.dumps({'native_complete': len(native), 'shared_complete': len(shared), 'failed': sum(r['status']!='complete' for r in attempts)}))
 
 

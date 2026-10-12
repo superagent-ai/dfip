@@ -26,7 +26,7 @@ Issues = "https://github.com/superagent-ai/dfip/issues"
 packages = ["src/dfip"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md"]
+include = ["/src", "/tests", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-compiled-followup-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
