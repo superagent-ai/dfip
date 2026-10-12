@@ -1,0 +1,18 @@
+\begin{tabular}{lllrrrr}
+\toprule
+Substrate & Trace & Mode & p95 (ms) & Complete/offered & Drops & Audit \\
+\midrule
+Eager & homogeneous & Serial & 23.1 & 256/256 & 0 & pass \\
+Eager & homogeneous & Native batch & 24.9 & 256/256 & 0 & pass \\
+Eager & homogeneous & Shared & 25.6 & 256/256 & 0 & pass \\
+Eager & diverse & Serial & 226.6 & 256/256 & 0 & pass \\
+Eager & diverse & Native batch & 127.9 & 256/256 & 0 & pass \\
+Eager & diverse & Shared & 127.9 & 256/256 & 0 & pass \\
+Compiled & homogeneous & Serial & 19.1 & 256/256 & 0 & pass \\
+Compiled & homogeneous & Native batch & 21.3 & 256/256 & 0 & pass \\
+Compiled & homogeneous & Shared & 21.8 & 256/256 & 0 & pass \\
+Compiled & diverse & Serial & 69.5 & 256/256 & 0 & pass \\
+Compiled & diverse & Native batch & 43.2 & 256/256 & 0 & pass \\
+Compiled & diverse & Shared & 72.1 & 256/256 & 0 & pass \\
+\bottomrule
+\end{tabular}
