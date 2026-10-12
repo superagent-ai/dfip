@@ -226,9 +226,6 @@ MLPerf Inference~\citep{mlperf} emphasizes workload scenarios, quality constrain
 \section{Conclusion}
 DFIP shows how a lightweight, model-aware decision inference implementation can combine native semantics with established replay and candidate-readout techniques. The retained results favor selective graph replay for repeated short workloads and provide weaker evidence for custom output projection as a full-request optimization. Probability drift, GPU failures, and recapture overhead under diverse arrivals define meaningful boundaries of the current prototype. A warm isolated-call gain does not by itself justify enabling replay for changing serving traffic. Concurrent native SGLang dispatch improves the tested Security-One service, while post hoc bounded admission limits capture work without establishing uniform gains or confidence equivalence. The contribution is the characterization and reproducible evidence, including rejected paths.
 
-\section*{AI Assistance and Author Review}
-Codex, an AI coding assistant, assisted with implementation, experiment execution, result inspection, literature searches, and manuscript drafting. Numerical tables are generated from archived measurements rather than generated estimates. This review draft requires verification of the experiments, references, and interpretations by the named authors before submission; the authors retain responsibility for the paper's contents.
-
 \bibliographystyle{plainnat}
 \bibliography{references}
 
