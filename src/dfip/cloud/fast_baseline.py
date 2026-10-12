@@ -108,5 +108,5 @@ def probe():
     import causal_conv1d
     import torch
     import transformers.models.qwen3_5.modeling_qwen3_5 as q
-    return {"torch": torch.__version__, "causal_conv1d": causal_conv1d.__version__,
+    return {"torch": str(torch.__version__), "causal_conv1d": causal_conv1d.__version__,
             "native_causal_conv_available": q.causal_conv1d_fn is not None}
