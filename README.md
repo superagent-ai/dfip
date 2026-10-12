@@ -7,8 +7,11 @@ CUDA graph replay. Serving defaults use the released native paths.
 
 The research objective is a general inference method across decision architectures.
 The current prototype does not establish that generality. The
-[next research phase](benchmarks/general-method-study.md) defines a shared decision
-contract, evaluation on reserved model families, and broader serving tests.
+[shared batching pilot](benchmarks/shared-batching-study.md) adds five pinned
+research checkpoints and a common capability-based scheduler with empirical
+fidelity admission. It compares against native batching and keeps failures and
+fallbacks. The [larger research design](benchmarks/general-method-study.md)
+defines the independent and longer serving evidence still needed.
 
 Model weights, datasets, and GPU dependencies stay on Modal. The local package
 contains only the client and deployment source. DFIP currently supports text
