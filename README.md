@@ -1,9 +1,9 @@
 # DFIP
 
 **Decision-focused inference on Modal.** Run open decision models through a common
-Python client, using validated model-specific acceleration. Python/PyTorch handles
-model execution; Triton accelerates Liquid's candidate projection; CUDA graphs
-reduce launch overhead for eligible repeated requests.
+Python client with conservative model-specific defaults. Python/PyTorch handles
+model execution. The research paths evaluate Triton candidate projection and
+CUDA graph replay; bounded replay remains enabled by default for PPLX-Decider.
 
 Model weights, datasets, and GPU dependencies stay on Modal. The local package
 contains only the client and deployment source. DFIP currently supports text
@@ -79,9 +79,9 @@ ordered list of descriptions; `noul` criteria optionally describe `false` and
 
 | Alias | Hugging Face checkpoint | Default GPU | Serving path |
 | --- | --- | --- | --- |
-| `julia` | [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1) | L40S | Native FastEngine + CUDA graphs |
-| `liquid` | [LiquidAI/d1-3B](https://huggingface.co/LiquidAI/d1-3B) | L40S | Candidate projection + eligible CUDA graphs |
-| `clef` | [Cloudflare/clef-flash](https://huggingface.co/Cloudflare/clef-flash) | L40S | Native API + eligible CUDA graphs |
+| `julia` | [SupersonicLabs/Julia-1](https://huggingface.co/SupersonicLabs/Julia-1) | L40S | Native FastEngine; replay under investigation |
+| `liquid` | [LiquidAI/d1-3B](https://huggingface.co/LiquidAI/d1-3B) | L40S | Released native engine; acceleration experimental |
+| `clef` | [Cloudflare/clef-flash](https://huggingface.co/Cloudflare/clef-flash) | L40S | Released native API; replay experimental |
 | `decider` | [perplexity-ai/pplx-decider-v1.1-27b](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b) | B200 | Native API + short single-decision graphs |
 | `security` | [superagent-ai/security-one-27b](https://huggingface.co/superagent-ai/security-one-27b) | B200 | Native SGLang 0.5.19 |
 
@@ -108,9 +108,20 @@ deployment explicitly. Modal's own environment selection applies to deployment.
 
 ## Benchmarks and verification
 
+The review branch defaults to released native inference for Julia, Liquid, and
+Clef after the expanded study exposed GPU failures. PPLX-Decider retains its
+bounded graph policy; Security-One uses native SGLang. These source defaults
+have not been deployed to an existing application. Experimental paths remain
+accessible through the research entry points.
+
+The following table is from the original exploratory, single-container study.
+The [review paper](paper/README.md) reports the expanded repeated-run study,
+new probability-fidelity checks, and GPU failures. Use its actual run counts
+and limitations when making research claims.
+
 Measured resident short binary decision calls on one GPU:
 
-| Model | Native p50 | Selected serving path p50 | Paired speedup |
+| Model | Native p50 | Exploratory accelerated path p50 | Paired speedup |
 | --- | ---: | ---: | ---: |
 | Julia, L40S | 14.85 ms | 2.25 ms | 6.60× |
 | Liquid, L40S | 20.98 ms | 10.97 ms | 1.91× |
@@ -139,7 +150,7 @@ dfip smoke --model liquid --output liquid-smoke.json
 # Full 400-case fidelity + 128 varied single-question checks.
 dfip validate --model liquid --output liquid-validation.json
 
-# Paired released-native versus deployed-production path.
+# Benchmark the selected policy; experimental acceleration is in the research entry points.
 dfip benchmark --model liquid --quality 400 --repetitions 100 --output liquid-benchmark.json
 ```
 

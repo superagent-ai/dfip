@@ -1,0 +1,16 @@
+[
+  {
+    "id": "banking77-test-1329:strength",
+    "candidate": "1",
+    "threshold": 0.25,
+    "native_probability": 0.2524,
+    "graphed_probability": 0.2474
+  },
+  {
+    "id": "banking77-test-3049:strength",
+    "candidate": "1",
+    "threshold": 0.1,
+    "native_probability": 0.1,
+    "graphed_probability": 0.0994
+  }
+]

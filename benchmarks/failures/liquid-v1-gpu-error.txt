@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/pkg/modal/_runtime/container_io_manager.py", line 894, in handle_input_exception
+    yield
+  File "/pkg/modal/_container_entrypoint.py", line 187, in run_input_sync
+    values = io_context.call_function_sync()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/pkg/modal/_runtime/container_io_manager.py", line 215, in call_function_sync
+    expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/cloud/research.py", line 50, in small
+    return run(model, round_id, repetitions, fidelity, commit)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/cloud/research.py", line 17, in run
+    result = round_run(model, round_id, repetitions, fidelity, commit)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/research.py", line 372, in round_run
+    distributions(workload["records"], engine.predict(workload["records"]))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/research.py", line 268, in predict
+    return self.predict_fn(records)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/optimization.py", line 107, in guarded_predict
+    return adapter._native_predict(batch)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/dfip/runtime/adapters.py", line 79, in predict
+    return self.model.system_one_batch(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/modeling_d1.py", line 31, in system_one_batch
+    return self.engine.system_one_batch(requests)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/api.py", line 58, in system_one_batch
+    done = self.run([(state, list(qs.values()), images) for state, qs, images in named])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/runner.py", line 182, in run
+    out[single[j]] = ([self._readout(requests[single[j]][1][0], z)], len(rows[j]))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/runner.py", line 167, in _readout
+    return readout(self.tokenizer, q, logz, self.calibration)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/prompt.py", line 186, in readout
+    scores = [max(float(logz[i]) for i in g) for g in readout_ids(tokenizer, q)]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/research/hf/modules/transformers_modules/_051bcc464b01b9f92942b364d9586b0ef5912432/d54b5b95345ee51e/prompt.py", line 186, in <genexpr>
+    scores = [max(float(logz[i]) for i in g) for g in readout_ids(tokenizer, q)]
+                  ^^^^^^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+The CUDA driver logged these messages, which may provide useful details:
+Returning 700 (CUDA_ERROR_ILLEGAL_ADDRESS) from cuStreamSynchronize
+
+

@@ -1,0 +1,655 @@
+{
+  "statistics": "geometric mean of per-container medians; paired 95% percentile bootstrap",
+  "attrition": "Liquid/Clef v1 contain three completed rounds of five planned; conditional intervals",
+  "prices_checked": "2026-10-12",
+  "rows": [
+    {
+      "model": "clef",
+      "scenario": "short_binary",
+      "rounds": 3,
+      "native_p50_ms_geomean": 61.05864448285725,
+      "optimized_p50_ms_geomean": 37.77235197244889,
+      "speedup": 1.6164904035468413,
+      "bootstrap_lower": 1.595791521721038,
+      "bootstrap_upper": 1.6573165747947431,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.020472614769067296,
+      "policy": "production",
+      "round_speedups": [
+        1.5971207974793185,
+        1.595791521721038,
+        1.6573165747947431
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "short_choice",
+      "rounds": 3,
+      "native_p50_ms_geomean": 61.998966639900075,
+      "optimized_p50_ms_geomean": 37.89499178747697,
+      "speedup": 1.6360728348379976,
+      "bootstrap_lower": 1.5764879459167436,
+      "bootstrap_upper": 1.6720401295360046,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.020539085548812515,
+      "policy": "production",
+      "round_speedups": [
+        1.6720401295360046,
+        1.5764879459167436,
+        1.6613860147251618
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "short_3_questions",
+      "rounds": 3,
+      "native_p50_ms_geomean": 65.23122122156366,
+      "optimized_p50_ms_geomean": 50.17253768039438,
+      "speedup": 1.3001379686452192,
+      "bootstrap_lower": 1.272933809325282,
+      "bootstrap_upper": 1.3235295222012864,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.009064505140924583,
+      "policy": "production",
+      "round_speedups": [
+        1.3235295222012864,
+        1.272933809325282,
+        1.3044543029824862
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "medium_context",
+      "rounds": 3,
+      "native_p50_ms_geomean": 173.6409700620252,
+      "optimized_p50_ms_geomean": 174.18625472756307,
+      "speedup": 0.9968695310293523,
+      "bootstrap_lower": 0.9632965827504479,
+      "bootstrap_upper": 1.0273971454758823,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.09440895006233917,
+      "policy": "production",
+      "round_speedups": [
+        0.9632965827504479,
+        1.0009596988146556,
+        1.0273971454758823
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "long_context",
+      "rounds": 3,
+      "native_p50_ms_geomean": 697.9807420730926,
+      "optimized_p50_ms_geomean": 702.943952412565,
+      "speedup": 0.9929393939268726,
+      "bootstrap_lower": 0.9822437301183168,
+      "bootstrap_upper": 1.0071407064021074,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.3809956222076102,
+      "policy": "production",
+      "round_speedups": [
+        0.9895980000739959,
+        0.9822437301183168,
+        1.0071407064021074
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "2_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 61.675491268132035,
+      "optimized_p50_ms_geomean": 38.80245787267416,
+      "speedup": 1.5894738284495558,
+      "bootstrap_lower": 1.5332511167035232,
+      "bootstrap_upper": 1.6456753076763126,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.021030932166989393,
+      "policy": "production",
+      "round_speedups": [
+        1.5332511167035232,
+        1.5914855570978568,
+        1.6456753076763126
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "8_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 62.77940909255823,
+      "optimized_p50_ms_geomean": 46.887591494256576,
+      "speedup": 1.3389343980325432,
+      "bootstrap_lower": 1.2941116655298217,
+      "bootstrap_upper": 1.3884074359897496,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.02541307458988706,
+      "policy": "production",
+      "round_speedups": [
+        1.2941116655298217,
+        1.3359469533821118,
+        1.3884074359897496
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "16_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 65.39119465351591,
+      "optimized_p50_ms_geomean": 59.95453938514681,
+      "speedup": 1.0906796269994532,
+      "bootstrap_lower": 1.07140772648381,
+      "bootstrap_upper": 1.1277349189760189,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.03249536034674957,
+      "policy": "production",
+      "round_speedups": [
+        1.07140772648381,
+        1.0738158271439096,
+        1.1277349189760189
+      ]
+    },
+    {
+      "model": "clef",
+      "scenario": "batch_8",
+      "rounds": 3,
+      "native_p50_ms_geomean": 168.11451609228138,
+      "optimized_p50_ms_geomean": 171.0497661653595,
+      "speedup": 0.9828397890340255,
+      "bootstrap_lower": 0.9556324398717237,
+      "bootstrap_upper": 1.0121801389690166,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.011588621657703106,
+      "policy": "production",
+      "round_speedups": [
+        0.9556324398717237,
+        0.9815207716785483,
+        1.0121801389690166
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "short_binary",
+      "rounds": 5,
+      "native_p50_ms_geomean": 95.54696580209777,
+      "optimized_p50_ms_geomean": 34.234058742545145,
+      "speedup": 2.790991466149313,
+      "bootstrap_lower": 2.1724043851410673,
+      "bootstrap_upper": 3.226491490387376,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.05943032597705837,
+      "policy": "production",
+      "round_speedups": [
+        3.187843483095626,
+        3.307088757332958,
+        1.6927287463397638,
+        3.0326205756937106,
+        3.1292787786183793
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "short_choice",
+      "rounds": 5,
+      "native_p50_ms_geomean": 92.80692087561012,
+      "optimized_p50_ms_geomean": 34.641636877284384,
+      "speedup": 2.679057031986457,
+      "bootstrap_lower": 2.0620873022631567,
+      "bootstrap_upper": 3.081118699196779,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.06013788161896569,
+      "policy": "production",
+      "round_speedups": [
+        3.1167173813328017,
+        3.057612422685326,
+        1.5916862803128409,
+        3.00879139102769,
+        3.023990254470314
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "short_3_questions",
+      "rounds": 5,
+      "native_p50_ms_geomean": 97.83579061035111,
+      "optimized_p50_ms_geomean": 97.56663055813682,
+      "speedup": 1.0027587306302834,
+      "bootstrap_lower": 0.9868689930902917,
+      "bootstrap_upper": 1.0189043114086964,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.056458556882975165,
+      "policy": "production",
+      "round_speedups": [
+        0.9828164859031302,
+        1.011604631376077,
+        0.9787480784413793,
+        1.0183520884289363,
+        1.0231283928436914
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "medium_context",
+      "rounds": 5,
+      "native_p50_ms_geomean": 142.9958569418511,
+      "optimized_p50_ms_geomean": 142.68000313949355,
+      "speedup": 1.002213721582616,
+      "bootstrap_lower": 0.9966083462161613,
+      "bootstrap_upper": 1.0077892935409258,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.2476924854501608,
+      "policy": "production",
+      "round_speedups": [
+        0.9986264302947121,
+        1.0105772766648962,
+        1.0097627972725511,
+        0.9954952342415322,
+        0.996714064092738
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "long_context",
+      "rounds": 5,
+      "native_p50_ms_geomean": 537.1177646678594,
+      "optimized_p50_ms_geomean": 536.9821791687314,
+      "speedup": 1.0002524953422811,
+      "bootstrap_lower": 0.9981347462689361,
+      "bootstrap_upper": 1.0023747376578005,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.9322010630369176,
+      "policy": "production",
+      "round_speedups": [
+        0.9981318312928131,
+        0.9978260754981076,
+        0.9987582078810694,
+        1.0034416373420763,
+        1.00312021726561
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "2_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 95.83607599464133,
+      "optimized_p50_ms_geomean": 34.27751375179124,
+      "speedup": 2.7958876098367322,
+      "bootstrap_lower": 2.108011646410137,
+      "bootstrap_upper": 3.2752052141589867,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.05950576387310959,
+      "policy": "production",
+      "round_speedups": [
+        3.210033213720572,
+        3.313233689575227,
+        1.599310299929502,
+        3.071247093052973,
+        3.270314049302799
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "8_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 94.61740907812569,
+      "optimized_p50_ms_geomean": 38.03469281727263,
+      "speedup": 2.4876606610887944,
+      "bootstrap_lower": 1.8692219940148191,
+      "bootstrap_upper": 2.917939101945862,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.06602822673078527,
+      "policy": "production",
+      "round_speedups": [
+        2.885621726428979,
+        2.9789799487702147,
+        1.406622758983337,
+        2.7729304690984597,
+        2.84139814904782
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "16_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 97.01682169714178,
+      "optimized_p50_ms_geomean": 44.64226127144962,
+      "speedup": 2.1732058129230043,
+      "bootstrap_lower": 1.6662506223534936,
+      "bootstrap_upper": 2.5408241227231954,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.07749896556723654,
+      "policy": "production",
+      "round_speedups": [
+        2.492701192630135,
+        2.614756057245331,
+        1.2903075746645898,
+        2.4030233052909415,
+        2.398565934559193
+      ]
+    },
+    {
+      "model": "decider",
+      "scenario": "batch_8",
+      "rounds": 5,
+      "native_p50_ms_geomean": 113.53442937636555,
+      "optimized_p50_ms_geomean": 109.14692341599677,
+      "speedup": 1.0401981643004852,
+      "bootstrap_lower": 0.9947301109861784,
+      "bootstrap_upper": 1.1279700944984032,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.023684882381271297,
+      "policy": "production",
+      "round_speedups": [
+        0.9974273236143903,
+        0.9871434922482346,
+        1.006219503494172,
+        1.0069042123703968,
+        1.220781610141585
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "short_binary",
+      "rounds": 3,
+      "native_p50_ms_geomean": 18.69098743668717,
+      "optimized_p50_ms_geomean": 10.683041116721009,
+      "speedup": 1.7495942618279536,
+      "bootstrap_lower": 1.2555639036234196,
+      "bootstrap_upper": 2.0744237318198264,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.005790208285262786,
+      "policy": "production",
+      "round_speedups": [
+        2.0562491851250857,
+        1.2555639036234196,
+        2.0744237318198264
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "short_choice",
+      "rounds": 3,
+      "native_p50_ms_geomean": 19.14475035700818,
+      "optimized_p50_ms_geomean": 10.975566128804726,
+      "speedup": 1.7443064104696993,
+      "bootstrap_lower": 1.2470366416956764,
+      "bootstrap_upper": 2.1110924737410937,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.005948756841812161,
+      "policy": "production",
+      "round_speedups": [
+        2.1110924737410937,
+        1.2470366416956764,
+        2.0159597579705535
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "short_3_questions",
+      "rounds": 3,
+      "native_p50_ms_geomean": 25.694740332931584,
+      "optimized_p50_ms_geomean": 24.013800948878696,
+      "speedup": 1.0699988888735827,
+      "bootstrap_lower": 1.0400259997210803,
+      "bootstrap_upper": 1.102266857870215,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.00433849337143075,
+      "policy": "production",
+      "round_speedups": [
+        1.102266857870215,
+        1.0400259997210803,
+        1.0686095082375302
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "medium_context",
+      "rounds": 3,
+      "native_p50_ms_geomean": 51.31002879298851,
+      "optimized_p50_ms_geomean": 50.013215689238365,
+      "speedup": 1.0259294085748856,
+      "bootstrap_lower": 0.988031108413032,
+      "bootstrap_upper": 1.0691588779224932,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.02710716290356719,
+      "policy": "production",
+      "round_speedups": [
+        1.0691588779224932,
+        0.988031108413032,
+        1.0222086986110301
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "long_context",
+      "rounds": 3,
+      "native_p50_ms_geomean": 180.18223229039373,
+      "optimized_p50_ms_geomean": 174.07770684329802,
+      "speedup": 1.0350678186069557,
+      "bootstrap_lower": 0.9770697714136616,
+      "bootstrap_upper": 1.1203564201410603,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.09435011710906752,
+      "policy": "production",
+      "round_speedups": [
+        1.1203564201410603,
+        0.9770697714136616,
+        1.013035427987028
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "2_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 18.805745933097388,
+      "optimized_p50_ms_geomean": 10.752005072589599,
+      "speedup": 1.7490454855754702,
+      "bootstrap_lower": 1.2608418674805033,
+      "bootstrap_upper": 2.1103021474434738,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.005827586749343562,
+      "policy": "production",
+      "round_speedups": [
+        2.1103021474434738,
+        1.2608418674805033,
+        2.010935074781552
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "8_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 19.732843267645034,
+      "optimized_p50_ms_geomean": 11.54890451731175,
+      "speedup": 1.7086333373062008,
+      "bootstrap_lower": 1.2157694007015944,
+      "bootstrap_upper": 2.070763688610687,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.006259506248382968,
+      "policy": "production",
+      "round_speedups": [
+        2.070763688610687,
+        1.2157694007015944,
+        1.9813667812932507
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "16_candidates",
+      "rounds": 3,
+      "native_p50_ms_geomean": 20.674419265620923,
+      "optimized_p50_ms_geomean": 13.240689243607,
+      "speedup": 1.5614307446723854,
+      "bootstrap_lower": 1.1690889714518944,
+      "bootstrap_upper": 1.824846536690228,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.0071764535700349925,
+      "policy": "production",
+      "round_speedups": [
+        1.824846536690228,
+        1.1690889714518944,
+        1.7844084366304829
+      ]
+    },
+    {
+      "model": "liquid",
+      "scenario": "batch_8",
+      "rounds": 3,
+      "native_p50_ms_geomean": 27.45592056274778,
+      "optimized_p50_ms_geomean": 25.386065587929792,
+      "speedup": 1.0815350833963864,
+      "bootstrap_lower": 1.0205407360819008,
+      "bootstrap_upper": 1.1419747560218942,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.0017199059435822432,
+      "policy": "production",
+      "round_speedups": [
+        1.1419747560218942,
+        1.0205407360819008,
+        1.085512895668582
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "short_binary",
+      "rounds": 5,
+      "native_p50_ms_geomean": 37.94031455466197,
+      "optimized_p50_ms_geomean": 38.74430475661858,
+      "speedup": 0.9792488158709505,
+      "bootstrap_lower": 0.8997398869879628,
+      "bootstrap_upper": 1.0367381772193247,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.06726011305748986,
+      "policy": "triton",
+      "round_speedups": [
+        1.0141153877386417,
+        0.9879734721447073,
+        1.0193538729184508,
+        1.0612986220468548,
+        0.8307494099413567
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "short_choice",
+      "rounds": 5,
+      "native_p50_ms_geomean": 38.36505043929095,
+      "optimized_p50_ms_geomean": 37.54759349639201,
+      "speedup": 1.0217712206503324,
+      "bootstrap_lower": 1.0136470556831816,
+      "bootstrap_upper": 1.0344437202170051,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.06518262230973652,
+      "policy": "triton",
+      "round_speedups": [
+        1.020806860115501,
+        1.0150438205588868,
+        1.011566450710196,
+        1.046804176592832,
+        1.0150328436064604
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "short_3_questions",
+      "rounds": 5,
+      "native_p50_ms_geomean": 43.83915295520511,
+      "optimized_p50_ms_geomean": 43.212905019421186,
+      "speedup": 1.0144921507938998,
+      "bootstrap_lower": 1.0059587819471143,
+      "bootstrap_upper": 1.022049893553443,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.025005867704571725,
+      "policy": "triton",
+      "round_speedups": [
+        1.023075070996491,
+        0.9975144908242433,
+        1.0145499846037065,
+        1.0247926845894313,
+        1.0127617138793794
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "medium_context",
+      "rounds": 5,
+      "native_p50_ms_geomean": 97.72490559499941,
+      "optimized_p50_ms_geomean": 97.39221919157616,
+      "speedup": 1.003415944376099,
+      "bootstrap_lower": 0.9906682927076803,
+      "bootstrap_upper": 1.0139541568336212,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.1690728925165762,
+      "policy": "triton",
+      "round_speedups": [
+        1.0080638501711336,
+        1.0042462004184487,
+        1.0042123856386067,
+        1.0204896626213962,
+        0.9804886420595686
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "long_context",
+      "rounds": 5,
+      "native_p50_ms_geomean": 302.18579591001173,
+      "optimized_p50_ms_geomean": 301.9607717401462,
+      "speedup": 1.0007452099442216,
+      "bootstrap_lower": 0.9980580305549646,
+      "bootstrap_upper": 1.0027378377375327,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.5242038997408938,
+      "policy": "triton",
+      "round_speedups": [
+        1.0010848389732514,
+        0.995621331624756,
+        1.003589560123692,
+        1.0009241500589419,
+        1.0025250201081457
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "2_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 38.40849092908641,
+      "optimized_p50_ms_geomean": 39.26218906555173,
+      "speedup": 0.9782564814447817,
+      "bootstrap_lower": 0.9035629977545031,
+      "bootstrap_upper": 1.0275762803075432,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.0681591602177978,
+      "policy": "triton",
+      "round_speedups": [
+        1.0158414145614705,
+        0.9970693407996262,
+        1.0093525485116228,
+        1.0441607627158536,
+        0.8392708516367812
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "8_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 39.62199517733753,
+      "optimized_p50_ms_geomean": 39.99229862139963,
+      "speedup": 0.9907406311508195,
+      "bootstrap_lower": 0.9443846331635024,
+      "bootstrap_upper": 1.0273267944570348,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.06942663040674975,
+      "policy": "triton",
+      "round_speedups": [
+        1.0109744843701434,
+        0.9852537156180549,
+        1.015401521106767,
+        1.0458090491108267,
+        0.9024463436754924
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "16_candidates",
+      "rounds": 5,
+      "native_p50_ms_geomean": 42.722530574103814,
+      "optimized_p50_ms_geomean": 42.32285880832323,
+      "speedup": 1.0094434019117344,
+      "bootstrap_lower": 0.9775911385067975,
+      "bootstrap_upper": 1.0324395381785414,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.07347248289124912,
+      "policy": "triton",
+      "round_speedups": [
+        1.0209835114758572,
+        1.0118180977009554,
+        1.0240121262066424,
+        1.0432794572333313,
+        0.9496923537256247
+      ]
+    },
+    {
+      "model": "security",
+      "scenario": "batch_8",
+      "rounds": 5,
+      "native_p50_ms_geomean": 66.77272730213316,
+      "optimized_p50_ms_geomean": 66.78758164317512,
+      "speedup": 0.9997775882779923,
+      "bootstrap_lower": 0.9716982546242752,
+      "bootstrap_upper": 1.0188691768000495,
+      "gpu_seconds_cost_usd_per_1000_decisions": 0.014492905216569,
+      "policy": "triton",
+      "round_speedups": [
+        1.02324948504236,
+        1.005724879478094,
+        1.0189862458274155,
+        1.0074373988506427,
+        0.9455181411208265
+      ]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "source_commit": "b8f028d57a499e29736585675b13b02a034351af",
+  "protocol": "dfip-paper-v2-synchronized-retirement",
+  "kernel_retirement": "60-call changing-shape/eviction/clear synthetic GPU check passed",
+  "julia": "Full-model follow-up still failed on new-workload fidelity; see trace",
+  "clef_fast_convolution": {
+    "independent_containers": 1,
+    "native_short_binary_ms": 60.30573150000862,
+    "graphed_short_binary_ms": 37.101716999984546,
+    "paired_speedup": 1.6254161903082205,
+    "confidence_interval": null,
+    "new_workload_fidelity": {
+      "decisions": 1024,
+      "argmax_flips": 0,
+      "flip_ids": [],
+      "max_probability_drift": 0.012900000000000023,
+      "mean_probability_drift": 4.347656249999987e-05,
+      "threshold_crossings": {
+        "0.1": 1,
+        "0.25": 1,
+        "0.5": 0,
+        "0.75": 0,
+        "0.9": 0
+      },
+      "max_expected_score_drift": 0.018899999999999986
+    }
+  },
+  "note": "Separate from v1 results. Different image/transitive environment; no causal claim about extension versus the initial image."
+}

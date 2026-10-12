@@ -3,6 +3,7 @@
 import threading
 from dfip.runtime.adapters import load_adapter
 from dfip.runtime.optimization import optimize
+from dfip.models import get_model
 
 
 class DecisionEngine:
@@ -12,8 +13,15 @@ class DecisionEngine:
         self.model_id = model_id
         self.adapter = adapter if adapter is not None else load_adapter(model_id)
         self.lock = threading.RLock()
-        self.optimization = optimize(self.adapter, "production", [])
-        self.adapter.enable_graphs(True)
+        if get_model(model_id).deployment_policy == "native":
+            self.optimization = {
+                "mode": "native",
+                "reason": "Expanded paper protocol did not establish reliable acceleration; use the released path pending validation",
+            }
+            self.adapter.graph_stats = lambda: []
+        else:
+            self.optimization = optimize(self.adapter, "production", [])
+            self.adapter.enable_graphs(True)
 
     def predict(self, records):
         from dfip.schema import validate_records

@@ -94,6 +94,11 @@ def main():
                "attrition": "Liquid/Clef v1 contain three completed rounds of five planned; conditional intervals",
                "prices_checked": "2026-10-12", "rows": rows}
     (generated / "summary.json").write_text(json.dumps(summary, indent=2))
+    claims = []
+    for model, command in (("liquid", "LiquidSpeed"), ("clef", "ClefSpeed"), ("decider", "DeciderSpeed")):
+        value = next(r["speedup"] for r in rows if r["model"] == model and r["scenario"] == "short_binary")
+        claims.append("\\newcommand{\\" + command + "}{" + f"{value:.2f}" + "}")
+    (generated / "claims.tex").write_text("\n".join(claims) + "\n")
     with (ROOT / "benchmarks/results/summary.csv").open("w", newline="") as stream:
         fields = [k for k in rows[0] if k != "round_speedups"]
         writer = csv.DictWriter(stream, fieldnames=fields, extrasaction="ignore")
