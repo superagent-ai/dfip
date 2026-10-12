@@ -23,4 +23,4 @@ PYTHONPATH=src modal run -m dfip.cloud.paper
 
 The cloud typesetter uses a CPU worker. Optional local plotting and rendering dependencies are `pip install -e '.[paper]'`.
 
-Before submission, both authors should review the generated claims, failed runs, baseline strength, reference accuracy and the scope of the synthetic workloads. A frozen public artifact remains necessary for public reproducibility.
+Before submission, both authors should review the generated claims, failed runs, baseline strength, reference accuracy and the scope of the synthetic workloads. The [release workflow](../docs/releasing.md) prepares a frozen source archive and checksums for public review; publication and arXiv submission remain separate steps.

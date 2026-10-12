@@ -43,7 +43,7 @@ def main(argv=None):
         command = commands.add_parser(
             name,
             help={
-                "benchmark": "Run paired native/production benchmarks",
+                "benchmark": "Benchmark native and configured inference on Modal",
                 "validate": "Run full model fidelity checks",
                 "smoke": "Check packaged inference against native on Modal",
             }[name],

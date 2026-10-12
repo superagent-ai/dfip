@@ -45,5 +45,7 @@ def main(source: str = "paper", output: str = "paper/dfip.pdf"):
     dest = Path(output)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(result["pdf"])
-    Path("work/paper-typeset.log").write_text(result["log"])
+    log_path = Path("work/paper-typeset.log")
+    log_path.parent.mkdir(parents=True, exist_ok=True)
+    log_path.write_text(result["log"])
     print(json.dumps({"saved": str(dest), "bytes": dest.stat().st_size}))

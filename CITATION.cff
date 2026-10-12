@@ -1,0 +1,35 @@
+cff-version: 1.2.0
+message: "If you use DFIP, please cite this repository. The accompanying paper is an unpublished review draft."
+type: software
+title: "DFIP: Decision-focused inference on Modal"
+abstract: "A Python client and reproducible research paths for System One decision models on Modal. Client deployments use released native inference; experimental acceleration results have workload and fidelity limits."
+authors:
+  - family-names: Pelaseyed
+    given-names: Ismail
+    affiliation: Superagent Technologies Inc.
+  - family-names: Zabihi
+    given-names: Alan
+    affiliation: Superagent Technologies Inc.
+version: 0.1.0
+license: MIT
+repository-code: "https://github.com/superagent-ai/dfip"
+url: "https://github.com/superagent-ai/dfip"
+keywords:
+  - decision models
+  - System One models
+  - inference
+  - CUDA graphs
+  - Modal
+preferred-citation:
+  type: unpublished
+  title: "DFIP: Acceleration and Serving Limits of Structured Decision Inference"
+  authors:
+    - family-names: Pelaseyed
+      given-names: Ismail
+      affiliation: Superagent Technologies Inc.
+    - family-names: Zabihi
+      given-names: Alan
+      affiliation: Superagent Technologies Inc.
+  year: 2026
+  url: "https://github.com/superagent-ai/dfip/tree/main/paper"
+  notes: "Unpublished review draft; no arXiv identifier or DOI has been assigned."

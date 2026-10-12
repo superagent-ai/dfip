@@ -1,0 +1,104 @@
+"""Integrity failures must stop review builds rather than bless changed evidence."""
+
+from collections import Counter
+import gzip
+import importlib.util
+import json
+from pathlib import Path
+import warnings
+import zipfile
+
+import pytest
+
+
+spec = importlib.util.spec_from_file_location(
+    "artifact_integrity", Path(__file__).parents[1] / "scripts/verify_artifacts.py"
+)
+integrity = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(integrity)
+
+
+def write_json(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(data))
+
+
+def test_results_reject_changed_raw_bytes_with_root_and_local_manifest_paths(tmp_path):
+    folder = tmp_path / "benchmarks/results/phase"
+    raw = folder / "nested/round.json"
+    raw.parent.mkdir(parents=True)
+    raw.write_bytes(b'{"timing": 10}')
+    for name in ("nested/round.json", "benchmarks/results/phase/nested/round.json"):
+        write_json(folder / "sha256.json", {name: integrity.sha256(raw.read_bytes())})
+        counts = Counter()
+        integrity.verify_results(tmp_path, counts)
+        assert counts["result_files"] == 1
+    raw.write_bytes(b'{"timing": 9}')
+    with pytest.raises(integrity.IntegrityError, match="mismatch.*round.json"):
+        integrity.verify_results(tmp_path, Counter())
+
+
+@pytest.mark.parametrize("name", ["../secret", "/private/secret", "nested/../../secret"])
+def test_manifest_cannot_verify_files_outside_repository(tmp_path, name):
+    with pytest.raises(integrity.IntegrityError, match="Unsafe"):
+        integrity.check_file(tmp_path, name, "0" * 64)
+
+
+def test_zip_rejects_changed_member_even_when_outer_digest_is_updated(tmp_path):
+    archive = tmp_path / "source.zip"
+    with zipfile.ZipFile(archive, "w") as output:
+        output.writestr("source/code.py", b"changed")
+    with pytest.raises(integrity.IntegrityError, match="mismatch.*code.py"):
+        integrity.verify_zip(tmp_path, "source.zip", integrity.sha256(archive.read_bytes()),
+                             {"source/code.py": integrity.sha256(b"original")})
+
+
+@pytest.mark.parametrize("names", [["../secret"], ["source/code.py", "source/code.py"]])
+def test_zip_ambiguous_or_unsafe_members_are_rejected(tmp_path, names):
+    archive = tmp_path / "source.zip"
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", UserWarning)
+        with zipfile.ZipFile(archive, "w") as output:
+            for name in names:
+                output.writestr(name, b"data")
+    with pytest.raises(integrity.IntegrityError, match="Unsafe|Duplicate"):
+        integrity.verify_zip(tmp_path, "source.zip")
+
+
+def test_decoded_log_hash_is_verified_independently_of_compressed_bytes(tmp_path):
+    folder = tmp_path / "benchmarks/logs/study"
+    folder.mkdir(parents=True)
+    compressed = gzip.compress(b"changed log", mtime=0)
+    (folder / "round.log.gz").write_bytes(compressed)
+    write_json(folder / "manifest.json", {"logs": {"round.log.gz": {
+        "gzip_sha256": integrity.sha256(compressed),
+        "decoded_sha256": integrity.sha256(b"original log"),
+    }}})
+    with pytest.raises(integrity.IntegrityError, match="mismatch.*decoded"):
+        integrity.verify_logs(tmp_path, Counter())
+
+
+def test_focused_summary_rejects_checkpoint_outside_declared_scope(tmp_path):
+    write_json(tmp_path / "paper/generated/focused-summary.json", {
+        "checkpoints": {"gliner": "GLiNER"},
+        "evidence": [{"file": "benchmarks/results/round.json", "model": "other"}],
+    })
+    with pytest.raises(integrity.IntegrityError, match="Unselected checkpoint"):
+        integrity.verify_focused(tmp_path, Counter())
+
+
+def test_focused_summary_rejects_changed_analyzer_source(tmp_path):
+    raw = tmp_path / "benchmarks/results/round.json"
+    raw.parent.mkdir(parents=True)
+    raw.write_bytes(b"raw")
+    analyzer = tmp_path / "scripts/analysis.py"
+    analyzer.parent.mkdir(parents=True)
+    analyzer.write_bytes(b"changed analysis")
+    write_json(tmp_path / "paper/generated/focused-summary.json", {
+        "checkpoints": {"gliner": "GLiNER"},
+        "evidence": [{"file": "benchmarks/results/round.json", "model": "gliner",
+                      "sha256": integrity.sha256(b"raw")}],
+        "analysis_sources": {"scripts/analysis.py": integrity.sha256(b"frozen analysis")},
+    })
+    with pytest.raises(integrity.IntegrityError, match="mismatch.*analysis.py"):
+        integrity.verify_focused(tmp_path, Counter())
