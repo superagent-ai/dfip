@@ -1,0 +1,17 @@
+{
+  "name": "dfip-paper-v1",
+  "date": "2026-10-12",
+  "independent_container_rounds": 5,
+  "warm_samples_per_workload_per_mode_per_round": 50,
+  "warmup_calls": 4,
+  "mode_order": "randomized with seed 20261012 + round index",
+  "workload_order": "randomized independently inside each mode",
+  "fidelity_round": 0,
+  "public_typed_cases": 400,
+  "new_banking_test_utterances": 256,
+  "banking_records": "one single-choice and one three-question record per utterance",
+  "changing_shape_stream_calls": 120,
+  "confidence_intervals": "paired container-level bootstrap of log speedups, 10000 resamples, 95% percentile interval",
+  "gpu_allocation": "L40S: Julia/Liquid/Clef; B200: Decider/Security-One",
+  "scope": "A systems characterization. Not a claim of a new graph algorithm or unseen model training data."
+}
