@@ -205,3 +205,6 @@ def shared(adapter, result, round_id):
         result['serving_shared'][name] = {'records': trace, 'arrivals_s': arrivals, 'order': order,
                                          'payload_sha256': hashlib.sha256(json.dumps(trace, sort_keys=True).encode()).hexdigest(),
                                          'modes': {mode: serving(adapter, scheduler, trace, arrivals, mode, ref) for mode in order}}
+    if adapter.model is None:
+        from dfip.runtime.contract_study import profile
+        result['profile'] = profile(adapter, fixtures(count=1)[0])

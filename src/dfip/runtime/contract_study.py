@@ -38,11 +38,28 @@ def timed(fn):
 
 def profile(adapter, sample):
     if adapter.model is None:
+        import gzip
+        from collections import defaultdict
         started = time.perf_counter(); length = adapter.length(sample)
         _, request_ms = timed(lambda: adapter.single(sample))
-        return {"kind": "native engine boundary", "encode_and_parameter_prepare_ms": (time.perf_counter()-started)*1000-request_ms,
-                "request_ms": request_ms, "estimated_tokens": length,
-                "limitation": "vLLM worker kernels run in another process; parent Torch profiler cannot measure them"}
+        encode_ms = (time.perf_counter()-started)*1000-request_ms
+        adapter.llm.start_profile()
+        adapter.single(sample)
+        adapter.llm.stop_profile()
+        files = []; kernels = defaultdict(lambda: [0, 0.0])
+        for path in adapter.profile_dir.rglob("*.pt.trace.json.gz"):
+            files.append({"path": str(path), "bytes": path.stat().st_size,
+                          "sha256": hashlib.sha256(path.read_bytes()).hexdigest()})
+            with gzip.open(path, "rt") as stream:
+                trace = json.load(stream)
+            for event in trace.get("traceEvents", []):
+                if event.get("cat") == "kernel" and event.get("ph") == "X":
+                    entry = kernels[event['name']]; entry[0] += 1; entry[1] += event.get('dur', 0)
+        return {"kind": "native vLLM worker Torch CUDA trace", "encode_and_parameter_prepare_ms": encode_ms,
+                "request_ms_without_profiling": request_ms, "estimated_tokens": length, "files": files,
+                "kernels": [{"name": name, "calls": values[0], "duration_us": values[1]}
+                            for name, values in sorted(kernels.items(), key=lambda pair: pair[1][1], reverse=True)[:30]],
+                "limitation": "One separately profiled warmed request; profiler timings are not benchmark latencies"}
     with torch.profiler.profile(activities=[torch.profiler.ProfilerActivity.CPU, torch.profiler.ProfilerActivity.CUDA],
                                 record_shapes=True, profile_memory=True) as profiler:
         adapter.single(sample); torch.cuda.synchronize()

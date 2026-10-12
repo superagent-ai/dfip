@@ -5,6 +5,7 @@ confidence rather than pretending its classification labels are ordinal scores.
 """
 import json
 import math
+import os
 from pathlib import Path
 import sys
 
@@ -129,9 +130,12 @@ class JevContract:
         self.path = Path(path)
         self.head = json.loads((self.path / "adapter_vllm/decision_head.json").read_text())
         self.temperatures = json.loads((self.path / "calibration.json").read_text())["per_kind"]
+        self.profile_dir = Path("/research/profiles/contracts") / (self.path.name + "-" + os.environ.get("MODAL_TASK_ID", "worker"))
         self.llm = LLM(path, enable_lora=True, max_lora_rank=32, logprobs_mode="processed_logprobs",
                        max_model_len=4096, gpu_memory_utilization=0.80, max_num_seqs=32,
-                       enable_prefix_caching=True, dtype="bfloat16")
+                       enable_prefix_caching=True, dtype="bfloat16",
+                       profiler_config={"profiler": "torch", "torch_profiler_dir": str(self.profile_dir),
+                                        "torch_profiler_with_stack": False, "torch_profiler_record_shapes": True})
         self.lora = LoRARequest("jev-decision", 1, str(self.path / "adapter_vllm"))
         self.tokenizer = self.llm.get_tokenizer()
         self.model = None
