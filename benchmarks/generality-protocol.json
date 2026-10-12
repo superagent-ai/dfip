@@ -134,8 +134,8 @@
   ],
   "generality_claim": "Requires measured acceleration with acceptable fidelity on reserved contract families and predeclared serving traces, plus explicit overall accelerated coverage and regression outcomes. Native fallback everywhere cannot pass.",
   "novelty": "Distinguish decision-contract-specific analysis and transferable transformations from existing graph compilation, batching and cost-guided selection.",
-  "next_gate": "Native contract conformance and profiling; source audits contain no GPU performance results.",
-  "current_phase": "Exploratory native admission and component profiling on all five new candidates; then construct and test a shared policy.",
+  "next_gate": "Frozen shared batching pilot; native records now archived separately. Longer confirmatory design remains proposed.",
+  "current_phase": "Native profiling complete on all five new candidates; shared batching pilot with finite fidelity admission frozen before optimized evaluation.",
   "native_profiles_before_optimizer_freeze": true,
   "phase_protocol": "dfip-contract-native-admission-v5-exploratory",
   "phase_limits": "One native admission worker per new checkpoint, 29 changing conformance records, 20 warm samples per resident cell and native batch probes. These exploratory probes are not independent confirmatory speedup estimates."

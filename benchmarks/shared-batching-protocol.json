@@ -1,6 +1,6 @@
 {
   "protocol": "dfip-shared-contract-batching-v5-exploratory",
-  "status": "candidate_specification_before_test",
+  "status": "frozen_exploratory_before_shared_test",
   "candidate_runtime_commit": "a3ead94",
   "models": [
     "omni",
@@ -103,5 +103,28 @@
   "profiling": "Tensor model native operator profiles; JEV worker CUDA trace separately collected after shared timing with profiler disabled throughout measurement.",
   "infrastructure": "CPU preparation completed before GPU allocation. One study GPU across apps; production apps untouched. Failed attempts and export failures retained.",
   "hypothesis": "Released native batching plus contract-aware selection can handle changed traffic without custom per-shape recapture. Improvement over serial alone is batching evidence, not a novel DFIP gain; compare against native batching.",
-  "falsification": "Retain admission failures, native variation, output changes, fallbacks, drops and slowdowns. If shared policy cannot outperform native batching with acceptable finite-test fidelity, general acceleration remains unproven."
+  "falsification": "Retain admission failures, native variation, output changes, fallbacks, drops and slowdowns. If shared policy cannot outperform native batching with acceptable finite-test fidelity, general acceleration remains unproven.",
+  "frozen_utc": "2026-10-12T17:30:28.890702+00:00",
+  "native_profile_inputs": [
+    {
+      "file": "benchmarks/results/contracts/omni-native-0-01b6f8723a97.json",
+      "sha256": "d0d20f52d95c67eb671bcd0e847446f41535e536fde61b006b77d6f2b6c6a8ea"
+    },
+    {
+      "file": "benchmarks/results/contracts/gliner-native-0-01b6f8723a97.json",
+      "sha256": "36de46c430edce5cc8ffc218433bef6d8cd74397b1aa62aa1ba5e494065e5f43"
+    },
+    {
+      "file": "benchmarks/results/contracts/d3-native-1-fde7117e17cf.json",
+      "sha256": "3c5abe3fc3be01555b922f157fa2fb40f721283771ba0b342084ee0fa6c6646a"
+    },
+    {
+      "file": "benchmarks/results/contracts/jev9-native-1-fde7117e17cf.json",
+      "sha256": "b73b507c828202ff28296b2941a33567fab876f2930ed0426a1a5f1f02e2830b"
+    },
+    {
+      "file": "benchmarks/results/contracts/jev27-native-1-ccb105032386.json",
+      "sha256": "c2f903432d3198e5bfbd4196deaba4a41550a2acc591828e34312ace67198db9"
+    }
+  ]
 }
