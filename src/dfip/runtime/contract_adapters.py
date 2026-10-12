@@ -95,7 +95,7 @@ class D3Contract:
 
     def length(self, record):
         p = self.runtime.prepare(record["state"], record["questions"])
-        return sum(p.lengths.values())
+        return sum(len(s) for s in p.sequences.values())
 
     def single(self, record):
         p = self.runtime.prepare(record["state"], record["questions"])
@@ -114,7 +114,8 @@ class D3Contract:
             values = self.runtime.probabilities([r[2] for r in chunk], [r[3] for r in chunk])
             for (i, key, _, _), probabilities in zip(chunk, values):
                 distributions[i][key] = probabilities
-        return [self.runtime.respond(p, distributions[i], sum(p.lengths.values())) for i, p in enumerate(prepared)]
+        return [self.runtime.respond(p, distributions[i], sum(len(s) for s in p.sequences.values()))
+                for i, p in enumerate(prepared)]
 
 
 class JevContract:
