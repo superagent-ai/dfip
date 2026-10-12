@@ -78,7 +78,7 @@ class Security:
         self.worker.close()
 
 
-async def phase(worker,rate,duration,phase_id):
+async def phase(worker,rate,duration,phase_id,request_factory=request_record):
     """Fixed open-loop arrivals; latency starts at scheduled arrival, not dispatch."""
     origin=time.perf_counter()+.5
     in_flight=0
@@ -94,7 +94,7 @@ async def phase(worker,rate,duration,phase_id):
             return row
         in_flight+=1
         try:
-            record=request_record(phase_id*10000+index)
+            record=request_factory(phase_id*10000+index)
             response=await asyncio.wait_for(worker.predict.remote.aio(record),timeout=120)
             finished=time.perf_counter()
             row.update(response,status='ok',latency_ms=(finished-scheduled)*1000,

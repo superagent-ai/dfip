@@ -79,6 +79,7 @@ class GraphRunner:
         self.sequence_limit = None
         self.batch_limit = None
         self.include_padding_values = False
+        self.admission = None
 
     def clear(self):
         """Release captured allocations only after their last GPU use finishes."""
@@ -117,7 +118,12 @@ class GraphRunner:
                 key = (key, ("valid_lengths", tuple(lengths)))
         if key in self.failures:
             return self.fn(*args, **kwargs)
-        if key not in self.cache and self.capture_min_hits > 1:
+        if self.admission is not None:
+            action = self.admission.select(key, cached=key in self.cache,
+                                           full=len(self.cache) >= self.max_entries)
+            if action.startswith('native_'):
+                return self.fn(*args, **kwargs)
+        if self.admission is None and key not in self.cache and self.capture_min_hits > 1:
             self.shape_hits[key] = self.shape_hits.get(key, 0) + 1
             self.shape_hits.move_to_end(key)
             if len(self.shape_hits) > 64:
@@ -137,9 +143,13 @@ class GraphRunner:
                 graph = torch.cuda.CUDAGraph()
                 with torch.cuda.graph(graph):
                     out = self.fn(*static_args, **static_kwargs)
-            except Exception:
+            except Exception as exc:
                 import traceback
 
+                if self.admission is not None and any(message in str(exc).lower() for message in
+                    ('illegal memory access', 'device-side assert', 'unspecified launch failure')):
+                    # A poisoned CUDA context cannot safely fall back in this worker.
+                    raise
                 self.failures[key] = traceback.format_exc()[-6000:]
                 if len(self.failures) > 32:
                     self.failures.popitem(last=False)

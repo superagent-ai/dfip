@@ -238,6 +238,13 @@ class AblationEngine:
             graph.shape_hits.clear()
             graph.captures = 0
             graph.replays = 0
+            if mode == 'adaptive':
+                from dfip.graph_admission import AdaptiveAdmission
+                if type(self.adapter).__name__ not in ('ClefAdapter', 'DeciderAdapter'):
+                    raise ValueError('Adaptive replay prototype covers Clef and Decider')
+                graph.admission = AdaptiveAdmission(max_captures=graph.max_entries)
+            else:
+                graph.admission = None
         if self.original_mask:
             self.adapter.model.encoder._update_attention_mask = (
                 self.original_mask if mode == "native" else self.graph_mask
@@ -263,7 +270,7 @@ class AblationEngine:
             )
         self.predict_fn = self.guarded_predict if uses_head else self.native_predict
         self.adapter.enable_graphs(
-            mode in ("production", "graphs_only", "production_cublas")
+            mode in ("production", "graphs_only", "production_cublas", "adaptive")
         )
 
     def predict(self, records):

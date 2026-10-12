@@ -189,6 +189,8 @@ def optimize(adapter, mode, records):
                 "replays": g.replays,
                 "fallback_shapes": len(g.failures),
                 "fallback_reasons": list(g.failures.values())[:4],
+                "resident_entries": len(g.cache),
+                "admission": g.admission.diagnostics() if g.admission is not None else None,
             }
             for g in adapter.graphs
         ]

@@ -6,18 +6,19 @@ import os
 from pathlib import Path
 import string
 import subprocess
-import threading
 import time
+from contextlib import nullcontext
 
 import httpx
 import numpy as np
 from transformers import AutoTokenizer
 from dfip.runtime.adapters import SecurityAdapter, checkpoint
+from dfip.native_dispatch import dispatch_lock
 
 
 class SGLangDecisionEngine:
-    def __init__(self, head_mode="native"):
-        self.lock = threading.RLock()
+    def __init__(self, head_mode="native", concurrent=False):
+        self.lock = dispatch_lock(head_mode, concurrent)
         self.client = SecurityAdapter.__new__(SecurityAdapter)
         path = checkpoint("superagent-ai/security-one-27b")
         self.client.tokenizer = AutoTokenizer.from_pretrained(path)
@@ -198,6 +199,7 @@ class SGLangDecisionEngine:
             "head_mode": self.mode,
             "server_start_seconds": self.start_seconds,
             "prefix_cache": False,
+            "request_dispatch": "concurrent" if isinstance(self.lock, nullcontext) else "serialized",
         }
 
     def close(self):
