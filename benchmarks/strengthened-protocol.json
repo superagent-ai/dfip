@@ -20,11 +20,11 @@
   "serving": {
     "models": ["decider", "clef", "security"],
     "planned_independent_app_container_rounds": 3,
-    "modes": "native vs experimental production for Decider/Clef; selected native SGLang only for Security-One",
+    "modes": "native vs experimental production for Decider/Clef; native serialized vs concurrent dispatch to the native SGLang scheduler for Security-One",
     "arrivals": "fixed open-loop 5, 15 and 30 requests/s, each for 60 seconds; completely drained between phases",
     "client": "external author workstation in Sweden; authenticated Modal RPC",
     "payloads": "deterministically changing state contents, recurring lengths, candidate widths 2/8/16; one choice question per request",
-    "server": "one GPU, max_containers=1, 64 concurrent RPC inputs, GPU execution serialized with a lock; no dynamic batching",
+    "server": "one GPU, max_containers=1, 64 concurrent RPC inputs; Transformer GPU execution serialized with a lock; separate Security-One concurrent-dispatch mode allows native SGLang scheduling/batching",
     "overload": "128 client requests in flight; excess arrivals counted as dropped; errors retained, not removed from denominator",
     "latency": "scheduled arrival to received result; includes client dispatch lag, external transport and queueing; excludes cold setup",
     "fidelity": "128 matched requests before/after each mode plus archived returned distributions throughout traffic",

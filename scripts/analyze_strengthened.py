@@ -79,11 +79,12 @@ def serving_rows(records):
 
 def continuous_fidelity(record):
     """Match request IDs within each rate phase; retain missing/drop counts separately."""
-    if not {'native','production'}<=record['modes'].keys():
+    tested_mode='production' if 'production' in record['modes'] else 'native_concurrent'
+    if not {'native',tested_mode}<=record['modes'].keys():
         return None
     reference={}
     tested={}
-    for mode,target in [('native',reference),('production',tested)]:
+    for mode,target in [('native',reference),(tested_mode,tested)]:
         for phase in record['modes'][mode]['phases']:
             for request in phase['samples']:
                 if request['status']=='ok':
@@ -103,7 +104,7 @@ def continuous_fidelity(record):
             q=b['probabilities'][key];drift.append(abs(p-q))
             for threshold in crossings:
                 crossings[threshold]+=int((p>=float(threshold))!=(q>=float(threshold)))
-    return {'matched_decisions':len(shared),'native_unmatched':len(reference)-len(shared),
+    return {'tested_mode':tested_mode,'matched_decisions':len(shared),'native_unmatched':len(reference)-len(shared),
             'tested_unmatched':len(tested)-len(shared),'argmax_flips':len(flips),
             'flip_ids':sorted(flips),'max_probability_drift':max(drift,default=0),
             'threshold_crossings':crossings}
@@ -156,7 +157,7 @@ def main():
     for r in serving_summary:
         loss=100*(r['dropped']+r['failed'])/r['offered']
         p95=f"{r['p95_ms_geomean']:.0f}" if r['p95_ms_geomean'] is not None else '--'
-        mode='graph' if r['mode']=='production' else 'native'
+        mode={'production':'graph','native':'native','native_concurrent':'parallel'}[r['mode']]
         body.append(f"{original.LABELS[r['model']]} & {mode} & {r['rate']} & {r['rounds']} & {r['mean_window_throughput_rps']:.1f} & {p95} & {loss:.1f} "+chr(92)*2)
     tabular(generated/'serving_rows.tex','llrrrrr',
             'Checkpoint & Mode & Offered/s & $n$ & Completed/s & p95 (ms) & Loss (\\%)',body)

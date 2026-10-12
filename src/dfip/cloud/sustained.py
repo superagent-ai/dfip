@@ -115,9 +115,9 @@ async def run_study(model,round_id,commit,duration,folder):
             'client':{'location':'external author workstation in Sweden',
                       'transport':'authenticated Modal RPC',
                       'max_in_flight':128,'server_max_concurrent_inputs':64,
-                      'server_gpu_execution':'serialized; no dynamic batching'},
+                      'server_gpu_execution':'serialized for native/production; native_concurrent dispatches to SGLang scheduler'},
             'modes':{},'duration_per_rate_seconds':duration}
-    modes=['native','production'] if model!='security' else ['native']
+    modes=['native','production'] if model!='security' else ['native','native_concurrent']
     random.Random(20261012+round_id).shuffle(modes)
     result['mode_order']=modes
     dest=folder/f'{model}-serving-round-{round_id}.json'

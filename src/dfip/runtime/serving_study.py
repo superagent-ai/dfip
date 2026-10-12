@@ -18,6 +18,7 @@ class StudyWorker:
         if model == 'security':
             from dfip.runtime.sglang_runtime import SGLangDecisionEngine
             self.engine = SGLangDecisionEngine(head_mode='native')
+            self.serial_client_lock = self.engine.lock
         else:
             self.engine = AblationEngine(get_model(model).model_id)
             self.engine.configure('native')
@@ -32,8 +33,11 @@ class StudyWorker:
 
     def configure(self, mode):
         with self.lock:
-            if self.model == 'security' and mode != 'native':
-                raise ValueError('Security-One selected serving policy remains native')
+            if self.model == 'security':
+                from contextlib import nullcontext
+                if mode not in ('native','native_concurrent'):
+                    raise ValueError('Security-One selected serving policy remains native')
+                self.engine.lock = self.serial_client_lock if mode=='native' else nullcontext()
             if self.model != 'security':
                 self.engine.configure(mode)
             self.mode = mode
@@ -68,6 +72,15 @@ class StudyWorker:
 
     def predict(self, record):
         received=time.perf_counter()
+        if self.model=='security' and self.mode=='native_concurrent':
+            # The native scheduler owns GPU state; client tensors/readout are request-local.
+            output=self.engine.predict([record])
+            finished=time.perf_counter()
+            with self.lock:
+                self.calls+=1
+            return {'request_id':record['id'],'container_id':self.environment['container_id'],
+                    'queue_ms':0.0,'service_ms':(finished-received)*1000,
+                    'prediction':distributions([record],output)}
         with self.lock:
             started=time.perf_counter()
             output=self.engine.predict([record])
