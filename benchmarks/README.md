@@ -1,62 +1,33 @@
-# DFIP review-paper experiments
+# DFIP experiment archive
 
-The paper is a review draft. Main results compare experimental paths with released native baselines and include minute-scale external traffic tests. They do not certify production reliability or compare every optimized serving backend.
+The current [review paper](../paper/README.md) focuses on **PPLX-Decider v1.1 27B, Liquid d1-3B, Clef-Flash and GLiNER2.5-Decide**. It evaluates acceleration over stronger native baselines and retains failures, probability drift and varied-traffic losses for these models. It does not certify production readiness or establish a universal kernel.
 
-The next phase targets a general method across decision contracts. See
-[the research design](general-method-study.md), `generality-protocol.json`, and
-`research-audits/model-contracts.json` for the source audit, reserved families,
-evaluation gates and coverage accounting. The source audit contains no new GPU
-measurements; the protocol remains a draft until implementation and freeze.
-
-`protocol.json` specifies five planned single-use container rounds, four admission calls, and 50 warm samples per workload/mode. Complete raw JSON records are in `results/`; GPU failure excerpts and attrition are in `failures/`. Do not silently replace failed rounds or combine the separate optional-extension and lifetime-fix experiments with the original protocol.
-
-The original implementation is preserved in `source-v1.zip`. It combines base commit `822f6c3` with the two Security-One research files that had not been committed when those jobs started. Its manifest records reconstructed source hashes; the source revision field in raw JSON is the base commit, not a claim that those two files existed in that commit. Cloud scheduler limits were reduced from two to one during execution. This changes worker scheduling, not the computation of an individual round.
-
-## Regenerate paper results without GPUs
+## Regenerate the focused paper
 
 ```sh
 python -m pip install -e '.[paper]'
-python scripts/analyze_paper.py
-cd paper
-latexmk -pdf main.tex
+PYTHONPATH=src python scripts/analyze_focused.py
+PYTHONPATH=src modal run -m dfip.cloud.paper
 ```
 
-Analysis rejects invalid samples and inconsistent reported medians. The checksum manifest covers raw round files. The geometric mean of each round's median is the point estimate; paired round ratios define the bootstrap. Liquid/Clef intervals are conditional on three completed rounds of five planned and do not correct for attrition.
+The analyzer selects the four-model evidence from the original records and writes `paper/generated/focused-summary.json` and manuscript tables. It recomputes retained paired-container statistics and resident medians, checks request accounting, and records the selected raw paths and SHA-256 hashes. The CPU typesetter allocates no GPU.
 
-## Re-run on Modal
+## Evidence used in the manuscript
 
-Create your own Modal workspace, authenticate the CLI, and prepare the checkpoints using the repository's setup instructions. Weights and corpora stay on the remote volume. Set `DFIP_VOLUME` to your volume name. Run one application at a time, then let it finish before starting the next:
+- [Strengthened study](strengthened-study.md): optional native Qwen kernels, repeated Decider/Clef resident comparisons, released Liquid compiler comparisons, literal answer-field audits and minute-scale external traffic. Records are in `results/strengthened/`.
+- [Bounded-admission pilot](adaptive-study.md): a separate post hoc Decider/Clef mitigation with native fallback. It preserves the excluded Clef worker-replacement attempt and its corrected round. Records are in `results/adaptive/`.
+- [Shared batching pilot](shared-batching-study.md): native GLiNER conformance/profiling, comparisons with released native batching, and short scheduled-arrival resident replays. The [released compiler follow-up](shared-compiled-followup-protocol.json) is post hoc and reuses the same fixtures. Records are in `results/contracts/`.
 
-```sh
-PYTHONPATH=src modal run -m dfip.cloud.research --model liquid --rounds 5 --repetitions 50 --commit YOUR_SOURCE_COMMIT
-PYTHONPATH=src modal run -m dfip.cloud.research --model clef --rounds 5 --repetitions 50 --commit YOUR_SOURCE_COMMIT
-PYTHONPATH=src modal run -m dfip.cloud.research --model decider --rounds 5 --repetitions 50 --commit YOUR_SOURCE_COMMIT
-PYTHONPATH=src modal run -m dfip.cloud.research --model julia --rounds 5 --repetitions 50 --commit YOUR_SOURCE_COMMIT
-PYTHONPATH=src modal run -m dfip.cloud.security_research --rounds 5 --repetitions 50 --commit YOUR_SOURCE_COMMIT
-```
+These phases have different workloads, statistical units and limitations. They are not pooled into a single speedup. A native fallback is not an acceleration result. Winning-label agreement does not establish confidence-threshold equivalence.
 
-Current research workers have `max_containers=1`. The original archive uses the pre-alert cap of two; change it to one for low-concurrency replay. Its graph lifetime behavior matches the first results, while the current branch contains an explicit synchronization change. Preserve this source difference when reporting a reproduction.
+## Reproduction on Modal
 
-The optional native convolution builder is CPU-only for `--action probe`. A subsequent GPU benchmark must use a separate output folder, such as `--output benchmarks/results/fast-conv`. Its initial failure and any resulting experiment are reported separately.
+Use a separate research app and Volume, prepare the pinned checkpoints, and run **one GPU application at a time**. The exact entry points, source revisions and command options for each phase are in its linked notes. Retain failed and excluded rounds rather than replacing them silently. Commit source changes before new experiments so records identify a reviewable source snapshot. Source ZIPs, job journals, environment manifests and compressed logs accompany the records.
 
-## Interpretation
+Model weights, downloaded datasets and GPU dependencies remain on Modal. Resident timings exclude external transport and cold start. The external Decider/Clef tests include scheduled-arrival delay, dispatch, network and queueing. GLiNER's short resident replays include neither HTTP transport nor a long-duration soak. Successful-request latency must be read alongside drops and request errors.
 
-- Resident API timing excludes remote client network and startup. Security-One includes in-container HTTP and native scheduling.
-- BANKING77 produces correlated views of 256 utterances; ordinal labels are diagnostic, not validated annotations.
-- Probability drift and sampled threshold crossings are distinct from winning-label agreement.
-- GPU-seconds cost is a rate-times-latency estimate, not invoice cost. Startup, admission, idle time, CPU, memory, storage, and networking remain relevant.
-- The initial Qwen reference image lacks the optional native `causal-conv1d` extension. Do not claim a gain over an optimized-kernel ceiling from that baseline.
+## Historical evidence outside the focused manuscript
 
-## Separate follow-up outcomes
+The repository preserves earlier model studies, source audits and raw failures for provenance. Those models and their results are excluded from the current manuscript's inputs and claims. Existing deployed applications and public client compatibility are not changed by the paper's narrower scope.
 
-The synthetic 60-call graph eviction/clear check passed. Julia still failed on the derived fidelity workload with synchronized retirement. A single Clef container with `causal-conv1d==1.7.0` completed: short Boolean native/graph medians were 60.31/37.10 ms, but two probability slots crossed sampled thresholds and maximum new-workload probability drift reached 0.0129. This n=1 result is not pooled with the v1 confidence intervals. `scripts/run_followup.py` reproduces these diagnostics serially.
-
-The review branch defaults all five models to native inference pending broader validation; Security-One uses native SGLang. Sustained changing-request tests expose replay losses and one Decider CUDA failure. Existing deployed apps were not changed.
-
-## Strengthened optimized-native and serving study
-
-See [strengthened-study.md](strengthened-study.md) and [strengthened-protocol.json](strengthened-protocol.json) for the separate repeated optional-kernel comparisons, released Liquid compiler baseline, and external open-loop sustained serving protocol. Results live in `results/strengthened/`; never pool them with v1 or the first exploratory follow-up.
-
-## Separate bounded admission pilot
-
-See [adaptive-study.md](adaptive-study.md) for the v4 post hoc mitigation, retained worker-replacement failure, corrected trial, and exact source revisions. It is exploratory and never pooled with the frozen v3 study.
+The original `protocol.json`, `source-v1.zip`, `results/` and `failures/` describe the early fallback-image study. Separate follow-up records retain lifetime diagnostics and a single optimized-convolution trial. The broader `generality-protocol.json` and [general method design](general-method-study.md) are proposed longer-term research, not completed independent confirmation. Original all-model analyzers remain available to reconstruct their historical tables; `analyze_focused.py` is the current manuscript entry point.

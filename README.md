@@ -5,13 +5,12 @@ Python client with conservative model-specific defaults. Python/PyTorch handles
 model execution. The research paths evaluate Triton candidate projection and
 CUDA graph replay. Serving defaults use the released native paths.
 
-The research objective is a general inference method across decision architectures.
-The current prototype does not establish that generality. The
-[shared batching pilot](benchmarks/shared-batching-study.md) adds five pinned
-research checkpoints and a common capability-based scheduler with empirical
-fidelity admission. It compares against native batching and keeps failures and
-fallbacks. The [larger research design](benchmarks/general-method-study.md)
-defines the independent and longer serving evidence still needed.
+The [review paper](paper/README.md) focuses on PPLX-Decider, Liquid d1-3B,
+Clef-Flash and GLiNER2.5-Decide. It evaluates graph replay, candidate projection
+and schema-aware batching against stronger native baselines. Some resident
+workloads improve; numerical drift and changing serving traffic limit those
+gains. The prototype does not establish a general acceleration method or
+production readiness. Earlier experiments remain archived for provenance.
 
 Model weights, datasets, and GPU dependencies stay on Modal. The local package
 contains only the client and deployment source. DFIP currently supports text
@@ -124,7 +123,9 @@ accessible through the research entry points.
 
 The separate strengthened study installs optional native Qwen kernels and tests the released Liquid compiler setting. Decider retains a short Boolean speedup of 2.47× (five completed container rounds); Clef gives 1.45× conditional on four completed rounds, with a fifth failing in native preflight. Liquid is effectively tied with compiled native on that workload. These are resident measurements, not production readiness evidence. [Study protocol and results](benchmarks/strengthened-study.md) include direct answer checks and external serving measurements.
 
-The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. Security-One concurrent native dispatch handles 30 requests/s without drops in three minute-scale rounds (29.76 within-window completions/s; p95 0.65 s), while serialized dispatch loses 31.8% at that rate. The review source now enables concurrent native dispatch for Security-One; existing deployments are unchanged. The study does not certify production readiness.
+The sustained tests reverse the Decider/Clef replay advantage: changing shapes cause frequent recapture, large queues, and drops, with one Decider CUDA failure. The separate bounded-admission pilot reduces recapture work but does not establish uniform serving gains or Clef confidence equivalence.
+
+GLiNER2.5-Decide is a research adapter, separate from the public client registry. Its shared scheduler is 1.57× faster than native batching on the diverse resident trace in one worker, while preserving the exposed labels and confidence in the held-out audit. Short varied-traffic p95 is tied with native batching. The released-compiler follow-up is reported separately in the [focused paper results](paper/generated/focused-summary.json); these phases are not pooled with the earlier replay study.
 
 Repeated resident short Boolean calls in the strengthened image:
 
@@ -142,7 +143,8 @@ Clef's direct audit also finds returned-score drift. The original exploratory
 [report](docs/dfip-report.html), [summary CSV](docs/dfip-benchmarks.csv), and
 [raw results](docs/dfip-benchmarks.json) are historical development evidence and
 are not pooled into these estimates. See the [paper](paper/README.md) for failures,
-workload scope, literal answer checks, and sustained serving results.
+workload scope, literal answer checks, and serving results. Regenerate its four-model
+tables with `PYTHONPATH=src python scripts/analyze_focused.py`.
 
 ```sh
 # Quick GPU/kernel check, downloaded weights remain on Modal.
