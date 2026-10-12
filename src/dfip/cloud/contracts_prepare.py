@@ -15,11 +15,15 @@ def download(alias):
     from huggingface_hub import snapshot_download
     spec = contract_model(alias)
     started = time.monotonic()
-    path = snapshot_download(spec.model_id, revision=spec.revision,
-                             allow_patterns=["*.json", "*.safetensors", "*.py", "*.txt", "*.jinja", "LICENSE", "NOTICE"],
-                             ignore_patterns=["reports/*", "assets/*", "videos/*", "vl/*"])
+    # D3's released verifier checks every file in its package manifest, including
+    # documentation and examples. Keep that verification intact.
+    filters = {} if alias == "d3" else {
+        "allow_patterns": ["*.json", "*.safetensors", "*.py", "*.txt", "*.jinja", "LICENSE", "NOTICE"],
+        "ignore_patterns": ["reports/*", "assets/*", "videos/*", "vl/*"],
+    }
+    path = snapshot_download(spec.model_id, revision=spec.revision, **filters)
     result = {"model_id": spec.model_id, "revision": spec.revision, "path": path,
-              "download_seconds": time.monotonic()-started}
+              "download_seconds": time.monotonic()-started, "preparation_version": 2}
     folder = Path("/research/prepared/contracts"); folder.mkdir(parents=True, exist_ok=True)
     (folder / (alias + ".json")).write_text(json.dumps(result, indent=2))
     volume.commit()

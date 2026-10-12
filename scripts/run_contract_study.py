@@ -16,6 +16,7 @@ def main():
     parser.add_argument("--action", choices=("native", "shared"), required=True)
     parser.add_argument("--models", default="omni,gliner,d3,jev9,jev27")
     parser.add_argument("--rounds", type=int, default=1)
+    parser.add_argument("--start-round", type=int, default=0)
     parser.add_argument("--volume", default="dfip-research-v1")
     args = parser.parse_args()
     executable = str(ROOT / ".venv/bin/modal")
@@ -25,7 +26,19 @@ def main():
     wait_retired("dfip-study5-shared", executable, env)
     folder = ROOT / "benchmarks/results/contracts"; folder.mkdir(parents=True, exist_ok=True)
     for model in args.models.split(","):
-        for round_id in range(args.rounds):
+        # GPU time must not be spent on checkpoints whose CPU preparation has
+        # not finished. Local receipts are written only after Volume.commit().
+        receipt = folder / (model + "-prepared.json")
+        print(json.dumps({"model": model, "state": "waiting for CPU preparation"}), flush=True)
+        deadline = time.monotonic() + 7200
+        while True:
+            metadata = json.loads(receipt.read_text()) if receipt.exists() else {}
+            if metadata and (model != "d3" or metadata.get("preparation_version", 0) >= 2):
+                break
+            if time.monotonic() > deadline:
+                raise TimeoutError("CPU preparation receipt missing for " + model)
+            time.sleep(5)
+        for round_id in range(args.start_round, args.start_round + args.rounds):
             source = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
             subprocess.run(["git", "diff", "--quiet", "HEAD", "--", "src", "scripts/run_contract_study.py"], cwd=ROOT, check=True)
             archive = ROOT / "benchmarks" / f"source-v5-{source[:12]}.zip"
