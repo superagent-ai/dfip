@@ -1,6 +1,6 @@
 {
-  "compiled_source_commit": "c4cdcc4157679bcfd9437cb2009b49588d159af8",
-  "paper_sha256": "b60d560992c9e79a695c2d517d550da3e3820429426f6f1fa6c5fb7a6ed314f4",
+  "compiled_source_commit": "54b55d05e9afa6a30a30ea94f8dd1b79e14287cc",
+  "paper_sha256": "17914a76e551ba944420050314a66c02a1d9861f04d62872c6dba9e50200b5a3",
   "pages": 10,
   "models": [
     "PPLX-Decider v1.1 27B",
@@ -9,11 +9,13 @@
     "GLiNER2.5-Decide"
   ],
   "compiler": "CPU-only Modal latexmk",
-  "diagnostics": "no undefined references, warnings or overfull boxes",
-  "scientific_review": "selected numerical claims independently checked against raw records",
-  "visual_review": "all pages rendered; tables, figure, references and wrapped checkpoint revisions inspected",
+  "diagnostics": "no undefined references or overfull boxes; underfull paragraph warnings reviewed visually",
+  "scientific_review": "speedup comparators and Liquid unlabeled-audit limits checked against raw records and source; numerical claims unchanged",
+  "visual_review": "all 10 pages rendered; revised abstract, comparator prose, fidelity interpretation, tables, references and wrapped revisions inspected",
   "analysis_entrypoint": "scripts/analyze_focused.py",
   "selected_result_files": 30,
   "arxiv_submitted": false,
-  "terminology": "System One models (also known as decision models)"
+  "terminology": "System One models (also known as decision models)",
+  "review_revision_date": "2026-10-13",
+  "review_feedback_annotations_addressed": 8
 }

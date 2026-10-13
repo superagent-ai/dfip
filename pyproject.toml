@@ -9,10 +9,27 @@ description = "Decision-focused inference client and research paths on Modal"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md", "licenses/*.txt", "licenses/manifest.json"]
+authors = [
+  {name = "Ismail Pelaseyed"},
+  {name = "Alan Zabihi"},
+]
+maintainers = [{name = "Superagent Technologies Inc."}]
+keywords = ["system-one", "decision-models", "inference", "modal", "research"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
 dependencies = ["modal==1.5.3"]
 
 [project.optional-dependencies]
-dev = ["pytest>=8,<10", "ruff>=0.14,<1"]
+dev = ["pytest>=8,<10", "ruff>=0.14,<1", "build>=1.2,<2"]
 paper = ["numpy>=2.1,<3", "matplotlib>=3.9,<4", "pymupdf>=1.26,<2"]
 
 [project.scripts]
@@ -21,12 +38,14 @@ dfip = "dfip.cli:main"
 [project.urls]
 Repository = "https://github.com/superagent-ai/dfip"
 Issues = "https://github.com/superagent-ai/dfip/issues"
+Documentation = "https://github.com/superagent-ai/dfip#readme"
+Changelog = "https://github.com/superagent-ai/dfip/blob/main/CHANGELOG.md"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/dfip"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/analyze_focused.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-compiled-followup-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md"]
+include = ["/src", "/tests", "/scripts/build_release.py", "/scripts/verify_artifacts.py", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/analyze_focused.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-compiled-followup-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md", "/CHANGELOG.md", "/CITATION.cff", "/SUPPORT.md", "/SECURITY.md", "/THIRD_PARTY_NOTICES.md", "/licenses"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

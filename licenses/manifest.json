@@ -1,0 +1,51 @@
+{
+  "retrieved": "2026-10-12",
+  "files": [
+    {
+      "file": "licenses/LiquidAI--d1-3B--LICENSE.txt",
+      "upstream": "https://huggingface.co/LiquidAI/d1-3B/resolve/051bcc464b01b9f92942b364d9586b0ef5912432/LICENSE",
+      "sha256": "4d28ca14dedc0b3d0fcc2b3339f0e79931faa33874f3d24f522183a8fc70068c"
+    },
+    {
+      "file": "licenses/Cloudflare--clef-flash--LICENSE.txt",
+      "upstream": "https://huggingface.co/Cloudflare/clef-flash/resolve/8b2e5fd17c09fd49bc2880b805d5323ec7ff4ff3/LICENSE",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "file": "licenses/perplexity-ai--pplx-decider-v1.1-27b--LICENSE.txt",
+      "upstream": "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b/resolve/6195aa55a72ae21e503c8a60198f7b390d42adb5/LICENSE",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "file": "licenses/perplexity-ai--pplx-decider-v1.1-27b--NOTICE.txt",
+      "upstream": "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b/resolve/6195aa55a72ae21e503c8a60198f7b390d42adb5/NOTICE",
+      "sha256": "3792cbe9e964a7ed65fff010d3f94bb27c6e726e2940ab6b0e1db5d30df92510"
+    },
+    {
+      "file": "licenses/superagent-ai--security-one-27b--LICENSE.txt",
+      "upstream": "https://huggingface.co/superagent-ai/security-one-27b/resolve/1ae09b6bc17a87332341bcd95ea42fa6b5e6b399/LICENSE",
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a"
+    },
+    {
+      "file": "licenses/LiquidAI--d1-omni-600M--LICENSE.txt",
+      "upstream": "https://huggingface.co/LiquidAI/d1-omni-600M/resolve/02b55d7076f15129e59ab3f94783f32c4b088674/LICENSE",
+      "sha256": "9953509cbd8c1c6ce7b06ddf74fcc204a892692316201dd8f7400a84790d4120"
+    },
+    {
+      "file": "licenses/vllm-sr--d3-flash--LICENSE.txt",
+      "upstream": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+    },
+    {
+      "file": "licenses/vllm-sr--d3-flash--NOTICE.txt",
+      "upstream": "https://huggingface.co/vllm-sr/d3-flash/resolve/f6075bff3c0f7d5704e353d0fb2ebf94888d1691/NOTICE",
+      "sha256": "ae7ffb4d788c076d655394f0f116ad4b7de54e3bca9b655df5c669ea5bae74f6"
+    }
+  ],
+  "unavailable_without_authentication": [
+    {
+      "upstream": "https://huggingface.co/superagent-ai/security-one-27b/resolve/1ae09b6bc17a87332341bcd95ea42fa6b5e6b399/NOTICE",
+      "http_status": 401
+    }
+  ]
+}
