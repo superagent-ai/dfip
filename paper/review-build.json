@@ -1,6 +1,6 @@
 {
-  "compiled_source_commit": "54b55d05e9afa6a30a30ea94f8dd1b79e14287cc",
-  "paper_sha256": "17914a76e551ba944420050314a66c02a1d9861f04d62872c6dba9e50200b5a3",
+  "compiled_source_commit": "3f1f1471d3f8ad93463113b134ba2aa14560539e",
+  "paper_sha256": "55b58db351b480de15e928e94a65a0f6afa5e2af98179454e88e17a2f295ee2d",
   "pages": 10,
   "models": [
     "PPLX-Decider v1.1 27B",
@@ -11,11 +11,13 @@
   "compiler": "CPU-only Modal latexmk",
   "diagnostics": "no undefined references or overfull boxes; underfull paragraph warnings reviewed visually",
   "scientific_review": "speedup comparators and Liquid unlabeled-audit limits checked against raw records and source; numerical claims unchanged",
-  "visual_review": "all 10 pages rendered; revised abstract, comparator prose, fidelity interpretation, tables, references and wrapped revisions inspected",
+  "visual_review": "all 10 pages rendered; new two-line title inspected; pages 2-10 text and rendered pixels identical to the preceding reviewed PDF",
   "analysis_entrypoint": "scripts/analyze_focused.py",
   "selected_result_files": 30,
   "arxiv_submitted": false,
   "terminology": "System One models (also known as decision models)",
   "review_revision_date": "2026-10-13",
-  "review_feedback_annotations_addressed": 8
+  "review_feedback_annotations_addressed": 8,
+  "title": "DFIP: Decision-Focused Inference Path for System One Models",
+  "title_revision_date": "2026-10-14"
 }
