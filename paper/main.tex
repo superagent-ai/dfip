@@ -1,7 +1,7 @@
 \documentclass[10pt,twocolumn]{article}
 \usepackage[letterpaper,margin=0.70in,columnsep=0.25in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,enumitem}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,enumitem,needspace}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{url,seqsplit}
@@ -17,6 +17,7 @@
 System One models (also known as decision models) return small structured answers, yet their request paths can retain host dispatch, GPU launch overhead, and full-vocabulary projection. Here, we present DFIP (Decision-Focused Inference Path), an empirical systems study applying established inference techniques to four pinned models: PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. Its contribution is a paired native-baseline evaluation, exposed-answer audits, and separate arrival measurements. The implementation applies selective CUDA graph replay, candidate-token projection where the released readout permits it, and schema-compatible length-aware batching at compatible model boundaries. With optional native Qwen kernels installed, DFIP achieves short Boolean resident speedups over strengthened native inference of 2.47$\times$ for PPLX-Decider over five containers and 1.45$\times$ for Clef over four of five planned containers; Clef's fifth container fails in native preflight. Liquid is effectively tied with its released compiler setting on the short Boolean workload. Replay supplies most of Liquid's initial eager-baseline gain; projection alone gives little full-request improvement. In separate one-worker GLiNER pilots, length-aware batching is 1.57$\times$ faster than eager native FIFO batching and 1.40$\times$ faster than compiled native FIFO batching on a diverse resident trace, while passing the exposed-label and confidence audit. The compiled arrival replay instead has worse shared-scheduler p95 than native batching. Audits of 3,024 decisions per model preserve all 1,112 returned choices for Decider and Clef, but Clef changes scores, probabilities, and sampled serving confidence thresholds. Diverse external arrivals reverse fixed-shape replay gains and expose overload losses and a replay-path CUDA error. The results identify workload-specific acceleration and its limits, rather than a universal optimizer or production readiness.
 \end{abstract}
 
+\Needspace{8\baselineskip}
 \section{Introduction}
 DFIP (Decision-Focused Inference Path) is an implementation and empirical study of established execution techniques in four pinned System One models: PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. Our contribution is a four-model characterization of when those techniques improve on strengthened or released native execution, what observable answers they preserve, and how their gains change under arrivals. Table~\ref{tab:overview} gives the cross-model overview; the experimental phases remain separate.
 
