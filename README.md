@@ -118,6 +118,12 @@ are part of the evidence, not resolved serving guarantees.
 Regenerate the four-model tables from the archived results without a GPU, using
 the hash-locked Python 3.12 analysis environment:
 
+The frozen analysis revision is
+[`f2eef1746e5e39b92827759344d4ef47410fc464`](https://github.com/superagent-ai/dfip/tree/f2eef1746e5e39b92827759344d4ef47410fc464).
+Check out that revision in a full clone before running these commands. It
+includes the dependency profiles and all selected evidence; each GPU trial's
+execution commit is recorded separately.
+
 ```sh
 python3.12 -m venv .venv-analysis
 source .venv-analysis/bin/activate
