@@ -1,7 +1,7 @@
 {
-  "compiled_source_commit": "54b55d05e9afa6a30a30ea94f8dd1b79e14287cc",
-  "paper_sha256": "17914a76e551ba944420050314a66c02a1d9861f04d62872c6dba9e50200b5a3",
-  "pages": 10,
+  "compiled_source_commit": "fa68a342b0b9b6b38871b8ee31ab59e5708a3601",
+  "paper_sha256": "f714036b58908be0feb2f73563f70262ff7a5613532b10ae01f3c9b4008172fc",
+  "pages": 11,
   "models": [
     "PPLX-Decider v1.1 27B",
     "Liquid d1-3B",
@@ -10,12 +10,24 @@
   ],
   "compiler": "CPU-only Modal latexmk",
   "diagnostics": "no undefined references or overfull boxes; underfull paragraph warnings reviewed visually",
-  "scientific_review": "speedup comparators and Liquid unlabeled-audit limits checked against raw records and source; numerical claims unchanged",
-  "visual_review": "all 10 pages rendered; revised abstract, comparator prose, fidelity interpretation, tables, references and wrapped revisions inspected",
+  "scientific_review": "contribution and overview checked against unchanged numerical summaries; all 30 execution-source records and 25 observed dependency pins verified against archived evidence",
+  "visual_review": "all 11 pages rendered and inspected; contribution opening, page-2 overview and executable artifact commands checked; no clipping or overlapping content",
   "analysis_entrypoint": "scripts/analyze_focused.py",
   "selected_result_files": 30,
   "arxiv_submitted": false,
   "terminology": "System One models (also known as decision models)",
   "review_revision_date": "2026-10-13",
-  "review_feedback_annotations_addressed": 8
+  "review_feedback_annotations_addressed": 8,
+  "title": "DFIP: Decision-Focused Inference Path for System One Models",
+  "title_revision_date": "2026-10-14",
+  "coauthor_feedback_revision_date": "2026-10-15",
+  "coauthor_feedback_topics": [
+    "expand DFIP in READMEs",
+    "state empirical contribution and lessons upfront",
+    "add generated four-model overview",
+    "cite exact analysis and execution revisions and distinguish locked CPU analysis from partial GPU constraints"
+  ],
+  "frozen_analysis_artifact_commit": "f2eef1746e5e39b92827759344d4ef47410fc464",
+  "cpu_analysis_dependency_lock": "repro/analysis-py312.lock",
+  "historical_gpu_environments_fully_locked": false
 }

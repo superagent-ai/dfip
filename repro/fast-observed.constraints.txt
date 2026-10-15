@@ -1,0 +1,22 @@
+# Observed v3/v4 fast-image versions; constraints, not a complete environment lock.
+# Source: benchmarks/results/strengthened/environment-inventory.json (fast_image)
+# causal-conv1d is recorded in the per-run environments rather than that inventory.
+torch==2.14.0
+torchvision==0.29.0
+transformers==5.17.0
+triton==3.8.0
+tokenizers==0.23.3
+huggingface-hub==1.6.0
+accelerate==1.15.0
+safetensors==0.8.0
+numpy==2.5.4
+scipy==1.18.1
+einops==0.8.2
+fla-core==0.5.2
+causal-conv1d==1.7.0
+pillow==12.3.0
+pyarrow==26.0.0
+requests==2.34.2
+packaging==26.3
+wheel==0.48.0
+ninja==1.13.2

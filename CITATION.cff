@@ -22,7 +22,7 @@ keywords:
   - Modal
 preferred-citation:
   type: unpublished
-  title: "DFIP: Acceleration and Serving Limits of Structured Decision Inference"
+  title: "DFIP: Decision-Focused Inference Path for System One Models"
   authors:
     - family-names: Pelaseyed
       given-names: Ismail
