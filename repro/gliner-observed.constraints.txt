@@ -1,0 +1,8 @@
+# Versions actually recorded in all three selected GLiNER run environments.
+# Unrecorded transitive versions are deliberately not inferred from another image.
+torch==2.14.0
+transformers==5.17.0
+triton==3.8.0
+gliner2==2.1.0
+peft==0.21.2
+fla-core==0.5.2

@@ -1,0 +1,10 @@
+\begin{tabular}{p{0.15\textwidth}p{0.23\textwidth}p{0.19\textwidth}p{0.34\textwidth}}
+\toprule
+Checkpoint & Native comparator & Native/DFIP & Evidence and limit \\
+\midrule
+PPLX-Decider & Native with CUDA extensions & 2.47 [1.88, 3.26] & Short Boolean; five completed containers \\
+Clef-Flash & Native with CUDA extensions & 1.45 [1.33, 1.71] & Short Boolean; four of five containers; native preflight failure and confidence drift retained \\
+Liquid d1-3B & Released compiled native & 1.01 [0.97, 1.09] & Short Boolean; three containers; effectively tied \\
+GLiNER2.5-Decide & Compiled native FIFO batching & 1.40 & Diverse resident trace; one worker; worse arrival p95 \\
+\bottomrule
+\end{tabular}

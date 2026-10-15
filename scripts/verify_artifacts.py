@@ -241,6 +241,76 @@ def verify_focused(root, counts):
     return summary
 
 
+def recorded_environments(raw):
+    """Keep top-level and per-mode setup environments distinct, including absences."""
+    found = []
+    candidates = [("environment", raw.get("environment"))]
+    candidates.extend((f"modes/{mode}/setup/environment", report.get("setup", {}).get("environment"))
+                      for mode, report in raw.get("modes", {}).items())
+    for location, environment in candidates:
+        if isinstance(environment, dict):
+            found.append({"location": location, **{
+                key: environment.get(key) for key in ("python", "cuda", "packages")}})
+    return found
+
+
+def normalized_package(name):
+    return re.sub(r"[-_.]+", "-", name.lower())
+
+
+def check_constraints(path, observed):
+    """Reject pins without matching version evidence, including unknown transitives."""
+    count = 0
+    for line in path.read_text().splitlines():
+        if not line.strip() or line.lstrip().startswith("#"):
+            continue
+        match = re.fullmatch(r"([A-Za-z0-9_.-]+)==([^\s]+)", line)
+        if not match or observed.get(normalized_package(match[1])) != match[2]:
+            raise IntegrityError(f"Constraint lacks matching observed version: {path.name}: {line}")
+        count += 1
+    if not count:
+        raise IntegrityError(f"Empty observed constraints: {path.name}")
+    return count
+
+
+def verify_reproduction(root, summary, counts):
+    index = read_json(root / "repro/source-index.json")
+    expected = {record["file"]: record for record in summary["evidence"]}
+    records = index["records"]
+    if len(records) != len(expected) or {r["file"] for r in records} != set(expected):
+        raise IntegrityError("Reproduction index does not cover the selected evidence exactly")
+    gliner = []
+    fast = None
+    for record in records:
+        evidence = expected[record["file"]]
+        if record["sha256"] != evidence["sha256"]:
+            raise IntegrityError("Reproduction raw hash differs: " + record["file"])
+        if any(record[key] != evidence[key] for key in ("model", "protocol", "status")):
+            raise IntegrityError("Reproduction record identity differs: " + record["file"])
+        raw = read_json(inside(root, record["file"]))
+        source = raw["source_commit"]
+        full = record["resolved_source_commit"]
+        if (record["recorded_source_commit"] != source or not re.fullmatch(r"[0-9a-f]{40}", full)
+                or not full.startswith(source)):
+            raise IntegrityError("Reproduction source identity differs: " + record["file"])
+        if record["recorded_environments"] != recorded_environments(raw):
+            raise IntegrityError("Reproduction environment differs: " + record["file"])
+        if evidence["model"] == "gliner":
+            gliner.append(raw["environment"]["packages"])
+        if raw["protocol"] == "dfip-paper-v3-optimized-native" and raw["status"] == "complete":
+            fast = raw["environment"]["packages"]
+    check_file(root, index["supplementary_fast_inventory"], index["supplementary_fast_inventory_sha256"])
+    inventory = read_json(inside(root, index["supplementary_fast_inventory"]))
+    observed_fast = {normalized_package(name): version for name, version in inventory["fast_image"]["packages"]}
+    observed_fast["causal-conv1d"] = fast["causal-conv1d"]
+    observed_gliner = {normalized_package(name): version for name, version in gliner[0].items()
+                       if version is not None and all(packages.get(name) == version for packages in gliner)}
+    counts["observed_gpu_dependency_pins"] = (
+        check_constraints(root / "repro/fast-observed.constraints.txt", observed_fast)
+        + check_constraints(root / "repro/gliner-observed.constraints.txt", observed_gliner))
+    counts["reproduction_source_records"] = len(records)
+
+
 def regenerate_focused(root, summary, counts, notices):
     """Run analysis in an isolated copy, keeping the checked-in archive intact."""
     with tempfile.TemporaryDirectory(prefix="dfip-analysis-") as directory:
@@ -287,6 +357,7 @@ def verify(root, git_history=False, regenerate=False):
             check_file(root, record["file"], record["sha256"])
             counts["third_party_notices"] += 1
     summary = verify_focused(root, counts)
+    verify_reproduction(root, summary, counts)
     if regenerate:
         regenerate_focused(root, summary, counts, notices)
     return {"status": "verified", "checks": dict(sorted(counts.items())), "limitations": notices}

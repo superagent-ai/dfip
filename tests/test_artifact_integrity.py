@@ -23,6 +23,28 @@ def write_json(path, data):
     path.write_text(json.dumps(data))
 
 
+@pytest.mark.parametrize("pin", ["torch==2.15.0", "sentencepiece==0.2.0"])
+def test_gpu_constraints_reject_changed_or_unrecorded_versions(tmp_path, pin):
+    constraints = tmp_path / "observed.constraints.txt"
+    constraints.write_text(pin + "\n")
+    with pytest.raises(integrity.IntegrityError, match="lacks matching observed version"):
+        integrity.check_constraints(constraints, {"torch": "2.14.0"})
+
+
+def test_reproduction_environments_retain_different_mode_setups_and_missing_fields():
+    raw = {"modes": {
+        "native": {"setup": {"environment": {"packages": {"torch": "2.14.0"}}}},
+        "failed": {},
+        "replacement": {"setup": {"environment": {"packages": {"torch": "2.13.0"}}}},
+    }}
+    found = integrity.recorded_environments(raw)
+    assert [(r["location"], r["packages"]["torch"]) for r in found] == [
+        ("modes/native/setup/environment", "2.14.0"),
+        ("modes/replacement/setup/environment", "2.13.0"),
+    ]
+    assert all(r["python"] is None and r["cuda"] is None for r in found)
+
+
 def test_results_reject_changed_raw_bytes_with_root_and_local_manifest_paths(tmp_path):
     folder = tmp_path / "benchmarks/results/phase"
     raw = folder / "nested/round.json"
