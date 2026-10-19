@@ -1,0 +1,5 @@
+# CPU-only paper analysis; validated independently of GPU execution.
+# Resolve with: uv pip compile --python-version 3.12 --generate-hashes repro/analysis.in -o repro/analysis-py312.lock
+modal==1.5.3
+numpy==2.4.6
+matplotlib==3.11.2

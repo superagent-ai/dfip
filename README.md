@@ -1,6 +1,6 @@
-# DFIP
+# DFIP: Decision-Focused Inference Path
 
-**Decision-focused inference on Modal — a research preview.** DFIP provides a
+**A research preview for System One model inference on Modal.** DFIP provides a
 small Python client, pinned model adapters, and reproducible experiments for
 System One models (also known as decision models). The client runs locally;
 weights and GPU execution stay in your Modal account.
@@ -9,6 +9,12 @@ All client deployments use the released native inference paths. CUDA graph
 replay, Triton candidate projection, and shared batching are separate research
 paths. The experiments show useful gains on some resident workloads, but do not
 establish a general acceleration method or production readiness.
+
+The research applies established execution techniques to four pinned models.
+Its contribution is the comparison against stronger native baselines, the
+audit of exposed answers, and the separate serving evaluation. The findings
+show where resident acceleration survives a stronger baseline, where compilation
+closes the gap, and where changing traffic or confidence drift limits the gain.
 
 ## Install and run
 
@@ -109,10 +115,20 @@ compiled shared scheduler improves resident completion time, but has worse p95
 latency than compiled native batching in its short arrival replay. These limits
 are part of the evidence, not resolved serving guarantees.
 
-Regenerate the four-model tables from the archived results without a GPU:
+Regenerate the four-model tables from the archived results without a GPU, using
+the hash-locked Python 3.12 analysis environment:
+
+The frozen analysis revision is
+[`f2eef1746e5e39b92827759344d4ef47410fc464`](https://github.com/superagent-ai/dfip/tree/f2eef1746e5e39b92827759344d4ef47410fc464).
+Check out that revision in a full clone before running these commands. It
+includes the dependency profiles and all selected evidence; each GPU trial's
+execution commit is recorded separately.
 
 ```sh
-python -m pip install -e '.[paper]'
+python3.12 -m venv .venv-analysis
+source .venv-analysis/bin/activate
+python -m pip install --require-hashes -r repro/analysis-py312.lock
+python scripts/verify_artifacts.py --git-history --regenerate
 PYTHONPATH=src python scripts/analyze_focused.py
 ```
 
@@ -123,6 +139,11 @@ one GPU application at a time, in separate research apps and Volumes. Earlier
 studies remain in the archive for provenance and do not contribute to the
 focused paper's claims. The opt-in adaptive serving pilot is documented
 separately in [adaptive serving](docs/adaptive-serving.md).
+
+The [reproduction profiles](repro/README.md) distinguish the locked CPU analysis
+from observed GPU dependency constraints. The [per-run source index](repro/source-index.json)
+records exact commits and environments for all 30 selected raw records; the
+historical GPU environments were not fully locked.
 
 ## Configuration and checks
 

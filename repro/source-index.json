@@ -1,0 +1,913 @@
+{
+  "scope": "All 30 selected raw records; per-run sources and observed environments, not complete dependency locks",
+  "supplementary_fast_inventory": "benchmarks/results/strengthened/environment-inventory.json",
+  "supplementary_fast_inventory_sha256": "48bf602068ee7dda5dddae8a9ad804509ad944f82c8ac1b4f01f5da2a011b877",
+  "records": [
+    {
+      "file": "benchmarks/results/adaptive/clef-adaptive-round-0.json",
+      "sha256": "c1689cf24434b328fb508580cf75720755764cc6272292bbd28d31cbe8fc5492",
+      "model": "clef",
+      "protocol": "dfip-paper-v4-adaptive-pilot",
+      "status": "complete",
+      "recorded_source_commit": "8c9fc08a9b61fd6876ab14acf79e9421048050b0",
+      "resolved_source_commit": "8c9fc08a9b61fd6876ab14acf79e9421048050b0",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/adaptive/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/adaptive/clef-adaptive-round-1.json",
+      "sha256": "ad7913e26db23a6fa494538a8cf142b7590eb42a307c3bda41cb1ca7f4051aee",
+      "model": "clef",
+      "protocol": "dfip-paper-v4-adaptive-pilot",
+      "status": "complete",
+      "recorded_source_commit": "bc1bfa16e272f2d04a858c364c99110213b8bc44",
+      "resolved_source_commit": "bc1bfa16e272f2d04a858c364c99110213b8bc44",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/adaptive/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/adaptive/decider-adaptive-round-0.json",
+      "sha256": "37d2956701c6f6731c240139d03e5f17c2277ddbd905985280b4971a1f7c116c",
+      "model": "decider",
+      "protocol": "dfip-paper-v4-adaptive-pilot",
+      "status": "complete",
+      "recorded_source_commit": "8c9fc08a9b61fd6876ab14acf79e9421048050b0",
+      "resolved_source_commit": "8c9fc08a9b61fd6876ab14acf79e9421048050b0",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/adaptive/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/contracts/gliner-native-0-01b6f8723a97.json",
+      "sha256": "36de46c430edce5cc8ffc218433bef6d8cd74397b1aa62aa1ba5e494065e5f43",
+      "model": "gliner",
+      "protocol": "dfip-contract-native-admission-v5-exploratory",
+      "status": "complete",
+      "recorded_source_commit": "01b6f8723a972cac2cdf5b2b0298fde594c427cb",
+      "resolved_source_commit": "01b6f8723a972cac2cdf5b2b0298fde594c427cb",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "gliner2": "2.1.0",
+            "peft": "0.21.2",
+            "vllm": null,
+            "fla-core": "0.5.2"
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/contracts/gliner-shared-0-7356ac7f169e.json",
+      "sha256": "ee96779ee9bb09c1b9ce1057e7aea00e738a281d5358fb488a20708b0ff1be02",
+      "model": "gliner",
+      "protocol": "dfip-shared-contract-batching-v5-exploratory",
+      "status": "complete",
+      "recorded_source_commit": "7356ac7f169ede4d3df767709bd1b4fecd814193",
+      "resolved_source_commit": "7356ac7f169ede4d3df767709bd1b4fecd814193",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "gliner2": "2.1.0",
+            "peft": "0.21.2",
+            "vllm": null,
+            "fla-core": "0.5.2"
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/contracts/gliner-shared_compiled-0-4adadc36c6cc.json",
+      "sha256": "cf1d06f6f4b848d925e251b642a6b96d0c4c0801cf920d54674deef06d7208d7",
+      "model": "gliner",
+      "protocol": "dfip-shared-compiled-followup-v5-exploratory",
+      "status": "complete",
+      "recorded_source_commit": "4adadc36c6cc2e0cd95dad0b6c67a07462649886",
+      "resolved_source_commit": "4adadc36c6cc2e0cd95dad0b6c67a07462649886",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "gliner2": "2.1.0",
+            "peft": "0.21.2",
+            "vllm": null,
+            "fla-core": "0.5.2"
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/liquid-round-0.json",
+      "sha256": "c9e90ce15ecf4838dcc3f27d5df292a42cea04d64ab0004ec44c23c2f65cbfa4",
+      "model": "liquid",
+      "protocol": "dfip-paper-v1",
+      "status": "retained_complete_legacy",
+      "recorded_source_commit": "822f6c3",
+      "resolved_source_commit": "822f6c3c84d66990084f006562773df85b2545a4",
+      "legacy_reconstructed_source": true,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.10 (main, May 21 2025, 23:34:56) [GCC 12.2.0]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": null,
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/liquid-round-1.json",
+      "sha256": "8636f07cca918d0d2ba4c5433c990e4660e616e8bbd03ec5d344f348413053b2",
+      "model": "liquid",
+      "protocol": "dfip-paper-v1",
+      "status": "retained_complete_legacy",
+      "recorded_source_commit": "822f6c3",
+      "resolved_source_commit": "822f6c3c84d66990084f006562773df85b2545a4",
+      "legacy_reconstructed_source": true,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.10 (main, May 21 2025, 23:34:56) [GCC 12.2.0]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": null,
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/liquid-round-2.json",
+      "sha256": "8a73bd1794412b6e4822433ec7e66affdf6a961560541245184d94b83b227092",
+      "model": "liquid",
+      "protocol": "dfip-paper-v1",
+      "status": "retained_complete_legacy",
+      "recorded_source_commit": "822f6c3",
+      "resolved_source_commit": "822f6c3c84d66990084f006562773df85b2545a4",
+      "legacy_reconstructed_source": true,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.10 (main, May 21 2025, 23:34:56) [GCC 12.2.0]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": null,
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-optimized-round-0.json",
+      "sha256": "a11ec02861b0c63bf733b359ddfc0062ad12d116de929348f6e8c5a59599a897",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "resolved_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-optimized-round-1.json",
+      "sha256": "b8c388bafe1775f203b7f612fd11c0ea4b03541b8ab279ea17869d741700e092",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "resolved_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-optimized-round-2.json",
+      "sha256": "16ac1878b43466f3191b727530246f5c9503b60d9d9e3f9487ff1cb507726303",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "resolved_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-optimized-round-3.json",
+      "sha256": "e2533fb206499d0f6fc29002e4bbe3909f0f6a80faf857f190f50f189d41808a",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "resolved_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-optimized-round-4.json",
+      "sha256": "c0de2002bedb8dbaae3f202c54f5a153eb4cc298225071fcc6a94e459e236d0f",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "failed",
+      "recorded_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "resolved_source_commit": "b7768962a93c43ef18230163d0079ece17708357",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-readout-audit-round-0.json",
+      "sha256": "de5841c5045b0bc808e82fca3912a0c7d9ae661a5c56319da8f89f79cc2b313f",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-literal-readout-audit",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-serving-round-0.json",
+      "sha256": "af086ff70cadd8a9bc0d87bb1794f1b2eedcc790d1296e0958722a1ad70f18d7",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-serving-round-1.json",
+      "sha256": "157e9f83775a2b286aa229967d78eae15592c6668394fb7c3038e17f2b95c12b",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/clef-serving-round-2.json",
+      "sha256": "01f5c9ee06d69a0859e0d58c5e48ef758cfc8b60551236031773831a1e2d56dd",
+      "model": "clef",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-optimized-round-0.json",
+      "sha256": "6d0f0db897970f1d99bc8f123bf9db91198ef3db7b684c19c2aaee1bea2f155c",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "resolved_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-optimized-round-1.json",
+      "sha256": "1e8513a0cd58e6ae49792e85ac902ea021a91afb52351bcce861a3c52580cdd0",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "resolved_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-optimized-round-2.json",
+      "sha256": "dda36f4a96619190884894f9a1ed2bf2dea4f9b26999e0ffd63e6759533e6e9a",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "resolved_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-optimized-round-3.json",
+      "sha256": "ee1084fb6909dfabce505109f5e038422cf50308293d7e5d24c73f3fba035302",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "resolved_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-optimized-round-4.json",
+      "sha256": "3f0c6462c8c952e81a48e337617c50bc2109daacf9db769fabfb38d6a42363bf",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-optimized-native",
+      "status": "complete",
+      "recorded_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "resolved_source_commit": "731e3f26aca477d4726010345dae724bc13d3c4b",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-readout-audit-round-0.json",
+      "sha256": "82c6077cfc97f3276fbcbde2eec1f7c768c23c018709c394ad3eb62afb46dbaa",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-literal-readout-audit",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-serving-round-0.json",
+      "sha256": "a3add7cadef0637127306743342bd9c0b53080e1e1b494b9e67e5efa68d8ec20",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "failed",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-serving-round-1.json",
+      "sha256": "7fe54d5e9cdcf40f1140997a3d0b7fde1724097b46153fd48a6c296563bb46a5",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/decider-serving-round-2.json",
+      "sha256": "05f69bf225b4857824cd56ad07a0cdfc783640390811a08fe5fa52126e76f08a",
+      "model": "decider",
+      "protocol": "dfip-paper-v3-external-serving",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "modes/production/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        },
+        {
+          "location": "modes/native/setup/environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/liquid-compiler-round-0.json",
+      "sha256": "2ac957fa727eb6642b8c873fc7f10f488456e61ea8b9aa4ac3bd43300952916b",
+      "model": "liquid",
+      "protocol": "dfip-paper-v3-released-compiler",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/liquid-compiler-round-1.json",
+      "sha256": "588cb15422c3cf853ba84e6eb2df8589e4709008524e5cde1b9cb56c4437803d",
+      "model": "liquid",
+      "protocol": "dfip-paper-v3-released-compiler",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    },
+    {
+      "file": "benchmarks/results/strengthened/liquid-compiler-round-2.json",
+      "sha256": "6ca4f092d853004ade108260ca6c244ca1217c837925af831a80b41ccd8b4eb7",
+      "model": "liquid",
+      "protocol": "dfip-paper-v3-released-compiler",
+      "status": "complete",
+      "recorded_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "resolved_source_commit": "bef713cac4a57a3f1092abc5d7cb35d63a3399c5",
+      "legacy_reconstructed_source": false,
+      "recorded_environments": [
+        {
+          "location": "environment",
+          "python": "3.12.1 (main, Jan  8 2024, 04:46:10) [Clang 17.0.6 ]",
+          "cuda": "13.0",
+          "packages": {
+            "torch": "2.14.0",
+            "transformers": "5.17.0",
+            "triton": "3.8.0",
+            "fla-core": "0.5.2",
+            "causal-conv1d": "1.7.0",
+            "numpy": "2.5.4",
+            "sglang": null
+          }
+        }
+      ]
+    }
+  ]
+}

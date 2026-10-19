@@ -1,32 +1,49 @@
 \documentclass[10pt,twocolumn]{article}
 \usepackage[letterpaper,margin=0.70in,columnsep=0.25in]{geometry}
 \usepackage[T1]{fontenc}
-\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,enumitem}
+\usepackage{lmodern,microtype,amsmath,amssymb,booktabs,graphicx,enumitem,needspace}
 \usepackage[numbers,sort&compress]{natbib}
 \usepackage[colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{url,seqsplit}
 \setlist{nosep,leftmargin=*}
 \setlength{\parskip}{0.25em}
 \raggedbottom
-\title{DFIP: Acceleration and Serving Limits of\protect\\Structured Decision Inference}
+\title{DFIP: Decision-Focused Inference Path\protect\\for System One Models}
 \author{Ismail Pelaseyed \qquad Alan Zabihi\\Superagent Technologies Inc.}
-\date{October 13, 2026\\\small Review draft; not submitted to arXiv}
+\date{October 15, 2026\\\small Review draft; not submitted to arXiv}
 \begin{document}
 \maketitle
 \begin{abstract}
-System One models (also known as decision models) return small structured answers, yet their request paths can retain host dispatch, GPU launch overhead, and full-vocabulary projection. Here, we present a decision-focused inference path (DFIP) for PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. The implementation combines selective CUDA graph replay, candidate-token projection where the released readout permits it, and schema-compatible length-aware batching. We evaluate full resident requests against stronger native baselines, audit exposed answer fields, and separately measure changing arrivals. With optional native Qwen kernels installed, DFIP achieves short Boolean resident speedups over strengthened native inference of 2.47$\times$ for PPLX-Decider over five containers and 1.45$\times$ for Clef over four of five planned containers; Clef's fifth container fails in native preflight. Liquid is effectively tied with its released compiler setting on the short Boolean workload. Replay supplies most of Liquid's initial eager-baseline gain; projection alone gives little full-request improvement. In separate one-worker GLiNER pilots, length-aware batching is 1.57$\times$ faster than eager native FIFO batching and 1.40$\times$ faster than compiled native FIFO batching on a diverse resident trace, while passing the exposed-label and confidence audit. The compiled arrival replay instead has worse shared-scheduler p95 than native batching. Audits of 3,024 decisions per model preserve all 1,112 returned choices for Decider and Clef, but Clef changes scores, probabilities, and sampled serving confidence thresholds. Diverse external arrivals reverse fixed-shape replay gains and expose overload losses and a replay-path CUDA error. The results identify workload-specific acceleration and its limits, rather than a universal optimizer or production readiness.
+System One models (also known as decision models) return small structured answers, yet their request paths can retain host dispatch, GPU launch overhead, and full-vocabulary projection. Here, we present DFIP (Decision-Focused Inference Path), an empirical systems study applying established inference techniques to four pinned models: PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. Its contribution is a paired native-baseline evaluation, exposed-answer audits, and separate arrival measurements. The implementation applies selective CUDA graph replay, candidate-token projection where the released readout permits it, and schema-compatible length-aware batching at compatible model boundaries. With optional native Qwen kernels installed, DFIP achieves short Boolean resident speedups over strengthened native inference of 2.47$\times$ for PPLX-Decider over five containers and 1.45$\times$ for Clef over four of five planned containers; Clef's fifth container fails in native preflight. Liquid is effectively tied with its released compiler setting on the short Boolean workload. Replay supplies most of Liquid's initial eager-baseline gain; projection alone gives little full-request improvement. In separate one-worker GLiNER pilots, length-aware batching is 1.57$\times$ faster than eager native FIFO batching and 1.40$\times$ faster than compiled native FIFO batching on a diverse resident trace, while passing the exposed-label and confidence audit. The compiled arrival replay instead has worse shared-scheduler p95 than native batching. Audits of 3,024 decisions per model preserve all 1,112 returned choices for Decider and Clef, but Clef changes scores, probabilities, and sampled serving confidence thresholds. Diverse external arrivals reverse fixed-shape replay gains and expose overload losses and a replay-path CUDA error. The results identify workload-specific acceleration and its limits, rather than a universal optimizer or production readiness.
 \end{abstract}
 
+\Needspace{8\baselineskip}
 \section{Introduction}
+DFIP (Decision-Focused Inference Path) is an implementation and empirical study of established execution techniques in four pinned System One models: PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. Our contribution is a four-model characterization of when those techniques improve on strengthened or released native execution, what observable answers they preserve, and how their gains change under arrivals. Table~\ref{tab:overview} gives the cross-model overview; the experimental phases remain separate.
+
+\begin{table*}[t]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\input{generated/focused_overview_rows.tex}
+\caption{Four-model overview of strengthened and released native comparisons. Native/DFIP divides resident latency or trace completion time by its DFIP counterpart; above one favors DFIP. Decider, Clef, and Liquid use paired container medians and 95\% bootstrap intervals. GLiNER uses a diverse resident trace in one worker without an independent-worker interval. The rows use different workloads and are not a ranking or pooled estimate. Serving and answer-fidelity limits are evaluated separately.}
+\label{tab:overview}
+\end{table*}
+
 System One models, also known as decision models, serve routing, policy classification, and structured scoring tasks. An application supplies a state and a small set of questions, and the model returns labels, confidences, or scores. The output is short, but the computation can still include repeated Python dispatch, many small GPU launches, and a projection over tokens unused by the released readout. Reducing this work can lower resident latency and the GPU time required for a workload. The relevant result is an improvement over an efficient native implementation with the application's observable answer contract preserved.
 
 CUDA graphs, compilation, constrained selection, and batching already provide mechanisms for this purpose~\citep{cudagraphs,pygraph,sglang,vllm}. Applying them to System One checkpoints raises practical questions. A graph captured for one shape may be expensive to replace under changing traffic. A smaller projection can preserve a mathematical identity but change floating-point reductions. Batching can reduce total work while increasing a request's wait. A winning label may stay fixed while its confidence crosses an application threshold.
 
-DFIP is a small implementation for studying these effects in four pinned System One checkpoints: PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. The models expose different released engines and answer heads. We preserve those interfaces and apply established execution techniques at compatible boundaries. Our objective is acceleration; output checks determine whether a measured improvement is usable under the evaluated contract. Native fallback by itself is not a speed contribution.
+The models expose different released engines and answer heads. We preserve those interfaces and apply established execution techniques at compatible boundaries. Our objective is acceleration; output checks determine whether a measured improvement is usable under the evaluated contract. Native fallback by itself is not a speed contribution.
 
-We ask three questions. \textbf{RQ1:} Which request paths improve over stronger native baselines, and which components produce the gain? \textbf{RQ2:} Do the accelerated paths preserve exposed answers, including confidence and scores? \textbf{RQ3:} Do resident gains persist under changing arrivals? The contribution is an empirical systems study with an implementation, paired measurements, literal answer audits, arrival accounting, and retained failures. We do not propose a new CUDA graph algorithm or claim transfer to all System One models.
+We ask three questions. \textbf{RQ1:} Which request paths improve over stronger native baselines, and which components produce the gain? \textbf{RQ2:} Do the accelerated paths preserve exposed answers, including confidence and scores? \textbf{RQ3:} Do resident gains persist under changing arrivals? The study yields three lessons:
+\begin{itemize}
+\item \textbf{Baseline and workload determine the gain.} Replay improves repeated short requests for Decider and Clef; released compilation closes Liquid's eager-baseline gap. GLiNER retains a resident batching gain in one exploratory worker.
+\item \textbf{Answer fields constrain usable acceleration.} Preserving categorical choices can still change confidence-based routing, as Clef's literal-field and serving audits demonstrate.
+\item \textbf{Resident speed does not establish serving speed.} Capture costs and queues reverse the original replay gains on diverse external traffic; GLiNER's compiled resident gain does not improve its tested arrival tail.
+\end{itemize}
+The implementation and retained positive, negative, and failed outcomes support these finite-sample conclusions. We do not propose a new CUDA graph algorithm or claim transfer to all System One models.
 
-The review repository is \url{https://github.com/superagent-ai/dfip}. Python implements adapters, scheduling, validation, and remote orchestration; Triton~\citep{triton} implements an experimental candidate projection. Checkpoints and corpora stay on Modal. The lightweight local package contains neither weights nor accelerator dependencies. The repository is private at this draft stage; public access and a frozen release remain prerequisites for reproducible submission.
+The public repository is \url{https://github.com/superagent-ai/dfip}. Python implements adapters, scheduling, validation, and remote orchestration; Triton~\citep{triton} implements an experimental candidate projection. Checkpoints and corpora stay on Modal. The lightweight local package contains neither weights nor accelerator dependencies. Appendix~\ref{app:artifact} identifies the frozen analysis revision, execution-source index, and dependency profiles.
 
 \section{Model Contracts and Scope}
 An input contains a state $s$ and typed questions $Q$. For the three generative-backbone checkpoints, a categorical question returns a finite distribution and selected answer, a Boolean question returns confidence in the affirmative answer, and an ordinal question can expose a distribution and expected score. Released prompt format, criterion ordering, token aliases, temperature, and answer conversion are part of the contract.
@@ -233,7 +250,7 @@ GLiNER2~\citep{gliner2} supplies a schema-driven encoder architecture with class
 
 \textbf{Reliability and cost.} CUDA errors may be reported after the faulting operation. Archived traces cannot assign a kernel cause; synthetic lifetime checks cannot certify full engines. Native fallback cannot repair a poisoned context. GPU-time savings can reduce one compute-cost component, but no billed savings are measured: load, admission, host resources, idle lifetime, queueing, and retries also matter. The evidence supports opt-in workload-specific experiments with native execution as the reviewed default and application confidence policies checked explicitly.
 
-\textbf{Reproducibility.} Revisions, source snapshots, manifests, samples, and failed attempts are archived. Cloud placement, clocks, contention, transitive dependencies, and drivers remain partly uncontrolled. Authors must verify generated claims, freeze an accessible artifact, and review failures and drift before submission. The manuscript remains a review draft.
+\textbf{Reproducibility.} The public artifact freezes analysis source, a hash-locked CPU analysis environment, and observed GPU dependency constraints. It maps selected results to exact execution commits and retains samples and failed attempts. Historical GPU environments were not fully locked; cloud placement, clocks, contention, unrecorded transitive dependencies, and drivers remain partly uncontrolled. Authors must review failures, drift, and generated claims before submission. The manuscript remains a review draft.
 
 \section{Conclusion}
 DFIP demonstrates workload-specific acceleration for four released System One interfaces using established execution techniques. Selective replay improves repeated short Decider and Clef requests over stronger native kernels, but not the tested diverse serving traffic. Liquid's released compiler closes most of its eager gap; candidate projection alone contributes little. Schema-compatible length-aware batching retains a 1.40$\times$ diverse resident gain over compiled native FIFO batching for GLiNER, while worsening the tested compiled arrival tail. Probability and confidence changes, attrition, and GPU errors define concrete limits. The results favor selecting an execution path per native contract and workload, comparing with efficient native execution, and validating the fields consumed by users. General acceleration and production readiness require independent serving and numerical validation.
@@ -243,6 +260,27 @@ DFIP demonstrates workload-specific acceleration for four released System One in
 
 \appendix
 \section{Artifact and Reproduction}
+\label{app:artifact}
+The frozen analysis artifact is repository commit \href{https://github.com/superagent-ai/dfip/tree/f2eef1746e5e39b92827759344d4ef47410fc464}{\texttt{\seqsplit{f2eef1746e5e39b92827759344d4ef47410fc464}}}. This is an analysis and evidence revision, not a single execution commit for all experiments or the later manuscript build. From a full clone, check out that revision and reproduce the CPU inputs with:
+\begin{quote}\small
+\begin{verbatim}
+git checkout \
+  f2eef1746e5e39b92827759344d4ef47410fc464
+python3.12 -m venv .venv-analysis
+. .venv-analysis/bin/activate
+python -m pip install \
+  --require-hashes \
+  -r repro/analysis-py312.lock
+python scripts/verify_artifacts.py \
+  --git-history --regenerate
+\end{verbatim}
+\end{quote}
+The verification command checks archived evidence and reproduces the focused summary and ten TeX inputs, including Table~\ref{tab:overview}; it does not rerun GPU timings. The artifact's \texttt{repro/README.md} and the current \texttt{docs/reproducibility.md} explain the separate GPU reconstruction steps.
+
+The per-run index \texttt{repro/source-index.json} maps all 30 selected raw records to their recorded and resolved full Git commits, SHA-256 hashes, and observed environments. For example, Decider's strengthened resident rounds use \texttt{\seqsplit{731e3f26aca477d4726010345dae724bc13d3c4b}} and Clef's use \texttt{\seqsplit{b7768962a93c43ef18230163d0079ece17708357}}. The readout, external-serving, and Liquid compiler phase uses \texttt{\seqsplit{bef713cac4a57a3f1092abc5d7cb35d63a3399c5}}; GLiNER's compiler follow-up uses \texttt{\seqsplit{4adadc36c6cc2e0cd95dad0b6c67a07462649886}}. Other phase commits, including corrected or excluded attempts, remain in the index. Reconstruct GPU trials from their own source snapshots and protocols, rather than substituting the later analysis revision.
+
+Observed fast-image constraints pin Torch 2.14.0, Transformers 5.17.0, Triton 3.8.0, NumPy 2.5.4, tokenizers 0.23.3, causal-conv1d 1.7.0, fla-core 0.5.2, and other recorded packages. The separate GLiNER constraints retain its six recorded package versions, including gliner2 2.1.0 and peft 0.21.2. These profiles are evidence-backed pip constraints, not complete historical container locks. Unrecorded GLiNER transitive versions are not inferred from another image. The CPU analysis lock is newly validated and distinct from the original GPU environments. A rebuilt GPU environment is a new experimental condition; record its resolved dependencies and results separately.
+
 The repository contains adapters, remote preparation, pinned checkpoint registries, frozen specifications, source snapshots, timing and answer records, failure excerpts, and deterministic analysis. Focused tables are generated from retained evidence, not estimated values. Original trials for the four checkpoints remain available with exclusions annotated.
 
 Reproduction requires a Modal workspace and checkpoint access. The client keeps weights and corpora remote. Run one study application at a time with at most one GPU worker. Optimized-native, compiler, literal-audit, and external-serving results are separate from earlier component ablations. \texttt{scripts/analyze\_strengthened.py} verifies accounting and worker identity. \texttt{scripts/analyze\_adaptive.py} verifies budgets and retains Clef's excluded replacement attempt. \texttt{scripts/analyze\_contracts.py} recomputes GLiNER resident comparisons and checks arrival/batch accounting. \texttt{scripts/analyze\_focused.py} regenerates this paper's four-model tables, plot, and evidence manifest without pooling protocols.

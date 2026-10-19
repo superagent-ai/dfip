@@ -329,6 +329,29 @@ def gliner_phase(manifest):
             "raw_reference_scope": "Primary calibration and serving reports retain comparisons; primary resident retains full references and outputs. Compiled follow-up retains full references and outputs throughout."}
 
 
+def overview_table(summary):
+    """One cross-model view, preserving each comparison's statistical unit."""
+    rows = []
+    for model, note in (
+        ("decider", "Short Boolean; five completed containers"),
+        ("clef", "Short Boolean; four of five containers; native preflight failure and confidence drift retained"),
+    ):
+        cell = next(r for r in summary["v3"]["resident"]
+                    if r["model"] == model and r["scenario"] == "short_binary")
+        rows.append(f"{LABELS[model]} & Native with CUDA extensions & "
+                    f"{ratio_ci(cell)} & {note} \\\\")
+    liquid = next(r for r in summary["v3"]["liquid_compiler"] if r["scenario"] == "short_binary")
+    rows.append(f"{LABELS['liquid']} & Released compiled native & {ratio_ci(liquid)} & "
+                "Short Boolean; three containers; effectively tied \\\\")
+    compiled = next(r for r in summary["v5_gliner"]["shared"] if r["action"] == "shared_compiled")
+    ratio = compiled["resident"]["diverse"]["native_batch_to_shared"]
+    rows.append(f"{LABELS['gliner']} & Compiled native FIFO batching & {ratio:.2f} & "
+                "Diverse resident trace; one worker; worse arrival p95 \\\\")
+    write_table("focused_overview_rows.tex",
+                r"p{0.15\textwidth}p{0.23\textwidth}p{0.19\textwidth}p{0.34\textwidth}",
+                "Checkpoint & Native comparator & Native/DFIP & Evidence and limit", rows)
+
+
 def main():
     GENERATED.mkdir(exist_ok=True)
     manifest = []
@@ -336,6 +359,7 @@ def main():
                "statistics": "v1/v3: paired geometric means and seeded worker-cluster percentile bootstrap; v4/v5: single-worker exploratory summaries, no independent-worker interval",
                "v3": native_phases(manifest), "v1_liquid_ablation": ablation_phase(manifest),
                "v4": adaptive_phase(manifest), "v5_gliner": gliner_phase(manifest)}
+    overview_table(summary)
     summary["evidence"] = sorted(manifest, key=lambda e: e["file"])
     if any(e["model"] not in LABELS for e in manifest):
         raise ValueError("Unselected checkpoint entered the focused evidence")
