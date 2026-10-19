@@ -96,8 +96,8 @@ not available through this client registry.**
 ## Research results
 
 The [paper and analysis](paper/README.md) study PPLX-Decider, Liquid d1-3B,
-Clef-Flash, and GLiNER2.5-Decide. The manuscript is a review draft and has not
-been submitted to arXiv.
+Clef-Flash, and GLiNER2.5-Decide. The paper and source-upload instructions are
+in the linked paper directory.
 
 | Comparison | Finding | Scope |
 | --- | --- | --- |

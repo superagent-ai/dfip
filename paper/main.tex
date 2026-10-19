@@ -10,7 +10,7 @@
 \raggedbottom
 \title{DFIP: Decision-Focused Inference Path\protect\\for System One Models}
 \author{Ismail Pelaseyed \qquad Alan Zabihi\\Superagent Technologies Inc.}
-\date{October 15, 2026\\\small Review draft; not submitted to arXiv}
+\date{October 19, 2026}
 \begin{document}
 \maketitle
 \begin{abstract}
@@ -250,7 +250,7 @@ GLiNER2~\citep{gliner2} supplies a schema-driven encoder architecture with class
 
 \textbf{Reliability and cost.} CUDA errors may be reported after the faulting operation. Archived traces cannot assign a kernel cause; synthetic lifetime checks cannot certify full engines. Native fallback cannot repair a poisoned context. GPU-time savings can reduce one compute-cost component, but no billed savings are measured: load, admission, host resources, idle lifetime, queueing, and retries also matter. The evidence supports opt-in workload-specific experiments with native execution as the reviewed default and application confidence policies checked explicitly.
 
-\textbf{Reproducibility.} The public artifact freezes analysis source, a hash-locked CPU analysis environment, and observed GPU dependency constraints. It maps selected results to exact execution commits and retains samples and failed attempts. Historical GPU environments were not fully locked; cloud placement, clocks, contention, unrecorded transitive dependencies, and drivers remain partly uncontrolled. Authors must review failures, drift, and generated claims before submission. The manuscript remains a review draft.
+\textbf{Reproducibility.} The public artifact freezes analysis source, a hash-locked CPU analysis environment, and observed GPU dependency constraints. It maps selected results to exact execution commits and retains samples and failed attempts. Historical GPU environments were not fully locked; cloud placement, clocks, contention, unrecorded transitive dependencies, and drivers remain partly uncontrolled.
 
 \section{Conclusion}
 DFIP demonstrates workload-specific acceleration for four released System One interfaces using established execution techniques. Selective replay improves repeated short Decider and Clef requests over stronger native kernels, but not the tested diverse serving traffic. Liquid's released compiler closes most of its eager gap; candidate projection alone contributes little. Schema-compatible length-aware batching retains a 1.40$\times$ diverse resident gain over compiled native FIFO batching for GLiNER, while worsening the tested compiled arrival tail. Probability and confidence changes, attrition, and GPU errors define concrete limits. The results favor selecting an execution path per native contract and workload, comparing with efficient native execution, and validating the fields consumed by users. General acceleration and production readiness require independent serving and numerical validation.
@@ -290,5 +290,5 @@ GLiNER's original pilot retains calibration summaries and resident references an
 \section{Checkpoint and Dataset Identity}
 The pinned revisions are Liquid d1-3B \texttt{\seqsplit{051bcc464b01b9f92942b364d9586b0ef5912432}}, Clef-Flash \texttt{\seqsplit{8b2e5fd17c09fd49bc2880b805d5323ec7ff4ff3}}, PPLX-Decider \texttt{\seqsplit{6195aa55a72ae21e503c8a60198f7b390d42adb5}}, and GLiNER2.5-Decide \texttt{\seqsplit{9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90}}. Typed corpus revision is \texttt{\seqsplit{c76749ec58bd8c3d2ea706b31c333a9059c38f90}}; BANKING77 is \texttt{\seqsplit{8eed2b348ec07d40ffbe91dcc4718e2f0f977714}}. Dataset loaders verify recorded corpus checksums; derived BANKING77 records use seed 20261012. Checkpoint revisions are pinned, archived source and result files carry SHA-256 hashes, and released verification is retained where available. Each trial's manifest is authoritative rather than assuming one shared image.
 
-The source builds with \texttt{latexmk -pdf main.tex}. A CPU-only Modal entry point is provided without local TeX. The review package includes source, generated tables/figure, and evidence. No arXiv submission has been performed.
+The source builds with \texttt{latexmk -pdf main.tex}. A CPU-only Modal entry point is provided without local TeX. The accompanying artifact includes source, generated tables/figure, and evidence.
 \end{document}

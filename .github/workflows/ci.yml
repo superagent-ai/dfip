@@ -38,7 +38,7 @@ jobs:
           with tarfile.open(sdist) as archive:
               names = archive.getnames()
               for filename in ('LICENSE', 'THIRD_PARTY_NOTICES.md', 'licenses/manifest.json',
-                               'scripts/verify_artifacts.py'):
+                               'scripts/verify_artifacts.py', 'scripts/build_arxiv.py'):
                   assert any(name.endswith('/' + filename) for name in names), filename
           PY
       - name: Smoke test installed wheel outside checkout
@@ -81,3 +81,5 @@ jobs:
         run: python -m pip install --require-hashes -r repro/analysis-py312.lock
       - name: Verify archive and regenerate focused inputs
         run: python scripts/verify_artifacts.py --git-history --regenerate
+      - name: Check arXiv source package and metadata
+        run: python scripts/build_arxiv.py --output "$RUNNER_TEMP/dfip-arxiv"
