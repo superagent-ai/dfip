@@ -35,3 +35,13 @@ def test_upload_closure_rejects_paths_outside_the_submission(tmp_path):
     (tmp_path / "main.bbl").write_text("bibliography")
     with pytest.raises(ValueError, match="escapes source directory"):
         bundle.paper_inputs(tmp_path)
+
+
+@pytest.mark.parametrize("abstract, message", [
+    ("x" * 1921, "1920-character limit"),
+    ("A result \u2014 with a Unicode dash.", "must use ASCII"),
+])
+def test_portal_metadata_rejects_arxiv_field_constraints(abstract, message):
+    tex = r"\title{A title}\author{Author One\qquad Author Two\\Institute}\begin{abstract}Text.\end{abstract}"
+    with pytest.raises(ValueError, match=message):
+        bundle.metadata(tex, 11, abstract_override=abstract)

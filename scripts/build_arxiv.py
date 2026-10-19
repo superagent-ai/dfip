@@ -40,26 +40,33 @@ def paper_inputs(source):
     return dict(sorted(inputs.items()))
 
 
-def metadata(tex, pages):
+def metadata(tex, pages, abstract_override=None):
     title = re.search(r"\\title\{([^}]+)\}", tex)[1].replace(r"\protect\\", " ")
     author = re.search(r"\\author\{([^}]+)\}", tex)[1].split(r"\\")
     names = [name.strip() for name in author[0].split(r"\qquad")]
     affiliation = " ".join(author[1:]).strip()
-    abstract = re.search(r"\\begin\{abstract\}(.*?)\\end\{abstract\}", tex, re.S)[1]
+    abstract = abstract_override if abstract_override is not None else re.search(
+        r"\\begin\{abstract\}(.*?)\\end\{abstract\}", tex, re.S)[1]
     abstract = abstract.replace(r"$\times$", "x").replace(r"\%", "%").replace("~", " ")
     if "\\" in title or "\\" in abstract or "\\" in affiliation:
         raise ValueError("Submission metadata needs manual handling of remaining TeX macros")
+    abstract = " ".join(abstract.split())
+    if len(abstract) > 1920:
+        raise ValueError("Portal abstract exceeds arXiv's 1920-character limit; provide paper/arxiv-abstract.txt")
+    if not all(value.isascii() for value in [title, abstract, affiliation, *names]):
+        raise ValueError("arXiv metadata must use ASCII or supported TeX equivalents")
+    figures = len(re.findall(r"\\begin\{figure\*?\}", tex))
     return {
         "status": "prepared_not_submitted",
         "title": " ".join(title.split()),
         "authors": [{"name": name, "affiliation": affiliation} for name in names],
-        "abstract": " ".join(abstract.split()),
+        "abstract": abstract,
         "suggested_primary_category": "cs.PF",
         "possible_cross_list": "cs.LG",
         "category_selection": "author must confirm during submission",
         "tex_processor": "PDFLaTeX",
         "top_level_tex": "main.tex",
-        "comments": f"{pages} pages. Code and reproducible results: https://github.com/superagent-ai/dfip",
+        "comments": f"{pages} pages, {figures} figure(s). Code and reproducible results: https://github.com/superagent-ai/dfip",
         "license": None,
         "license_selection": "authors must choose in arXiv; repository MIT license does not select the article license",
         "journal_reference": None,
@@ -81,6 +88,14 @@ def build(output):
     digest = lambda data: hashlib.sha256(data).hexdigest()
     if digest(pdf.read_bytes()) != build_record["paper_sha256"]:
         raise ValueError("Paper PDF differs from its build record")
+    if digest(files["main.bbl"]) != build_record.get("bibliography_sha256"):
+        raise ValueError("Generated bibliography differs from its build record")
+    abstract_file = ROOT / "paper/arxiv-abstract.txt"
+    if abstract_file.exists() and "paper/arxiv-abstract.txt" not in tracked:
+        raise ValueError("The portal abstract must be tracked")
+    submission = metadata(files["main.tex"].decode(), build_record["pages"],
+                          abstract_file.read_text() if abstract_file.exists() else None)
+    submission["abstract_source"] = "paper/arxiv-abstract.txt" if abstract_file.exists() else "paper/main.tex"
     output = output.resolve()
     output.mkdir(parents=True, exist_ok=True)
     if any(output.iterdir()):
@@ -92,7 +107,6 @@ def build(output):
             entry.compress_type = zipfile.ZIP_DEFLATED
             entry.external_attr = 0o100644 << 16
             archive.writestr(entry, payload)
-    submission = metadata(files["main.tex"].decode(), build_record["pages"])
     (output / "submission-metadata.json").write_text(json.dumps(submission, indent=2) + "\n")
     (output / "submission-abstract.txt").write_text(submission["abstract"] + "\n")
     shutil.copy2(pdf, output / "dfip-paper.pdf")

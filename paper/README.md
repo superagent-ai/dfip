@@ -58,6 +58,11 @@ only `main.tex`, the referenced generated tables/figure, `references.bib` and
 PDF, benchmark data and submission metadata are excluded from the upload ZIP.
 Do not upload the full repository archive or the larger paper-source review ZIP.
 
+`arxiv-abstract.txt` is an abridged portal abstract; the approved PDF abstract
+is unchanged. The builder enforces arXiv's
+[1,920-character limit and ASCII metadata rules](https://info.arxiv.org/help/prep.html).
+The portal abstract and metadata are kept outside the source ZIP.
+
 The package builder checks source completeness and the PDF build hash. For a
 clean compilation check, extract the ZIP to an empty directory and run
 `latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` there. The same
