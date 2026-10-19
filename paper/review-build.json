@@ -1,6 +1,6 @@
 {
-  "compiled_source_commit": "fa68a342b0b9b6b38871b8ee31ab59e5708a3601",
-  "paper_sha256": "f714036b58908be0feb2f73563f70262ff7a5613532b10ae01f3c9b4008172fc",
+  "compiled_source_commit": "380455342dc99a36cabd60bc209ab95b7914c73a",
+  "paper_sha256": "c382ac51ae70e128cd5123f67869bdc101e59971179bf984fd37a53be187bca9",
   "pages": 11,
   "models": [
     "PPLX-Decider v1.1 27B",
@@ -11,7 +11,7 @@
   "compiler": "CPU-only Modal latexmk",
   "diagnostics": "no undefined references or overfull boxes; underfull paragraph warnings reviewed visually",
   "scientific_review": "contribution and overview checked against unchanged numerical summaries; all 30 execution-source records and 25 observed dependency pins verified against archived evidence",
-  "visual_review": "all 11 pages rendered and inspected; contribution opening, page-2 overview and executable artifact commands checked; no clipping or overlapping content",
+  "visual_review": "all 11 pages rendered and inspected; title has fixed date without draft/status labels; tables, references and appendices checked",
   "analysis_entrypoint": "scripts/analyze_focused.py",
   "selected_result_files": 30,
   "arxiv_submitted": false,
@@ -29,5 +29,9 @@
   ],
   "frozen_analysis_artifact_commit": "f2eef1746e5e39b92827759344d4ef47410fc464",
   "cpu_analysis_dependency_lock": "repro/analysis-py312.lock",
-  "historical_gpu_environments_fully_locked": false
+  "historical_gpu_environments_fully_locked": false,
+  "bibliography_sha256": "6c80927c9943b1f1771370e5503f2f9d7bed4ea0b9c833521353a4db4bb0ad2a",
+  "manuscript_status": "coauthor_approved",
+  "arxiv_preparation_date": "2026-10-19",
+  "publication_status_labels_removed": true
 }

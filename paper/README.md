@@ -40,3 +40,59 @@ record their own compiled source commit and PDF hash in `review-build.json`.
 
 The [release workflow](../docs/releasing.md) prepares a frozen source archive and
 checksums. The arXiv upload package and author steps are described below.
+
+## Prepare the arXiv files
+
+Build the paper first, which also saves the generated `main.bbl`, then commit
+the manuscript, bibliography, PDF and updated build record. Create a minimal
+source bundle from a clean tracked checkout:
+
+```sh
+python scripts/build_arxiv.py --output dist/arxiv
+```
+
+The output contains `dfip-arxiv-source.zip`, a separate reference PDF, a plain
+abstract, copyable submission metadata and a checksum manifest. The ZIP contains
+only `main.tex`, the referenced generated tables/figure, `references.bib` and
+`main.bbl`, with `main.tex` at its root. Logs, unused figures, the compiled paper
+PDF, benchmark data and submission metadata are excluded from the upload ZIP.
+Do not upload the full repository archive or the larger paper-source review ZIP.
+
+The package builder checks source completeness and the PDF build hash. For a
+clean compilation check, extract the ZIP to an empty directory and run
+`latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex` there. The same
+CPU-only Modal typesetter accepts `--source` and `--output` paths. arXiv uses its
+own TeX environment, so its generated PDF must still be reviewed during upload.
+
+## Submit through an author account
+
+1. One named author signs in at [arXiv's author portal](https://arxiv.org/user)
+   and starts a new submission. A first submission or a new category can require
+   [endorsement](https://info.arxiv.org/help/endorsement.html); the portal provides
+   the instructions and request email. Coauthor approval does not replace that
+   process or arXiv moderation.
+2. Select the category. **Suggested primary: cs.PF (Performance)**, because this
+   paper measures inference performance and queueing behavior. **cs.LG** is a
+   possible cross-list if the authors consider it appropriate. These are author
+   suggestions based on the [category taxonomy](https://arxiv.org/category_taxonomy),
+   not a moderation decision.
+3. Choose the article license with the coauthors and check any applicable venue
+   agreement. The repository's MIT software license does not select the article
+   license. [arXiv's license choices](https://info.arxiv.org/help/license/index.html)
+   include CC BY 4.0 and its perpetual non-exclusive distribution license. The
+   prepared metadata deliberately leaves this field unselected.
+4. Upload `dfip-arxiv-source.zip`, choose **PDFLaTeX** and **main.tex**, and inspect
+   the arXiv-generated PDF, all references and the compilation messages. The
+   current [TeX submission instructions](https://info.arxiv.org/help/submit_tex.html)
+   support an included `.bbl` matching the main `.tex` name.
+5. Enter the title, authors in paper order, affiliation and prepared abstract.
+   The metadata file includes a code/results link for the comments field. Leave
+   journal reference and DOI empty unless a real venue citation or DOI is known;
+   acceptance alone is not an arXiv identifier. Verify metadata and use the final
+   **Submit Article** action, then follow the status in the author portal.
+6. After public announcement, add the actual arXiv identifier/link to this file,
+   the root README and `CITATION.cff`. Until then, the package and build metadata
+   record preparation rather than submission or publication.
+
+The preparation tools do not log in to arXiv, upload files, choose a license or
+submit the article.

@@ -1,0 +1,121 @@
+\begin{thebibliography}{15}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agrawal et~al.(2024)Agrawal, Kedia, Panwar, Mohan, Kwatra, Gulavani,
+  Tumanov, and Ramjee]{sarathi}
+Amey Agrawal, Nitin Kedia, Ashish Panwar, Jayashree Mohan, Nipun Kwatra,
+  Bhargav~S. Gulavani, Alexey Tumanov, and Ramachandran Ramjee.
+\newblock {Taming Throughput-Latency Tradeoff in LLM Inference with
+  Sarathi-Serve}.
+\newblock \emph{Proceedings of the 18th USENIX Symposium on Operating Systems
+  Design and Implementation}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2403.02310}.
+
+\bibitem[Casanueva et~al.(2020)Casanueva, Tem{\v c}inas, Gerz, Henderson, and
+  Vuli{\'c}]{banking}
+I{\~n}igo Casanueva, Tadas Tem{\v c}inas, Daniela Gerz, Matthew Henderson, and
+  Ivan Vuli{\'c}.
+\newblock {Efficient Intent Detection with Dual Sentence Encoders}.
+\newblock \emph{arXiv preprint arXiv:2003.04807}, 2020.
+\newblock URL \url{https://arxiv.org/abs/2003.04807}.
+
+\bibitem[{Cloudflare}(2026)]{clef}
+{Cloudflare}.
+\newblock {Clef-Flash: Model Card and Released Engine}, 2026.
+\newblock URL
+  \url{https://huggingface.co/Cloudflare/clef-flash/tree/8b2e5fd17c09fd49bc2880b805d5323ec7ff4ff3}.
+
+\bibitem[{Fastino}(2026)]{glinerdecide}
+{Fastino}.
+\newblock {GLiNER2.5-Decide: Model Card and Released Classification Contract},
+  2026.
+\newblock URL
+  \url{https://huggingface.co/fastino/GLiNER2.5-Decide/tree/9d1bfb848cd16d93ee56ccbc59cd92bf0f284d90}.
+
+\bibitem[Ghosh et~al.(2025)Ghosh, Nayak, Panwar, and Basu]{pygraph}
+Abhishek Ghosh, Ajay Nayak, Ashish Panwar, and Arkaprava Basu.
+\newblock {PyGraph: Robust Compiler Support for CUDA Graphs in PyTorch}.
+\newblock \emph{arXiv preprint arXiv:2503.19779}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2503.19779}.
+
+\bibitem[{Hugging Face Contributors}(2026)]{qwenkernels}
+{Hugging Face Contributors}.
+\newblock {Qwen3.5 Gated DeltaNet Implementation}, 2026.
+\newblock URL
+  \url{https://github.com/huggingface/transformers/blob/v5.17.0/src/transformers/models/qwen3_5/modeling_qwen3_5.py}.
+\newblock Version 5.17.0.
+
+\bibitem[Kwon et~al.(2023)Kwon, Li, Zhuang, Sheng, Zheng, Yu, Gonzalez, Zhang,
+  and Stoica]{vllm}
+Woosuk Kwon, Zhuohan Li, Siyuan Zhuang, Ying Sheng, Lianmin Zheng, Cody~Hao Yu,
+  Joseph~E. Gonzalez, Hao Zhang, and Ion Stoica.
+\newblock {Efficient Memory Management for Large Language Model Serving with
+  PagedAttention}.
+\newblock In \emph{{Proceedings of the ACM SIGOPS 29th Symposium on Operating
+  Systems Principles}}, 2023.
+\newblock \doi{10.1145/3600006.3613165}.
+\newblock URL \url{https://arxiv.org/abs/2309.06180}.
+
+\bibitem[{Liquid AI}(2026)]{liquid}
+{Liquid AI}.
+\newblock {d1-3B: Model Card and Released Engine}, 2026.
+\newblock URL
+  \url{https://huggingface.co/LiquidAI/d1-3B/tree/051bcc464b01b9f92942b364d9586b0ef5912432}.
+
+\bibitem[{Perplexity AI}(2026)]{decider}
+{Perplexity AI}.
+\newblock {PPLX-Decider-v1.1-27B: Model Card and Released Engine}, 2026.
+\newblock URL
+  \url{https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b/tree/6195aa55a72ae21e503c8a60198f7b390d42adb5}.
+
+\bibitem[{PyTorch Contributors}(2026{\natexlab{a}})]{cudagraphs}
+{PyTorch Contributors}.
+\newblock {CUDA Semantics: CUDA Graphs}, 2026{\natexlab{a}}.
+\newblock URL \url{https://docs.pytorch.org/docs/2.14/notes/cuda.html}.
+\newblock Accessed October 12, 2026.
+
+\bibitem[{PyTorch Contributors}(2026{\natexlab{b}})]{torchcompile}
+{PyTorch Contributors}.
+\newblock {torch.compile API and Compilation Modes}, 2026{\natexlab{b}}.
+\newblock URL
+  \url{https://docs.pytorch.org/docs/2.14/generated/torch.compile.html}.
+\newblock Accessed October 12, 2026.
+
+\bibitem[Reddi et~al.(2020)]{mlperf}
+Vijay~Janapa Reddi et~al.
+\newblock {MLPerf Inference Benchmark}.
+\newblock In \emph{{2020 ACM/IEEE 47th Annual International Symposium on
+  Computer Architecture}}, 2020.
+\newblock URL \url{https://arxiv.org/abs/1911.02549}.
+
+\bibitem[Tillet et~al.(2019)Tillet, Kung, and Cox]{triton}
+Philippe Tillet, H.~T. Kung, and David Cox.
+\newblock {Triton: An Intermediate Language and Compiler for Tiled Neural
+  Network Computations}.
+\newblock In \emph{{Proceedings of the 3rd ACM SIGPLAN International Workshop
+  on Machine Learning and Programming Languages}}, 2019.
+\newblock \doi{10.1145/3315508.3329973}.
+
+\bibitem[Zaratiana et~al.(2025)Zaratiana, Pasternak, Boyd, Hurn-Maloney, and
+  Lewis]{gliner2}
+Urchade Zaratiana, Gil Pasternak, Oliver Boyd, George Hurn-Maloney, and Ash
+  Lewis.
+\newblock {GLiNER2: An Efficient Multi-Task Information Extraction System with
+  Schema-Driven Interface}.
+\newblock \emph{arXiv preprint arXiv:2507.18546}, 2025.
+\newblock URL \url{https://arxiv.org/abs/2507.18546}.
+
+\bibitem[Zheng et~al.(2024)Zheng, Yin, Xie, Sun, Huang, Yu, Cao, Kozyrakis,
+  Stoica, Gonzalez, Barrett, and Sheng]{sglang}
+Lianmin Zheng, Liangsheng Yin, Zhiqiang Xie, Chuyue Sun, Jeff Huang, Cody~Hao
+  Yu, Shiyi Cao, Christos Kozyrakis, Ion Stoica, Joseph~E. Gonzalez, Clark
+  Barrett, and Ying Sheng.
+\newblock {SGLang: Efficient Execution of Structured Language Model Programs}.
+\newblock \emph{Advances in Neural Information Processing Systems}, 2024.
+\newblock URL \url{https://arxiv.org/abs/2312.07104}.
+
+\end{thebibliography}

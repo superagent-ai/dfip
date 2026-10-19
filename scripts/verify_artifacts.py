@@ -238,6 +238,9 @@ def verify_focused(root, counts):
     build = read_json(root / "paper/review-build.json")
     check_file(root, "paper/dfip.pdf", build["paper_sha256"])
     counts["review_pdf"] = 1
+    if "bibliography_sha256" in build:
+        check_file(root, "paper/main.bbl", build["bibliography_sha256"])
+        counts["paper_bibliography"] = 1
     return summary
 
 
