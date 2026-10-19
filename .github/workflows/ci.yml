@@ -81,3 +81,5 @@ jobs:
         run: python -m pip install --require-hashes -r repro/analysis-py312.lock
       - name: Verify archive and regenerate focused inputs
         run: python scripts/verify_artifacts.py --git-history --regenerate
+      - name: Check arXiv source package and metadata
+        run: python scripts/build_arxiv.py --output "$RUNNER_TEMP/dfip-arxiv"

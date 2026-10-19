@@ -56,6 +56,7 @@ def metadata(tex, pages, abstract_override=None):
     if not all(value.isascii() for value in [title, abstract, affiliation, *names]):
         raise ValueError("arXiv metadata must use ASCII or supported TeX equivalents")
     figures = len(re.findall(r"\\begin\{figure\*?\}", tex))
+    figure_word = "figure" if figures == 1 else "figures"
     return {
         "status": "prepared_not_submitted",
         "title": " ".join(title.split()),
@@ -66,7 +67,7 @@ def metadata(tex, pages, abstract_override=None):
         "category_selection": "author must confirm during submission",
         "tex_processor": "PDFLaTeX",
         "top_level_tex": "main.tex",
-        "comments": f"{pages} pages, {figures} figure(s). Code and reproducible results: https://github.com/superagent-ai/dfip",
+        "comments": f"{pages} pages, {figures} {figure_word}. Code and reproducible results: https://github.com/superagent-ai/dfip",
         "license": None,
         "license_selection": "authors must choose in arXiv; repository MIT license does not select the article license",
         "journal_reference": None,

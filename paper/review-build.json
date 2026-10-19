@@ -33,5 +33,16 @@
   "bibliography_sha256": "6c80927c9943b1f1771370e5503f2f9d7bed4ea0b9c833521353a4db4bb0ad2a",
   "manuscript_status": "coauthor_approved",
   "arxiv_preparation_date": "2026-10-19",
-  "publication_status_labels_removed": true
+  "publication_status_labels_removed": true,
+  "arxiv_source_validation": {
+    "source_files": 13,
+    "zip_sha256": "8207f8771969cbf34e577f8ea29a719e78ff36036cdc4d1ec42366ed243837ac",
+    "extracted_zip_compiles": true,
+    "all_pages_text_equal": true,
+    "all_pages_rendered_pixels_equal": true,
+    "compiler": "PDFLaTeX / TeX Live 2022 (Modal CPU worker)",
+    "arxiv_server_compilation_performed": false
+  },
+  "portal_abstract_source": "paper/arxiv-abstract.txt",
+  "portal_abstract_characters": 1564
 }
