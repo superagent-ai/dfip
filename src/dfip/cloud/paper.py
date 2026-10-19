@@ -1,4 +1,4 @@
-"""Typeset the multi-file LaTeX review draft on a CPU-only Modal worker."""
+"""Typeset the multi-file LaTeX manuscript on a CPU-only Modal worker."""
 
 import json
 from pathlib import Path
@@ -30,7 +30,8 @@ def typeset(files):
         log = (root / "main.log").read_text() if (root / "main.log").exists() else process.stdout
         if process.returncode:
             raise RuntimeError((process.stdout + process.stderr)[-16000:])
-        return {"pdf": (root / "main.pdf").read_bytes(), "log": log}
+        return {"pdf": (root / "main.pdf").read_bytes(), "log": log,
+                "bbl": (root / "main.bbl").read_bytes()}
 
 
 @app.local_entrypoint()
@@ -39,12 +40,13 @@ def main(source: str = "paper", output: str = "paper/dfip.pdf"):
     files = {
         str(path.relative_to(root)): path.read_bytes()
         for path in root.rglob("*")
-        if path.is_file() and path.suffix in (".tex", ".bib", ".png", ".sty", ".cls")
+        if path.is_file() and path.suffix in (".tex", ".bib", ".bbl", ".png", ".sty", ".cls")
     }
     result = typeset.remote(files)
     dest = Path(output)
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_bytes(result["pdf"])
+    (root / "main.bbl").write_bytes(result["bbl"])
     log_path = Path("work/paper-typeset.log")
     log_path.parent.mkdir(parents=True, exist_ok=True)
     log_path.write_text(result["log"])
