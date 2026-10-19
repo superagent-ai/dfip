@@ -38,7 +38,7 @@ jobs:
           with tarfile.open(sdist) as archive:
               names = archive.getnames()
               for filename in ('LICENSE', 'THIRD_PARTY_NOTICES.md', 'licenses/manifest.json',
-                               'scripts/verify_artifacts.py'):
+                               'scripts/verify_artifacts.py', 'scripts/build_arxiv.py'):
                   assert any(name.endswith('/' + filename) for name in names), filename
           PY
       - name: Smoke test installed wheel outside checkout

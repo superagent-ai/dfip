@@ -45,7 +45,7 @@ Changelog = "https://github.com/superagent-ai/dfip/blob/main/CHANGELOG.md"
 packages = ["src/dfip"]
 
 [tool.hatch.build.targets.sdist]
-include = ["/src", "/tests", "/scripts/build_release.py", "/scripts/verify_artifacts.py", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/analyze_focused.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-compiled-followup-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/repro", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md", "/CHANGELOG.md", "/CITATION.cff", "/SUPPORT.md", "/SECURITY.md", "/THIRD_PARTY_NOTICES.md", "/licenses"]
+include = ["/src", "/tests", "/scripts/build_release.py", "/scripts/build_arxiv.py", "/scripts/verify_artifacts.py", "/scripts/analyze_paper.py", "/scripts/analyze_strengthened.py", "/scripts/analyze_adaptive.py", "/scripts/analyze_contracts.py", "/scripts/analyze_focused.py", "/scripts/run_contract_study.py", "/scripts/run_strengthened.py", "/benchmarks/shared-batching-protocol.json", "/benchmarks/shared-compiled-followup-protocol.json", "/benchmarks/shared-batching-study.md", "/benchmarks/generality-protocol.json", "/examples", "/docs", "/repro", "/README.md", "/LICENSE", "/pyproject.toml", "/CONTRIBUTING.md", "/CHANGELOG.md", "/CITATION.cff", "/SUPPORT.md", "/SECURITY.md", "/THIRD_PARTY_NOTICES.md", "/licenses"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
