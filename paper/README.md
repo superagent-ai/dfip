@@ -4,6 +4,11 @@ Four-model empirical systems study.
 
 **Authors:** Ismail Pelaseyed and Alan Zabihi, Superagent Technologies Inc.
 
+**Published preprint:** [arXiv:2610.36804](https://arxiv.org/abs/2610.36804) [cs.PF]
+([PDF](https://arxiv.org/pdf/2610.36804), [DOI](https://doi.org/10.48550/arXiv.2610.36804)).
+Version 1 records a submission date of October 27, 2026. Machine-readable
+citation metadata is in [CITATION.cff](../CITATION.cff).
+
 The manuscript studies four System One models (also known as decision models): PPLX-Decider v1.1 27B, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide. Its question is whether decision-focused inference reduces latency or improves throughput over optimized native execution while preserving the answer fields an application consumes.
 
 The contribution is an empirical systems study applying established techniques
@@ -95,9 +100,10 @@ own TeX environment, so its generated PDF must still be reviewed during upload.
    journal reference and DOI empty unless a real venue citation or DOI is known;
    acceptance alone is not an arXiv identifier. Verify metadata and use the final
    **Submit Article** action, then follow the status in the author portal.
-6. After public announcement, add the actual arXiv identifier/link to this file,
-   the root README and `CITATION.cff`. Until then, the package and build metadata
-   record preparation rather than submission or publication.
+6. The initial submission is now public as **arXiv:2610.36804**. For future
+   versions, use arXiv's replacement workflow for the existing article. Archived
+   package and build metadata retain their original preparation status; the
+   public arXiv record linked above provides the announced version history.
 
 The preparation tools do not log in to arXiv, upload files, choose a license or
 submit the article.

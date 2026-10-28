@@ -21,7 +21,7 @@ keywords:
   - CUDA graphs
   - Modal
 preferred-citation:
-  type: unpublished
+  type: article
   title: "DFIP: Decision-Focused Inference Path for System One Models"
   authors:
     - family-names: Pelaseyed
@@ -31,5 +31,7 @@ preferred-citation:
       given-names: Alan
       affiliation: Superagent Technologies Inc.
   year: 2026
-  url: "https://github.com/superagent-ai/dfip/tree/main/paper"
-  notes: "Research manuscript; no arXiv identifier or DOI has been assigned."
+  journal: arXiv
+  doi: "10.48550/arXiv.2610.36804"
+  url: "https://arxiv.org/abs/2610.36804"
+  notes: "Preprint, arXiv:2610.36804 [cs.PF]."

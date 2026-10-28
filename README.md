@@ -95,9 +95,12 @@ not available through this client registry.**
 
 ## Research results
 
-The [paper and analysis](paper/README.md) study PPLX-Decider, Liquid d1-3B,
-Clef-Flash, and GLiNER2.5-Decide. The paper and source-upload instructions are
-in the linked paper directory.
+The paper, [DFIP: Decision-Focused Inference Path for System One Models](https://arxiv.org/abs/2610.36804),
+by Ismail Pelaseyed and Alan Zabihi, is available as **arXiv:2610.36804 [cs.PF]**
+([PDF](https://arxiv.org/pdf/2610.36804), [DOI](https://doi.org/10.48550/arXiv.2610.36804)).
+It studies PPLX-Decider, Liquid d1-3B, Clef-Flash, and GLiNER2.5-Decide.
+The [paper source and analysis guide](paper/README.md) includes reproduction and
+source-upload instructions; citation metadata is in [CITATION.cff](CITATION.cff).
 
 | Comparison | Finding | Scope |
 | --- | --- | --- |
